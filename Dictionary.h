@@ -1,5 +1,7 @@
-// Tue Jun  6 20:55:50 UTC 2017
-// 4733-a9a
+// Tue Jun  6 22:16:24 UTC 2017
+// 4733-a9b
 
-extern cell_t* pHere;
+/**  File: YAFFA-ARM.ino                                                     **/
+extern cell_t* pHere;        // HERE, points to the next free position in
+                             // Forth Space
 
