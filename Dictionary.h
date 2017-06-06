@@ -1,2 +1,4 @@
-extern void dStack_push(cell_t value);
-extern cell_t dStack_pop(void);
+// Tue Jun  6 20:02:36 UTC 2017
+
+extern cell_t* pHere;
+
