@@ -1960,51 +1960,7 @@ const char throw_str[] = "throw";
 // exception stack, along with everything on the return stack above that frame.
 // ...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     now hold on right there  varmint
-
-
-
-//     now hold on right there  varmint
-
-
-//     now hold on right there  varmint
-
-
-//     now hold on right there  varmint
 void _throw(void) {
-
-//     now hold on right there  varmint
-
-
-//     now hold on right there  varmint
-
-
-//     now hold on right there  varmint
-
-
-//     now hold on right there  varmint
-
 
 //   errorCode = dStack_pop();
 //   uint8_t index = 0;
