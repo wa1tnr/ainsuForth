@@ -202,129 +202,131 @@ uint8_t base;  // stores the number conversion radix
 /** Initialization                                                           **/
 /******************************************************************************/
 void setup(void) {                
-  uint16_t mem;
+//  uint16_t mem;
   Serial.begin(19200);     // Open serial communications:
 
-  flags = ECHO_ON;
-  base = DECIMAL;
+//  flags = ECHO_ON;
+//  base = DECIMAL;
 
-  pHere = &forthSpace[0];
-  pOldHere = pHere;
+//  pHere = &forthSpace[0];
+//  pOldHere = pHere;
   
-  Serial.print("\n YAFFA - Yet Another Forth For Arduino, ");
-  Serial.print("Version ");
-  Serial.print(YAFFA_MAJOR,DEC);
-  Serial.print(".");
-  Serial.println(YAFFA_MINOR,DEC);
-  Serial.print(" Copyright (C) 2012 Stuart Wood\r\n");
-  Serial.print(" This program comes with ABSOLUTELY NO WARRANTY.\r\n");
-  Serial.print(" This is free software, and you are welcome to\r\n");
-  Serial.println(" redistribute it under certain conditions.\r\n");
+//  Serial.print("\n YAFFA - Yet Another Forth For Arduino, ");
+//  Serial.print("Version ");
+//  Serial.print(YAFFA_MAJOR,DEC);
+//  Serial.print(".");
+//  Serial.println(YAFFA_MINOR,DEC);
+//  Serial.print(" Copyright (C) 2012 Stuart Wood\r\n");
+//  Serial.print(" This program comes with ABSOLUTELY NO WARRANTY.\r\n");
+//  Serial.print(" This is free software, and you are welcome to\r\n");
+//  Serial.println(" redistribute it under certain conditions.\r\n");
   
-  Serial.print(" Processor is a ");
-  Serial.println(PROC_STR);
-  Serial.print(" Terminal Echo is ");
-  Serial.print(flags & ECHO_ON ? "On\r\n" : "Off\r\n");
-  Serial.print(" Pre-Defined Words : ");
-  pFlashEntry = flashDict;
-  w = 0;
-  while (pFlashEntry->name) { // Good for the Zero
-    w++;
-    pFlashEntry++;
-  }
-  Serial.println(w);
+//  Serial.print(" Processor is a ");
+//  Serial.println(PROC_STR);
+//  Serial.print(" Terminal Echo is ");
+//  Serial.print(flags & ECHO_ON ? "On\r\n" : "Off\r\n");
+//  Serial.print(" Pre-Defined Words : ");
+//  pFlashEntry = flashDict;
+//  w = 0;
+//  while (pFlashEntry->name) { // Good for the Zero
+//    w++;
+//    pFlashEntry++;
+//  }
+//  Serial.println(w);
 
-  Serial.println("\r\n Environment Parameters: ");
-  Serial.print(" Counted String Length: \t");
-  Serial.print(BUFFER_SIZE);
-  Serial.println(" Bytes");
-  Serial.print(" Pict. Num. Output Length: \t");
-  Serial.print(HOLD_SIZE);
-  Serial.println(" Bytes");
-  Serial.print(" Scratch Pad size: \t\t");
-  Serial.print(PAD_SIZE);
-  Serial.println(" Bytes");
-  Serial.print(" Address Size: \t\t\t");
-  Serial.print(sizeof(void*) * 8);
-  Serial.println(" Bits");
-  Serial.print(" Core Word set: \t\t");
-  Serial.println(CORE ? "TRUE" : "FALSE");
-  Serial.print(" Ext. Core Word set: \t\t");
-  Serial.println(CORE_EXT ? "TRUE" : "FALSE");
-  Serial.print(" Floored Division: \t\t");
-  Serial.println(FLOORED ? "TRUE" : "FALSE");
-  Serial.print(" Max. Char Value: \t\t");
-  Serial.print(MAX_CHAR);
-  Serial.println(" Dec.");
+//  Serial.println("\r\n Environment Parameters: ");
+//  Serial.print(" Counted String Length: \t");
+//  Serial.print(BUFFER_SIZE);
+//  Serial.println(" Bytes");
+//  Serial.print(" Pict. Num. Output Length: \t");
+//  Serial.print(HOLD_SIZE);
+//  Serial.println(" Bytes");
+//  Serial.print(" Scratch Pad size: \t\t");
+//  Serial.print(PAD_SIZE);
+//  Serial.println(" Bytes");
+//  Serial.print(" Address Size: \t\t\t");
+//  Serial.print(sizeof(void*) * 8);
+//  Serial.println(" Bits");
+//  Serial.print(" Core Word set: \t\t");
+//  Serial.println(CORE ? "TRUE" : "FALSE");
+//  Serial.print(" Ext. Core Word set: \t\t");
+//  Serial.println(CORE_EXT ? "TRUE" : "FALSE");
+//  Serial.print(" Floored Division: \t\t");
+//  Serial.println(FLOORED ? "TRUE" : "FALSE");
+//  Serial.print(" Max. Char Value: \t\t");
+//  Serial.print(MAX_CHAR);
+//  Serial.println(" Dec.");
 #ifdef DOUBLE
-  Serial.print(" Max. Signed Double: \t\t");
-  Serial.print(MAX_OF(dcell_t));
-  Serial.println(" Dec.");
+//  Serial.print(" Max. Signed Double: \t\t");
+//  Serial.print(MAX_OF(dcell_t));
+//  Serial.println(" Dec.");
 #endif
-  Serial.print(" Max. Singed Integer: \t\t");
-  Serial.print(MAX_OF(cell_t));
-  Serial.println(" Dec.");
-  Serial.print(" Max. unsigned Integer: \t");
-  Serial.print(MAX_OF(ucell_t));
-  Serial.println(" Dec.");
-  Serial.print(" Max. Return Stack Size: \t");
-  Serial.print(RSTACK_SIZE);
-  Serial.println(" Cells");
-  Serial.print(" Max. Data Stack Size: \t\t");
-  Serial.print(STACK_SIZE);
-  Serial.println(" Cells");
+//  Serial.print(" Max. Singed Integer: \t\t");
+//  Serial.print(MAX_OF(cell_t));
+//  Serial.println(" Dec.");
+//  Serial.print(" Max. unsigned Integer: \t");
+//  Serial.print(MAX_OF(ucell_t));
+//  Serial.println(" Dec.");
+//  Serial.print(" Max. Return Stack Size: \t");
+//  Serial.print(RSTACK_SIZE);
+//  Serial.println(" Cells");
+//  Serial.print(" Max. Data Stack Size: \t\t");
+//  Serial.print(STACK_SIZE);
+//  Serial.println(" Cells");
 
-  Serial.print("\r\n Input Buffer: Size ");
-  Serial.print(BUFFER_SIZE);
-  Serial.print(" Bytes, Starts at $");
-  Serial.print((size_t)cInputBuffer[0], HEX);
-  Serial.print(", Ends at $");
-  Serial.println((size_t)cInputBuffer[BUFFER_SIZE] - 1, HEX);
+//  Serial.print("\r\n Input Buffer: Size ");
+//  Serial.print(BUFFER_SIZE);
+//  Serial.print(" Bytes, Starts at $");
+//  Serial.print((size_t)cInputBuffer[0], HEX);
+//  Serial.print(", Ends at $");
+//  Serial.println((size_t)cInputBuffer[BUFFER_SIZE] - 1, HEX);
 
-  Serial.print(" Token Buffer: Size ");
-  Serial.print(WORD_SIZE);
-  Serial.print(" Bytes, Starts at $");
-  Serial.print((size_t)&cTokenBuffer[0], HEX);
-  Serial.print(", Ends at $");
-  Serial.println((size_t)&cTokenBuffer[WORD_SIZE] - 1, HEX);
+//  Serial.print(" Token Buffer: Size ");
+//  Serial.print(WORD_SIZE);
+//  Serial.print(" Bytes, Starts at $");
+//  Serial.print((size_t)&cTokenBuffer[0], HEX);
+//  Serial.print(", Ends at $");
+//  Serial.println((size_t)&cTokenBuffer[WORD_SIZE] - 1, HEX);
 
-  Serial.print(" Forth Space: Size ");
-  Serial.print(FORTH_SIZE);
-  Serial.print(" Cells, Starts at $");
-  Serial.print((size_t)&forthSpace[0], HEX);
-  Serial.print(", Ends at $");
-  Serial.println((size_t)&forthSpace[FORTH_SIZE] - 1, HEX);
+//  Serial.print(" Forth Space: Size ");
+//  Serial.print(FORTH_SIZE);
+//  Serial.print(" Cells, Starts at $");
+//  Serial.print((size_t)&forthSpace[0], HEX);
+//  Serial.print(", Ends at $");
+//  Serial.println((size_t)&forthSpace[FORTH_SIZE] - 1, HEX);
 
-  Serial.print(prompt_str);
+//  Serial.print(prompt_str);
 }
 
 /******************************************************************************/
 /** Outer interpreter                                                        **/
 /******************************************************************************/
 void loop(void) {
-  cpSource = cpToIn = cInputBuffer;
-  cpSourceEnd = cpSource + getLine(cpSource, BUFFER_SIZE);
-  if (cpSourceEnd > cpSource) {
-    interpreter();
-    if (errorCode) {
-        errorCode = 0;
-    } else {
-      if (!state) {
-        Serial.print(ok_str);
-        // This shows a DOT for each item on the data stack
-        char i = dStack_size();
-        while(i--) {
-            Serial.print(".");
-        }
-        Serial.println();
-      }
-    }
-  }
-  if (state) {
-	Serial.print(compile_prompt_str);
-  } else {
-	Serial.print(prompt_str);
-  }
+    int fake = 0; // standard nop idiom used in ainsuForth at this time.
+
+//  cpSource = cpToIn = cInputBuffer;
+//  cpSourceEnd = cpSource + getLine(cpSource, BUFFER_SIZE);
+//  if (cpSourceEnd > cpSource) {
+//    interpreter();
+//    if (errorCode) {
+//        errorCode = 0;
+//    } else {
+//      if (!state) {
+//        Serial.print(ok_str);
+//        // This shows a DOT for each item on the data stack
+//        char i = dStack_size();
+//        while(i--) {
+//            Serial.print(".");
+//        }
+//        Serial.println();
+//      }
+//    }
+//  }
+//  if (state) {
+//	Serial.print(compile_prompt_str);
+//  } else {
+//	Serial.print(prompt_str);
+//  }
 }
 
 /******************************************************************************/
