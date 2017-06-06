@@ -1,5 +1,5 @@
-
-// Tue Jun  6 19:06:03 UTC 2017
+// Tue Jun  6 20:55:50 UTC 2017
+// 4733-a9a
 
 // Try splitting and renaming and relocating code, without the
 // removal of commented code.
@@ -334,13 +334,16 @@ void _dot(void) {
 //   displayValue();
 }
 
-const char dot_quote_str[] = ".\x22";
+// moved to src/kernel/dot_quote.cpp: const char dot_quote_str[] = ".\x22";
+
 // Compilation ("ccc<quote>" -- )
 // Parse ccc delimited by ". Append the run time semantics given below to
 // the current definition.
 // Run-Time ( -- )
 // Display ccc.
-void _dot_quote(void) {
+
+// moved and truncated at src/kernel/dot_quote.cpp: void _dot_quote(void) {
+
 //   uint8_t i;
 //   char length;
 //   if (flags & EXECUTE) {
@@ -366,7 +369,7 @@ void _dot_quote(void) {
 //     ALIGN_P(pHere);  // re- align the pHere for any new code
 //     cDelimiter = ' ';
 //   }
-}
+// }
 
 const char slash_str[] = "/";
 // ( n1 n2 -- n3 )
@@ -2277,6 +2280,16 @@ void _toName(void) {
 /*********************************************************************************/
 /**                         Dictionary Initialization                           **/
 /*********************************************************************************/
+
+
+// Tue Jun  6 20:42:31 UTC 2017
+// 4733-a9a
+// 
+// ainsuForth NOTE:
+//     flashDict[] assignment
+// belongs in flashDict.cpp for reorganization.
+
+
 const flashEntry_t flashDict[] = {
   /*****************************************************/
   /* The initial entries must stay in this order so    */
@@ -2296,7 +2309,11 @@ const flashEntry_t flashDict[] = {
   { plus_loop_sys_str,  _plus_loop_sys,   SMUDGE },
   { evaluate_str,       _evaluate,        NORMAL },
   { s_quote_str,        _s_quote,         IMMEDIATE + COMP_ONLY },
-  { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
+
+// belongs in flashDict.cpp along with the rest of this:
+//  { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
+// commented out here to satisfy short-term goal (compiler needs to be kept happy)
+
   { variable_str,       _variable,        NORMAL },
   { over_str,           _over,            NORMAL }, // CAL
   { eq_str,             _eq,              NORMAL }, // CAL

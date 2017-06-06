@@ -1,19 +1,5 @@
-
-// Tue Jun  6 18:43:24 UTC 2017
-
-// wa1tnr: it is striking that the sketch uses 9444 bytes,
-// before and after the changes made during this single commit.
-// It would appear that the compiler already knew something
-// non-obvious about the (then) current involvement of the
-// lines commented-out during this (one) commit -- they didn't
-// have any involvement (or they had very little of it).
-
-// That came about earlier -- their irrelevancy to the compiler -- 
-// that's the difficulty; comprehension of why that is the case.
-
-// This is something to pay attention to.
-
-
+// Tue Jun  6 20:55:50 UTC 2017
+// 4733-a9a
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
