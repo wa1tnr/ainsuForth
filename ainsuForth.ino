@@ -6,10 +6,10 @@
 // It would appear that the compiler already knew something
 // non-obvious about the (then) current involvement of the
 // lines commented-out during this (one) commit -- they didn't
-// have any (or very little).
+// have any involvement (or they had very little of it).
 
-// That came about earlier -- that's the difficulty; comprehension
-// of why that's so.
+// That came about earlier -- their irrelevancy to the compiler -- 
+// that's the difficulty; comprehension of why that is the case.
 
 // This is something to pay attention to.
 
