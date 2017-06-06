@@ -41,19 +41,27 @@
 /**                                                                          **/
 /**  REVISION HISTORY:                                                       **/
 /**                                                                          **/
-/**    0.7.0                                                                **/
+/**    0.7.0                                                                 **/
 /**    - Fixed the how LEAVE is handled in LOOP and +LOOP.                   **/
 /**    0.6.2                                                                 **/
 /**    - Added words ">NUMBER", "KEY?", ".(", "0<>", "0>", "2>R", "2R>",     **/
 /**      "2R@".                                                              **/
 /**    - Removed static from the function headers to avoid compilation       **/
 /**      errors with the new 1.6.6 Arduino IDE.                              **/
+/**                                                                          **/
+/**                                                                          **/
+/** 2017: changed to yaffa.h -- reverting possibly what is mentioned         **/
+/**       on the lines, below this one.                                      **/
+/**                                                                          **/
+/**                                                                          **/
 /**    - changed file names from yaffa.h to YAFFA.h and Yaffa.ino to         **/
 /**      YAFFA.ino and the #includes to reflect the capatilized name. This   **/
 /**      helps with cheking out the project from github without renaming     **/
 /**      files.                                                              **/
+/**                                                                          **/
+/**                                                                          **/
 /**    - Fixed comments for pinWrite and pinMode.                            **/
-/**    - YAFFA.h reorganized for different architectures                     **/
+/**    - yaffa.h reorganized for different architectures                     **/
 /**    - Replaced Serial.print(PSTR()) with Serial.print(F())                **/
 /**    0.6.1                                                                 **/
 /**    - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD     **/
@@ -86,7 +94,7 @@
 /**                                                                          **/
 /******************************************************************************/
 
-#include "YAFFA.h"
+#include "yaffa.h"
 #include "Error_Codes.h"
 
 /******************************************************************************/
