@@ -1,0 +1,61 @@
+Installation Instructions
+*************************
+
+Copyright (C) 2017 wa1tnr
+
+   Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without warranty of any kind.
+
+Basic Installation
+==================
+
+   Briefly, you are looking at a skeleton file acting as a place-
+holder for any installation instructions offered.
+
+  1. Install something.
+  2. Install something else.  Then install a thing.  Continue installing
+     until installation is complete.
+  3. These three line items are meant as place-holders for instructions,
+     rather than as instructions.
+
+
+Compilers and Options
+=====================
+
+   This would be a good place to talk about the compiler.
+
+Compiling For Multiple Architectures
+====================================
+
+   This might talk about #define and #include directives to the C
+preprocessor.
+
+Installation Names
+==================
+
+   This section may talk about makefile targets, if there were any.
+
+Optional Features
+=================
+
+   This would possibly be more specific to individual, well-known
+features the program may (optionally) incorporate.  Or not.
+
+Particular systems
+==================
+
+   This might talk about Linux or about some other kind of system
+(name your system here; for example, Solaris).
+
+
+Other
+=====
+
+This INSTALL file format doesn't very well fit present needs.
+
+It is here to remind what sorts of standard files are often
+seen in distributed packages.
+
+Tue Jun  6 03:03:57 UTC 2017
