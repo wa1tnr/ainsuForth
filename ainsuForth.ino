@@ -1,5 +1,19 @@
 
-// Tue Jun  6 05:30:02 UTC 2017
+// Tue Jun  6 18:43:24 UTC 2017
+
+// wa1tnr: it is striking that the sketch uses 9444 bytes,
+// before and after the changes made during this single commit.
+// It would appear that the compiler already knew something
+// non-obvious about the (then) current involvement of the
+// lines commented-out during this (one) commit -- they didn't
+// have any (or very little).
+
+// That came about earlier -- that's the difficulty; comprehension
+// of why that's so.
+
+// This is something to pay attention to.
+
+
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
@@ -336,17 +350,17 @@ void loop(void) {
 /**   standard printable characters                                          **/
 /******************************************************************************/
 char getKey(void) {
-  char inChar;
+//   char inChar;
 
-  while (1) {
-    if (Serial.available()) {
-      inChar = Serial.read();
-      if (inChar == ASCII_BS || inChar == ASCII_TAB || inChar == ASCII_CR || 
-          inChar == ASCII_ESC || isprint(inChar)) {
-        return inChar; 
-      }
-    }
-  }
+//   while (1) {
+//     if (Serial.available()) {
+//       inChar = Serial.read();
+//       if (inChar == ASCII_BS || inChar == ASCII_TAB || inChar == ASCII_CR || 
+//           inChar == ASCII_ESC || isprint(inChar)) {
+//         return inChar; 
+//       }
+//     }
+//   }
 }
 
 /******************************************************************************/
@@ -357,28 +371,28 @@ char getKey(void) {
 /**   and Returns the length of the string stored                            **/
 /******************************************************************************/
 uint8_t getLine(char* ptr, uint8_t buffSize) {
-  char inChar;
-  uint8_t count = 0;
-  do {
-    inChar = getKey();
-    if (inChar == ASCII_BS) {
-      if (count) {
-        *--ptr = 0;
-        if (flags & ECHO_ON) Serial.print("\b \b");
-      }
-    } else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
-      if (flags & ECHO_ON) Serial.print("\a"); // Beep
-    } else if (inChar == ASCII_CR) {
-      if (flags & ECHO_ON) Serial.println();
-      break;
-    } else {
-      if (flags & ECHO_ON) Serial.print(inChar);
-      *ptr++ = inChar;
-      *ptr = 0;
-      count++;
-    }
-  } while (count < buffSize);
-  return (count);
+//   char inChar;
+//   uint8_t count = 0;
+//   do {
+//     inChar = getKey();
+//     if (inChar == ASCII_BS) {
+//       if (count) {
+//         *--ptr = 0;
+//         if (flags & ECHO_ON) Serial.print("\b \b");
+//       }
+//     } else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
+//       if (flags & ECHO_ON) Serial.print("\a"); // Beep
+//     } else if (inChar == ASCII_CR) {
+//       if (flags & ECHO_ON) Serial.println();
+//       break;
+//     } else {
+//       if (flags & ECHO_ON) Serial.print(inChar);
+//       *ptr++ = inChar;
+//       *ptr = 0;
+//       count++;
+//     }
+//   } while (count < buffSize);
+//   return (count);
 }
 
 /******************************************************************************/
@@ -403,22 +417,22 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
 // not depend on the existence of the space.
 /******************************************************************************/
 uint8_t getToken(void) {
-  uint8_t tokenIdx = 0;
-  while (cpToIn <= cpSourceEnd) {
-    if ((*cpToIn == cDelimiter) || (*cpToIn == 0)) {
-      cTokenBuffer[tokenIdx] = '\0';       // Terminate SubString
-      cpToIn++;
-      if (tokenIdx) return tokenIdx;
-    } else {
-      if (tokenIdx < (WORD_SIZE - 1)) {
-        cTokenBuffer[tokenIdx++] = *cpToIn++;
-      }
-    }
-  }
+//   uint8_t tokenIdx = 0;
+//   while (cpToIn <= cpSourceEnd) {
+//     if ((*cpToIn == cDelimiter) || (*cpToIn == 0)) {
+//       cTokenBuffer[tokenIdx] = '\0';       // Terminate SubString
+//       cpToIn++;
+//       if (tokenIdx) return tokenIdx;
+//     } else {
+//       if (tokenIdx < (WORD_SIZE - 1)) {
+//         cTokenBuffer[tokenIdx++] = *cpToIn++;
+//       }
+//     }
+//   }
   // If we get to SourceEnd without a delimiter and the token buffer has
   // something in it return that. Else return 0 to show we found nothing
-  if (tokenIdx) return tokenIdx;
-  else return 0;
+//   if (tokenIdx) return tokenIdx;
+//   else return 0;
 }
 
 /******************************************************************************/
@@ -429,88 +443,88 @@ uint8_t getToken(void) {
 /** signal an error.                                                         **/
 /******************************************************************************/
 void interpreter(void) {
-  func function;
+//   func function;
 
-  while (getToken()) {
-    if (state) {
-      /*************************/
-      /** Compile Mode        **/
-      /*************************/
-      if (isWord(cTokenBuffer)) {
-        if (wordFlags & IMMEDIATE) {
-          if (w > 255) {
-            rStack_push(0);            // Push 0 as our return address
-            ip = (cell_t *)w;    // set the ip to the XT (memory location)
-            executeWord();
-          } else {
-            function = flashDict[w - 1].function;
-            function();
-            if (errorCode) return;
-          }
-          executeWord();  // Why is this here?
-        } else {
-          *pHere++ = w;
-        }
-      } else if (isNumber(cTokenBuffer)) {
+//   while (getToken()) {
+//     if (state) {
+//       /*************************/
+//       /** Compile Mode        **/
+//       /*************************/
+//       if (isWord(cTokenBuffer)) {
+//         if (wordFlags & IMMEDIATE) {
+//           if (w > 255) {
+//             rStack_push(0);            // Push 0 as our return address
+//             ip = (cell_t *)w;    // set the ip to the XT (memory location)
+//             executeWord();
+//           } else {
+//             function = flashDict[w - 1].function;
+//             function();
+//             if (errorCode) return;
+//           }
+//           executeWord();  // Why is this here?
+//         } else {
+//           *pHere++ = w;
+//         }
+//       } else if (isNumber(cTokenBuffer)) {
         // _literal();
-      } else {
-        dStack_push(-13);
+//       } else {
+//         dStack_push(-13);
         // _throw();
-      }
-    } else {
+//       }
+//     } else {
 
       /************************/
       /* Interpret Mode       */
       /************************/
-      if (isWord(cTokenBuffer)) {
-        if (wordFlags & COMP_ONLY) {
-          dStack_push(-14);
+//       if (isWord(cTokenBuffer)) {
+//         if (wordFlags & COMP_ONLY) {
+//           dStack_push(-14);
           // _throw();
-          return;
-        }
+//           return;
+//         }
 
-        if (w > 255) {
-          rStack_push(0);                  // Push 0 as our return address
-          ip = (cell_t *)w;          // set the ip to the XT (memory location)
-          executeWord();
-          if (errorCode) return;
-        } else {
-          function = flashDict[w - 1].function;
-          function();
-          if (errorCode) return;
-        }
-      } else if (isNumber(cTokenBuffer)) {
+//         if (w > 255) {
+//           rStack_push(0);                  // Push 0 as our return address
+//           ip = (cell_t *)w;          // set the ip to the XT (memory location)
+//           executeWord();
+//           if (errorCode) return;
+//         } else {
+//           function = flashDict[w - 1].function;
+//           function();
+//           if (errorCode) return;
+//         }
+//       } else if (isNumber(cTokenBuffer)) {
 // Is something supposed to be here?        
-      } else {
-        dStack_push(-13);
+//       } else {
+//         dStack_push(-13);
         // _throw();
-        return;
-      }
-    }
-  }
-  cpToIn = cpSource;
+//         return;
+//       }
+//     }
+//   }
+//   cpToIn = cpSource;
 }
 
 /******************************************************************************/
 /** Virtual Machine that executes Code Space                                 **/
 /******************************************************************************/
 void executeWord(void) {
-  func function;
-  flags |= EXECUTE;
-  while (ip != NULL) {
-    w = *ip++;
-    if (w > 255) {
+//   func function;
+//   flags |= EXECUTE;
+//   while (ip != NULL) {
+//     w = *ip++;
+//     if (w > 255) {
       // ip is an address in code space
-      rStack_push((size_t)ip); // push the address to return to
-      ip = (cell_t*)w;          // set the ip to the new address
-    }
-    else {
-      function = flashDict[w - 1].function;
-      function();
-      if (errorCode) return;
-    }
-  }
-  flags &= ~EXECUTE;
+//       rStack_push((size_t)ip); // push the address to return to
+//       ip = (cell_t*)w;          // set the ip to the new address
+//     }
+//     else {
+//       function = flashDict[w - 1].function;
+//       function();
+//       if (errorCode) return;
+//     }
+//   }
+//   flags &= ~EXECUTE;
 }
 
 /******************************************************************************/
@@ -523,34 +537,34 @@ void executeWord(void) {
 /** Could this become the word FIND or ' (tick)?                             **/
 /******************************************************************************/
 uint8_t isWord(char* addr) {
-  uint8_t index = 0;
+//   uint8_t index = 0;
 
-  pUserEntry = pLastUserEntry;
+//   pUserEntry = pLastUserEntry;
   // First search through the user dictionary
-  while (pUserEntry) {
-    if (strcmp(pUserEntry->name, addr) == 0) {
-      wordFlags = pUserEntry->flags;
-      w = (size_t)pUserEntry->cfa;
-      return 1;
-    }
-    pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-  }
+//   while (pUserEntry) {
+//     if (strcmp(pUserEntry->name, addr) == 0) {
+//       wordFlags = pUserEntry->flags;
+//       w = (size_t)pUserEntry->cfa;
+//       return 1;
+//     }
+//     pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
+//   }
 
   // Second Search through the flash Dictionary
-  while (flashDict[index].name) {
-    if (!strcasecmp(addr, flashDict[index].name)) {
-      w = index + 1;
-      wordFlags = flashDict[index].flags;
-      if (wordFlags & SMUDGE) {
-        return 0;
-      } else {
-        return 1;
-      }
-    }
-    index++;
-  }
-  w = 0;
-  return 0;
+//   while (flashDict[index].name) {
+//     if (!strcasecmp(addr, flashDict[index].name)) {
+//       w = index + 1;
+//       wordFlags = flashDict[index].flags;
+//       if (wordFlags & SMUDGE) {
+//         return 0;
+//       } else {
+//         return 1;
+//       }
+//     }
+//     index++;
+//   }
+//   w = 0;
+//   return 0;
 }
 
 /******************************************************************************/
@@ -563,85 +577,85 @@ uint8_t isWord(char* addr) {
 /** binary.                                                                  **/
 /******************************************************************************/
 uint8_t isNumber(char* subString) {
-  unsigned char negate = 0;                  // flag if number is negative
-  cell_t tempBase = base;
-  cell_t number = 0;
+//   unsigned char negate = 0;                  // flag if number is negative
+//   cell_t tempBase = base;
+//   cell_t number = 0;
 
-  wordFlags = 0;
+//   wordFlags = 0;
 
   // Look at the initial character, handling either '-', '$', or '%'
-  switch (*subString) {
-    case '$':  base = HEXIDECIMAL;  goto SKIP;
-    case '%':  base = BINARY;   goto SKIP;
-    case '#':  base = DECIMAL;  goto SKIP;
-    case '-':  negate = 1;
-SKIP:                // common code to skip initial character
-    subString++;
-    break;
-  }
+//   switch (*subString) {
+//     case '$':  base = HEXIDECIMAL;  goto SKIP;
+//     case '%':  base = BINARY;   goto SKIP;
+//     case '#':  base = DECIMAL;  goto SKIP;
+//     case '-':  negate = 1;
+// SKIP:                // common code to skip initial character
+//     subString++;
+//     break;
+//   }
   // Iterate over rest of token, and if rest of digits are in
   // the valid set of characters, accumulate them.  If any
   // invalid characters found, abort and return 0.
-  while (*subString) {
-    char* pos = strchr(charset, (int)tolower(*subString));
-    cell_t offset = pos - charset;
-    if ((offset < base) && (offset > -1))
-      number = (number * base) + (pos - charset);
-    else {
-      base = tempBase;
-      return 0;           // exit, signalling subString isn't a number
-    }
-    subString++;
-  }
-  if (negate) number = ~number + 1;     // apply sign, if necessary
-  dStack_push(number);
-  base = tempBase;
-  return 1;
+//   while (*subString) {
+//     char* pos = strchr(charset, (int)tolower(*subString));
+//     cell_t offset = pos - charset;
+//     if ((offset < base) && (offset > -1))
+//       number = (number * base) + (pos - charset);
+//     else {
+//       base = tempBase;
+//       return 0;           // exit, signalling subString isn't a number
+//     }
+//     subString++;
+//   }
+//   if (negate) number = ~number + 1;     // apply sign, if necessary
+//   dStack_push(number);
+//   base = tempBase;
+//   return 1;
 }
 
 /******************************************************************************/
 /** freeMem returns the amount of free forth space left.                     **/
 /******************************************************************************/
 static unsigned int freeMem(void) {
-  return (pHere - forthSpace);
+//   return (pHere - forthSpace);
 }
 
 /******************************************************************************/
 /** Start a New Entry in the Dictionary                                      **/
 /******************************************************************************/
 void openEntry(void) {
-  uint8_t index = 0;
-  pOldHere = pHere;            // Save the old location of HERE so we can
+//   uint8_t index = 0;
+//   pOldHere = pHere;            // Save the old location of HERE so we can
                                // abort out of the new definition
-  pNewUserEntry = (userEntry_t*)pHere;
-  if (pLastUserEntry == NULL)
-    pNewUserEntry->prevEntry = 0;              // Initialize User Dictionary
-  else pNewUserEntry->prevEntry = pLastUserEntry;
-  if (!getToken()) {
-   dStack_push(-16);
+//   pNewUserEntry = (userEntry_t*)pHere;
+//   if (pLastUserEntry == NULL)
+//     pNewUserEntry->prevEntry = 0;              // Initialize User Dictionary
+//   else pNewUserEntry->prevEntry = pLastUserEntry;
+//   if (!getToken()) {
+//    dStack_push(-16);
     // _throw();
-  }
-  char* ptr = pNewUserEntry->name;
-  do {
-    *ptr++ = cTokenBuffer[index++];
-  } while (cTokenBuffer[index] != '\0');
-  *ptr++ = '\0';
-  pHere = (cell_t *)ptr;
-  ALIGN_P(pHere);
+//   }
+//   char* ptr = pNewUserEntry->name;
+//   do {
+//     *ptr++ = cTokenBuffer[index++];
+//   } while (cTokenBuffer[index] != '\0');
+//   *ptr++ = '\0';
+//   pHere = (cell_t *)ptr;
+//   ALIGN_P(pHere);
 
-  pNewUserEntry->cfa = pHere;
-  pCodeStart = pHere;
+//   pNewUserEntry->cfa = pHere;
+//   pCodeStart = pHere;
 }
 
 /******************************************************************************/
 /** Finish an new Entry in the Dictionary                                    **/
 /******************************************************************************/
 void closeEntry(void) {
-  if (errorCode == 0) {
-    *pHere++ = EXIT_IDX;
-    pNewUserEntry->flags = 0; // clear the word's flags
-    pLastUserEntry = pNewUserEntry;
-  } else pHere = pOldHere;   // Revert pHere to what it was before the start
+//   if (errorCode == 0) {
+//     *pHere++ = EXIT_IDX;
+//     pNewUserEntry->flags = 0; // clear the word's flags
+//     pLastUserEntry = pNewUserEntry;
+//   } else pHere = pOldHere;   // Revert pHere to what it was before the start
                              // of the new word definition
 }
 
@@ -658,44 +672,44 @@ void closeEntry(void) {
 /** Push (place) a cell onto the stack      **/
 /*********************************************/
 void dStack_push(cell_t value) {
-  if (dStack.top < dStack.size) {
-    dStack.d[++dStack.top] = value;
-  } else {
-    dStack.d[dStack.top] = -3;
+//   if (dStack.top < dStack.size) {
+//     dStack.d[++dStack.top] = value;
+//   } else {
+//     dStack.d[dStack.top] = -3;
     // _throw();
-  }
+//   }
 }
 
 void rStack_push(cell_t value) {
-  if (rStack.top < rStack.size) {
-    rStack.d[++rStack.top] = value;
-  } else {
-    dStack_push(-5);
+//   if (rStack.top < rStack.size) {
+//     rStack.d[++rStack.top] = value;
+//   } else {
+//     dStack_push(-5);
     // _throw();
-  }
+//   }
 }
 
 /*********************************************/
 /** Pop (remove) a cell from the stack      **/
 /*********************************************/
 cell_t dStack_pop(void) {
-  if (dStack.top > 0) {
-    return (dStack.d[dStack.top--]);
-  } else {
-    dStack_push(-4);
+//   if (dStack.top > 0) {
+//     return (dStack.d[dStack.top--]);
+//   } else {
+//     dStack_push(-4);
     // _throw();
-  }
-  return 0;
+//   }
+//   return 0;
 }
 
 cell_t rStack_pop(void) {
-  if (rStack.top > 0) {
-    return (rStack.d[rStack.top--]);
-  } else {
-    dStack_push(-6);
+//   if (rStack.top > 0) {
+//     return (rStack.d[rStack.top--]);
+//   } else {
+//     dStack_push(-6);
     // _throw();
-  }
-  return 0;
+//   }
+//   return 0;
 }
 
 /*********************************************/
@@ -706,23 +720,23 @@ cell_t rStack_pop(void) {
 cell_t dStack_peek(int n) {
   // Error Check: Make sure the depth doesn't
   // exceed the number of elements
-  if (n < dStack.top) {
-    return dStack.d[dStack.top - (n)];
-  } else {
+//   if (n < dStack.top) {
+//     return dStack.d[dStack.top - (n)];
+//   } else {
     Serial.println("Error: Depth too large!");
-  }
-  return 0;
+//   }
+//   return 0;
 }
 
 cell_t rStack_peek(int n) {
   // Error Check: Make sure the depth doesn't
   // exceed the number of elements
-  if (n < rStack.top) {
-    return rStack.d[rStack.top - (n)];
-  } else {
-    Serial.println("Error: Depth too large!");
-  }
-  return 0;
+//   if (n < rStack.top) {
+//     return rStack.d[rStack.top - (n)];
+//   } else {
+//     Serial.println("Error: Depth too large!");
+//   }
+//   return 0;
 }
 
 /*********************************************/
@@ -730,19 +744,19 @@ cell_t rStack_peek(int n) {
 /** is full.                                **/
 /*********************************************/ 
 bool dStack_isFull(void) {
-  if (dStack.top == dStack.size) {
-    return true;
-  } else {
-    return false;
-  }
+//   if (dStack.top == dStack.size) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 }
 
 bool rStack_isFull(void) {
-  if (rStack.top == rStack.size) {
-    return true;
-  } else {
-    return false;
-  }
+//   if (rStack.top == rStack.size) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 }
 
 /*********************************************/
@@ -750,19 +764,19 @@ bool rStack_isFull(void) {
 /** is empty.                               **/
 /*********************************************/ 
 bool dStack_isEmpty(void) {
-  if (dStack.top == 0) {
-    return true;
-  } else {
-    return false;
-  }
+//   if (dStack.top == 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 }
 
 bool rStack_isEmpty(void) {
-  if (rStack.top == 0) {
-    return true;
-  } else {
-    return false;
-  }
+//   if (rStack.top == 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 }
 
 /*********************************************/
@@ -770,11 +784,11 @@ bool rStack_isEmpty(void) {
 /** stack.                                  **/
 /*********************************************/ 
 uint8_t dStack_size(void) {
-  return dStack.top;
+//   return dStack.top;
 }
 
 uint8_t rStack_size(void) {
-  return dStack.top;
+//   return dStack.top;
 }
 
 /*********************************************/
@@ -782,37 +796,37 @@ uint8_t rStack_size(void) {
 /** stack.                                  **/
 /*********************************************/ 
 void dStack_clear(void) {
-  dStack.top = 0;
-  dStack.d[0] = 0;
+//   dStack.top = 0;
+//   dStack.d[0] = 0;
 }
 
 void rStack_clear(void) {
-  dStack.top = 0;
-  dStack.d[0] = 0;
+//   dStack.top = 0;
+//   dStack.d[0] = 0;
 }
 
 /******************************************************************************/
 /** String and Serial Functions                                              **/
 /******************************************************************************/
 void displayValue(void) {
-  switch (base) {
-    case DECIMAL: 
-      Serial.print(w, DEC);
-      break;
-    case HEXIDECIMAL:
-      Serial.print(hexidecimal_str); 
-      Serial.print(w, HEX);
-      break;
-    case OCTAL:
-      Serial.print(octal_str); 
-      Serial.print(w, OCT);
-      break;
-    case BINARY:  
-      Serial.print(binary_str); 
-      Serial.print(w, BIN);
-      break;
-  }
-  Serial.print(sp_str);
+//   switch (base) {
+//     case DECIMAL: 
+//       Serial.print(w, DEC);
+//       break;
+//     case HEXIDECIMAL:
+//       Serial.print(hexidecimal_str); 
+//       Serial.print(w, HEX);
+//       break;
+//     case OCTAL:
+//       Serial.print(octal_str); 
+//       Serial.print(w, OCT);
+//       break;
+//     case BINARY:  
+//       Serial.print(binary_str); 
+//       Serial.print(w, BIN);
+//       break;
+//   }
+//   Serial.print(sp_str);
 }
 
 /******************************************************************************/
@@ -820,21 +834,21 @@ void displayValue(void) {
 /**   Used by _see and _toName                                               **/
 /******************************************************************************/
 char* xtToName(cell_t xt) {
-  pUserEntry = pLastUserEntry;
+//   pUserEntry = pLastUserEntry;
 
   // Second Search through the flash Dictionary
-  if (xt < 256) {
-    Serial.print(flashDict[xt-1].name);
-  } else {
-    while (pUserEntry) {
-      if (pUserEntry->cfa == (cell_t*)xt) {
-        Serial.print(pUserEntry->name);
-        break;
-      }
-      pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-    }
-  }
-  return 0;
+//   if (xt < 256) {
+//     Serial.print(flashDict[xt-1].name);
+//   } else {
+//     while (pUserEntry) {
+//       if (pUserEntry->cfa == (cell_t*)xt) {
+//         Serial.print(pUserEntry->name);
+//         break;
+//       }
+//       pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
+//     }
+//   }
+//   return 0;
 }
 
 
