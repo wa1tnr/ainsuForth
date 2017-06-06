@@ -15,6 +15,11 @@
 
 // It is in revision.
 
+#include <Arduino.h> // undef ref to setup and loop if this is missing
+#include "yaffa.h"
+#include "Dictionary.h"
+#include "Error_Codes.h"
+
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
 /**                                                                          **/
