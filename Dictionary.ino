@@ -1,5 +1,9 @@
 
-// Tue Jun  6 04:44:43 UTC 2017
+// Tue Jun  6 19:06:03 UTC 2017
+
+// Try splitting and renaming and relocating code, without the
+// removal of commented code.
+
 
 // BE SURE not to run any part of this sketch, without careful
 // consideration.  It's not meant to be run (at all) in the
