@@ -452,10 +452,10 @@ void interpreter(void) {
           *pHere++ = w;
         }
       } else if (isNumber(cTokenBuffer)) {
-        _literal();
+        // _literal();
       } else {
         dStack_push(-13);
-        _throw();
+        // _throw();
       }
     } else {
 
@@ -465,7 +465,7 @@ void interpreter(void) {
       if (isWord(cTokenBuffer)) {
         if (wordFlags & COMP_ONLY) {
           dStack_push(-14);
-          _throw();
+          // _throw();
           return;
         }
 
@@ -483,7 +483,7 @@ void interpreter(void) {
 // Is something supposed to be here?        
       } else {
         dStack_push(-13);
-        _throw();
+        // _throw();
         return;
       }
     }
@@ -619,7 +619,7 @@ void openEntry(void) {
   else pNewUserEntry->prevEntry = pLastUserEntry;
   if (!getToken()) {
    dStack_push(-16);
-    _throw();
+    // _throw();
   }
   char* ptr = pNewUserEntry->name;
   do {
@@ -662,7 +662,7 @@ void dStack_push(cell_t value) {
     dStack.d[++dStack.top] = value;
   } else {
     dStack.d[dStack.top] = -3;
-    _throw();
+    // _throw();
   }
 }
 
@@ -671,7 +671,7 @@ void rStack_push(cell_t value) {
     rStack.d[++rStack.top] = value;
   } else {
     dStack_push(-5);
-    _throw();
+    // _throw();
   }
 }
 
@@ -683,7 +683,7 @@ cell_t dStack_pop(void) {
     return (dStack.d[dStack.top--]);
   } else {
     dStack_push(-4);
-    _throw();
+    // _throw();
   }
   return 0;
 }
@@ -693,7 +693,7 @@ cell_t rStack_pop(void) {
     return (rStack.d[rStack.top--]);
   } else {
     dStack_push(-6);
-    _throw();
+    // _throw();
   }
   return 0;
 }
