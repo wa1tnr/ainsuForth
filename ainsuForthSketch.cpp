@@ -1,98 +1,8 @@
+// Wed Jun  7 01:08:31 UTC 2017
+// 4735-a0a
+
 // Tue Jun  6 20:55:50 UTC 2017
 // 4733-a9a
-
-/******************************************************************************/
-/**  YAFFA - Yet Another Forth for Arduino                                   **/
-/**  Version 0.7.0                                                           **/
-/**                                                                          **/
-/**  File: YAFFA.ino                                                         **/
-/**  Copyright (C) 2012 Stuart Wood (swood@rochester.rr.com)                 **/
-/**                                                                          **/
-/**  This file is part of YAFFA.                                             **/
-/**                                                                          **/
-/**  YAFFA is free software: you can redistribute it and/or modify           **/
-/**  it under the terms of the GNU General Public License as published by    **/
-/**  the Free Software Foundation, either version 2 of the License, or       **/
-/**  (at your option) any later version.                                     **/
-/**                                                                          **/
-/**  YAFFA is distributed in the hope that it will be useful,                **/
-/**  but WITHOUT ANY WARRANTY; without even the implied warranty of          **/
-/**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           **/
-/**  GNU General Public License for more details.                            **/
-/**                                                                          **/
-/**  You should have received a copy of the GNU General Public License       **/
-/**  along with YAFFA.  If not, see <http://www.gnu.org/licenses/>.          **/
-/**                                                                          **/
-/******************************************************************************/
-/**                                                                          **/
-/**  DESCRIPTION:                                                            **/
-/**                                                                          **/
-/**  YAFFA is an attempt to make a Forth environment for the Arduino that    **/
-/**  is as close as possible to the ANSI Forth draft specification DPANS94.  **/
-/**                                                                          **/
-/**  The goal is to support at a minimum the ANS Forth C core word set and   **/
-/**  to implement wrappers for the basic I/O functions found in the Arduino  **/
-/**  library.                                                                **/
-/**  YAFFA uses two dictionaries, one for built in words and is stored in    **/
-/**  flash memory, and the other for user defined words, that is found in    **/
-/**  RAM.                                                                    **/
-/**                                                                          **/
-/******************************************************************************/
-/**                                                                          **/
-/**  REVISION HISTORY:                                                       **/
-/**                                                                          **/
-/**    0.7.0                                                                 **/
-/**    - Fixed the how LEAVE is handled in LOOP and +LOOP.                   **/
-/**    0.6.2                                                                 **/
-/**    - Added words ">NUMBER", "KEY?", ".(", "0<>", "0>", "2>R", "2R>",     **/
-/**      "2R@".                                                              **/
-/**    - Removed static from the function headers to avoid compilation       **/
-/**      errors with the new 1.6.6 Arduino IDE.                              **/
-/**                                                                          **/
-/**                                                                          **/
-/** 2017: changed to yaffa.h -- reverting possibly what is mentioned         **/
-/**       on the lines, below this one.                                      **/
-/**                                                                          **/
-/**                                                                          **/
-/**    - changed file names from yaffa.h to YAFFA.h and Yaffa.ino to         **/
-/**      YAFFA.ino and the #includes to reflect the capatilized name. This   **/
-/**      helps with cheking out the project from github without renaming     **/
-/**      files.                                                              **/
-/**                                                                          **/
-/**                                                                          **/
-/**    - Fixed comments for pinWrite and pinMode.                            **/
-/**    - yaffa.h reorganized for different architectures                     **/
-/**    - Replaced Serial.print(PSTR()) with Serial.print(F())                **/
-/**    0.6.1                                                                 **/
-/**    - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD     **/
-/**    0.6                                                                   **/
-/**    - Fixed PROGMEM compilation errors do to new compiler in Arduino 1.6  **/
-/**    - Embedded the revision in to the compiled code.                      **/
-/**    - Revision is now displayed in greeting at start up.                  **/
-/**    - the interpreter not clears the word flags before it starts.         **/
-/**    - Updated TICK, WORD, and FIND to make use of primitive calls for to  **/
-/**      reduce code size.                                                   **/
-/**    - Added word flag checks in dot_quote() and _s_quote().               **/
-/**                                                                          **/
-/**  NOTES:                                                                  **/
-/**                                                                          **/
-/**    - Compiler now gives "Low memory available, stability problems may    **/
-/**      occur." warning. This is expected since most memory is reserved for **/
-/**      the FORTH environment. Excessive recursive calls may overrun the C  **/
-/**      stack.                                                              **/
-/**                                                                          **/
-/**  THINGS TO DO:                                                           **/
-/**                                                                          **/
-/**  CORE WORDS TO ADD:                                                      **/
-/**      >NUMBER                                                             **/
-/**                                                                          **/
-/**  THINGS TO FIX:                                                          **/
-/**                                                                          **/
-/**    Fix the outer interpreter to use FIND instead of isWord               **/
-/**    Fix Serial.Print(w, HEX) from displaying negative numbers as 32 bits  **/
-/**    Fix ENVIRONMENT? Query to take a string reference from the stack.     **/
-/**                                                                          **/
-/******************************************************************************/
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -180,7 +90,7 @@ uint8_t wordFlags;             // Word flags
 /******************************************************************************/
 /** Error Handling                                                           **/
 /******************************************************************************/
-int8_t errorCode = 0;
+int8_t errorCode = 0; // ainsuForth: stays.
 
 /******************************************************************************/
 /**  Forth Space (Name, Code and Data Space) and Associated Registers        **/
@@ -200,6 +110,48 @@ uint8_t state; // Holds the text interpreters compile/interpreter state
 cell_t* ip;   // Instruction Pointer
 cell_t w;     // Working Register
 uint8_t base;  // stores the number conversion radix
+
+/******************************************************************************/
+/** REPLACE_ME                                                               **/
+/******************************************************************************/
+
+//   5 /**  File: YAFFA-ARM.ino                                                     **/
+// 767	/*********************************************/
+// 768	/** clear - removes everything fromt the    **/
+// 769	/** stack.                                  **/
+// 770	/*********************************************/
+// 771	void dStack_clear(void) {
+// 772	  dStack.top = 0;
+// 773	  dStack.d[0] = 0;
+// 774	}
+
+//   5 /**  File: YAFFA-ARM.ino                                                     **/
+/*********************************************/
+/** clear - removes everything from the     **/
+/** stack.                                  **/
+/*********************************************/
+void dStack_clear(void) {
+  dStack.top = 0;
+  dStack.d[0] = 0;
+}
+
+
+// 776	void rStack_clear(void) {
+// 777	  dStack.top = 0;
+// 778	  dStack.d[0] = 0;
+// 779	}
+
+
+void rStack_clear(void) {
+  dStack.top = 0;
+  dStack.d[0] = 0;
+}
+
+
+
+
+
+
 
 /******************************************************************************/
 /** Initialization                                                           **/
@@ -784,15 +736,15 @@ uint8_t rStack_size(void) {
 /** clear - removes everything fromt the    **/
 /** stack.                                  **/
 /*********************************************/ 
-void dStack_clear(void) {
+// void dStack_clear(void) {
 //   dStack.top = 0;
 //   dStack.d[0] = 0;
-}
+// }
 
-void rStack_clear(void) {
+// void rStack_clear(void) {
 //   dStack.top = 0;
 //   dStack.d[0] = 0;
-}
+// }
 
 /******************************************************************************/
 /** String and Serial Functions                                              **/
@@ -841,3 +793,96 @@ char* xtToName(cell_t xt) {
 }
 
 
+
+/******************************************************************************/
+/**  YAFFA - Yet Another Forth for Arduino                                   **/
+/**  Version 0.7.0                                                           **/
+/**                                                                          **/
+/**  File: YAFFA.ino                                                         **/
+/**  Copyright (C) 2012 Stuart Wood (swood@rochester.rr.com)                 **/
+/**                                                                          **/
+/**  This file is part of YAFFA.                                             **/
+/**                                                                          **/
+/**  YAFFA is free software: you can redistribute it and/or modify           **/
+/**  it under the terms of the GNU General Public License as published by    **/
+/**  the Free Software Foundation, either version 2 of the License, or       **/
+/**  (at your option) any later version.                                     **/
+/**                                                                          **/
+/**  YAFFA is distributed in the hope that it will be useful,                **/
+/**  but WITHOUT ANY WARRANTY; without even the implied warranty of          **/
+/**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           **/
+/**  GNU General Public License for more details.                            **/
+/**                                                                          **/
+/**  You should have received a copy of the GNU General Public License       **/
+/**  along with YAFFA.  If not, see <http://www.gnu.org/licenses/>.          **/
+/**                                                                          **/
+/******************************************************************************/
+/**                                                                          **/
+/**  DESCRIPTION:                                                            **/
+/**                                                                          **/
+/**  YAFFA is an attempt to make a Forth environment for the Arduino that    **/
+/**  is as close as possible to the ANSI Forth draft specification DPANS94.  **/
+/**                                                                          **/
+/**  The goal is to support at a minimum the ANS Forth C core word set and   **/
+/**  to implement wrappers for the basic I/O functions found in the Arduino  **/
+/**  library.                                                                **/
+/**  YAFFA uses two dictionaries, one for built in words and is stored in    **/
+/**  flash memory, and the other for user defined words, that is found in    **/
+/**  RAM.                                                                    **/
+/**                                                                          **/
+/******************************************************************************/
+/**                                                                          **/
+/**  REVISION HISTORY:                                                       **/
+/**                                                                          **/
+/**    0.7.0                                                                 **/
+/**    - Fixed the how LEAVE is handled in LOOP and +LOOP.                   **/
+/**    0.6.2                                                                 **/
+/**    - Added words ">NUMBER", "KEY?", ".(", "0<>", "0>", "2>R", "2R>",     **/
+/**      "2R@".                                                              **/
+/**    - Removed static from the function headers to avoid compilation       **/
+/**      errors with the new 1.6.6 Arduino IDE.                              **/
+/**                                                                          **/
+/**                                                                          **/
+/** 2017: changed to yaffa.h -- reverting possibly what is mentioned         **/
+/**       on the lines, below this one.                                      **/
+/**                                                                          **/
+/**                                                                          **/
+/**    - changed file names from yaffa.h to YAFFA.h and Yaffa.ino to         **/
+/**      YAFFA.ino and the #includes to reflect the capatilized name. This   **/
+/**      helps with cheking out the project from github without renaming     **/
+/**      files.                                                              **/
+/**                                                                          **/
+/**                                                                          **/
+/**    - Fixed comments for pinWrite and pinMode.                            **/
+/**    - yaffa.h reorganized for different architectures                     **/
+/**    - Replaced Serial.print(PSTR()) with Serial.print(F())                **/
+/**    0.6.1                                                                 **/
+/**    - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD     **/
+/**    0.6                                                                   **/
+/**    - Fixed PROGMEM compilation errors do to new compiler in Arduino 1.6  **/
+/**    - Embedded the revision in to the compiled code.                      **/
+/**    - Revision is now displayed in greeting at start up.                  **/
+/**    - the interpreter not clears the word flags before it starts.         **/
+/**    - Updated TICK, WORD, and FIND to make use of primitive calls for to  **/
+/**      reduce code size.                                                   **/
+/**    - Added word flag checks in dot_quote() and _s_quote().               **/
+/**                                                                          **/
+/**  NOTES:                                                                  **/
+/**                                                                          **/
+/**    - Compiler now gives "Low memory available, stability problems may    **/
+/**      occur." warning. This is expected since most memory is reserved for **/
+/**      the FORTH environment. Excessive recursive calls may overrun the C  **/
+/**      stack.                                                              **/
+/**                                                                          **/
+/**  THINGS TO DO:                                                           **/
+/**                                                                          **/
+/**  CORE WORDS TO ADD:                                                      **/
+/**      >NUMBER                                                             **/
+/**                                                                          **/
+/**  THINGS TO FIX:                                                          **/
+/**                                                                          **/
+/**    Fix the outer interpreter to use FIND instead of isWord               **/
+/**    Fix Serial.Print(w, HEX) from displaying negative numbers as 32 bits  **/
+/**    Fix ENVIRONMENT? Query to take a string reference from the stack.     **/
+/**                                                                          **/
+/******************************************************************************/
