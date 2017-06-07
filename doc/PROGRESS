@@ -6,3 +6,7 @@ Had some progress shuffling code around.  A bit too confused
 to document what occured, but look near the time of this timestamp
 (01:21z as this is written) for the changes (diff from the previous
 revisions, which were pushed more than one hour prior).
+
+One thing new: src/kernel/quit.cpp and  src/kernel/quit.h added to
+the tree.
+
