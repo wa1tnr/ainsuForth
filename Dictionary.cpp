@@ -1,8 +1,8 @@
+// Wed Jun  7 01:08:31 UTC 2017
+// 4735-a0a
+
 // Tue Jun  6 20:55:50 UTC 2017
 // 4733-a9a
-
-
-
 
 #include <Arduino.h> // undef ref to setup and loop if this is missing
 #include "yaffa.h"
@@ -822,12 +822,24 @@ const char not_done_str[] = " NOT Implemented Yet \n\r";
 //   dStack_push(value);
 // }
 
-// const char cr_str[] = "cr";
-// ( -- )
-// Carriage Return
-// void _cr(void) {
-//   Serial.println();
-// }
+
+
+
+
+
+//   4	/**  File: Dictionary.ino                                                    **/
+// 833	const char cr_str[] = "cr";
+// 834	// ( -- )
+// 835	// Carriage Return
+// 836	void _cr(void) {
+// 837	  Serial.println();
+// 838	}
+
+
+const char cr_str[] = "cr"; // ( -- ) Carriage Return
+void _cr(void) {
+  Serial.println();
+}
 
 // const char create_str[] = "create";
 // ( "<spaces>name" -- )
@@ -1946,44 +1958,45 @@ void _exit(void) {
 #ifdef DOUBLE_SET
 #endif
 
+
+/*******************************************************************************/
+/**  File: Dictionary.ino                                                     **/
 /*******************************************************************************/
 /**                             Exception Set                                 **/
+/**                         ainsuForth: this stays.                           **/
 /*******************************************************************************/
-
-// ainsuForth: this stays.
-// ###bookmark
-
 #ifdef EXCEPTION_SET
 const char throw_str[] = "throw";
 // ( k*x n -- k*x | i*x n)
 // if any bit of n are non-zero, pop the topmost exception frame from the
 // exception stack, along with everything on the return stack above that frame.
 // ...
-
 void _throw(void) {
-
-//   errorCode = dStack_pop();
-//   uint8_t index = 0;
-//   int tableCode;
+  errorCode = dStack_pop();
+  uint8_t index = 0;
+  int tableCode;
   //_cr();
-//   Serial.print(cTokenBuffer);
-//   Serial.print(F(" EXCEPTION("));
-//   do {
-//     tableCode = pgm_read_dword(&(exception[index].code));
-//     if (errorCode == tableCode) {
-//       Serial.print((int)errorCode);
-//       Serial.print("): ");
-//       Serial.print(exception[index].name);
-//       _cr();
-//     }
-//     index++;
-//   } while (tableCode);
-//  dStack.tos = -1;                       // Clear the stack.
-//   dStack_clear();                        // Clear the stack.
-//   _quit();
-//   state = FALSE;
+  Serial.print(cTokenBuffer);
+  Serial.print(F(" EXCEPTION("));
+  do {
+    tableCode = pgm_read_dword(&(exception[index].code));
+    if (errorCode == tableCode) {
+      Serial.print((int)errorCode);
+      Serial.print("): ");
+      Serial.print(exception[index].name);
+      _cr();
+    }
+    index++;
+  } while (tableCode);
+//  dStack.tos = -1;                       // Clear the stack. 
+  dStack_clear();                        // Clear the stack.
+  _quit();
+  state = FALSE;
 }  
+
 #endif
+
+// ###bookmark
 
 /*******************************************************************************/
 /**                             Facility Set                                  **/
