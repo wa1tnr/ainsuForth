@@ -7,6 +7,7 @@
 #ifndef KERNEL_QUIT
 #define KERNEL_QUIT
 
+extern const char quit_str[]; // = "quit";
 extern void _quit(void);
 extern void rStack_clear(void);
 extern char* cpToIn;
