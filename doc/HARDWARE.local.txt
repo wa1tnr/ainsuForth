@@ -56,10 +56,10 @@ Example Application:
   HIGH pin pinWrite ; ( p18 HIGH: LED is ON )
 : ledOFF ( bring p18 to ground potential, disabling the LED circuit )
   LOW  pin pinWrite ; ( p18  LOW: LED is OFF )
-: del5sec 5 100 * ( 500 milliseconds. )
+: del.5sec 5 100 * ( 500 milliseconds. )
   delay ;
-: blink5sec ledON del5sec ledOFF ;
-: blink blink5sec ; ( alias )
+: blink.5sec ledON del.5sec ledOFF ;
+: blink blink.5sec ; ( alias )
 : lowtos cr ." That idiom is meaningless." cr
   abort" unexpected value <1  on TOS.  "
   quit exit ;
@@ -72,7 +72,7 @@ Example Application:
   dup ( stack mismanagement kludge )
   ledSetup ledON ledOFF
   1 ( when this was '3' it blinked three less than TOS )
-  do 1 - blink del5sec dup 0=
+  do 1 - blink del.5sec dup 0=
   drop loop drop ;
 : blinks blinkApp ; ( alias )
 
