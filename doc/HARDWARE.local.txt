@@ -56,7 +56,7 @@ Example Application:
   HIGH pin pinWrite ; ( p18 HIGH: LED is ON )
 : ledOFF ( bring p18 to ground potential, disabling the LED circuit )
   LOW  pin pinWrite ; ( p18  LOW: LED is OFF )
-: del5sec 5 100 * ( 500: 5 seconds divided by 10 - half a second )
+: del5sec 5 100 * ( 500: 5 seconds divided by 10: half a second. )
   delay ;
 : blink5sec ledON del5sec ledOFF ;
 : blink blink5sec ; ( alias )
