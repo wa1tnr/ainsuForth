@@ -7,13 +7,13 @@
 // #include "Error_Codes.h"
 
 #ifdef KERN_DO_SYS
-const char do_sys_str[] = "do-sys"; // the .cpp here gets the real one
+const char do_sys_str[] = "do-sys"; // this ported .cpp gets the real one
 // ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
 // Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
 // condition exists if n1|u1 and n2|u2 are not the same type. Anything already
 // on the return stack becomes unavailable until the loop-control parameters
 // are discarded.
-void _do_sys(void) { // the .cpp here gets the real one
+void _do_sys(void) { // this ported .cpp gets the real one
 
 // these functions must be declared in the .h file corresponding to this file.
   rStack_push(LOOP_SYS);
