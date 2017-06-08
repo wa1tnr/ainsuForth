@@ -16,7 +16,7 @@
 #endif // #ifdef KERNEL_QUIT
 
 // const char quit_str[] = "quit";
-extern const char quit_str[]; // = "quit";
+const char quit_str[] = "quit";
 void _quit(void) {
   rStack_clear();
   *cpToIn = 0;          // Terminate buffer to stop interpreting
