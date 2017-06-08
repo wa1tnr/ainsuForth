@@ -4,7 +4,25 @@
 // Tue Jun  6 22:16:24 UTC 2017
 // 4733-a9b
 
+
+// - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - -
+// - - - -   the  switchyard   - - - -
+// - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - -
+
+// #include "src/kernel/quit.h"
+#include "src/kernel/do_sys.h"
+#include "src/kernel/dot_quote.h"
+// #include "src/kernel/jump.h"
+// #include "src/kernel/leave_sys.h"
+// #include "src/kernel/loop_sys.h"
+// #include "src/kernel/plus_loop_sys.h"
 #include "src/kernel/quit.h"
+// #include "src/kernel/subroutine.h"
+// #include "src/kernel/zjump.h"
 
 /**  File: YAFFA-ARM.ino                                                            **/
 

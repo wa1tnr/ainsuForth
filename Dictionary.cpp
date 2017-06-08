@@ -1,8 +1,18 @@
+// Wed Jun  7 21:40:26 UTC 2017
+// 4735-a0e
+
 // Wed Jun  7 01:08:31 UTC 2017
 // 4735-a0a
 
-// Tue Jun  6 20:55:50 UTC 2017
-// 4733-a9a
+// src/kern/do_sys.cpp
+// src/kern/dot_quote.cpp
+// src/kern/jump.cpp
+// src/kern/leave_sys.cpp
+// src/kern/loop_sys.cpp
+// src/kern/plus_loop_sys.cpp
+// src/kern/quit.cpp
+// src/kern/subroutine.cpp
+// src/kern/zjump.cpp
 
 #include <Arduino.h> // undef ref to setup and loop if this is missing
 #include "yaffa.h"
@@ -2289,7 +2299,7 @@ const flashEntry_t flashDict[] = {
 //   { zjump_str,          _zjump,           SMUDGE },
 //   { subroutine_str,     _subroutine,      SMUDGE },
 //   { throw_str,          _throw,           NORMAL },
-//   { do_sys_str,         _do_sys,          SMUDGE },
+  { do_sys_str,         _do_sys,          SMUDGE },
 //   { loop_sys_str,       _loop_sys,        SMUDGE },
 //   { leave_sys_str,      _leave_sys,       SMUDGE },
 //   { plus_loop_sys_str,  _plus_loop_sys,   SMUDGE },
@@ -2297,7 +2307,7 @@ const flashEntry_t flashDict[] = {
 //   { s_quote_str,        _s_quote,         IMMEDIATE + COMP_ONLY },
 
 // belongs in flashDict.cpp along with the rest of this:
-//  { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
+  { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
 // commented out here to satisfy short-term goal (compiler needs to be kept happy)
 
 //   { variable_str,       _variable,        NORMAL },
