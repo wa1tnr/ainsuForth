@@ -1,0 +1,8 @@
+HARDWARE.local.txt
+
+
+  pin 18 is A4 - the LCD backlight driver is presently
+                 wired to it.  It can be used as a
+                 blinkenlight, in the absence of a
+                 conventional discrete LED (the onboard
+                 NeoPixel needs a library).
