@@ -42,7 +42,9 @@ Example Application:
 
 ( blinkenlight.fs written in ainsuForth - YAFFA-ARM Forth )
 
-( exchange 'pinX' for 'pin' to use the standard, onboard LED that's wired to pin 13 )
+( transpose 'pinX' and 'pin' in the code, below, )
+( when making use of the standard, onboard LED -- )
+( the one that is wired to pin 13. )
 ( otherwise pin 18 -- A4 -- will be used. )
 
 : pin 18 ; ( the LED is on pin 18 aka A4 aka p18 )
