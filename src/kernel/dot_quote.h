@@ -1,14 +1,24 @@
-// Wed Jun  7 01:08:31 UTC 2017
-// 4735-a0a
+// Wed Jun  7 21:40:26 UTC 2017
+// 4735-a0e
 
-// Tue Jun  6 22:16:24 UTC 2017
-// 4733-a9b
+#ifndef KERN_DOT_QUOTE
+#define KERN_DOT_QUOTE
 
-#ifndef DOT_QUOTE
-#define DOT_QUOTE
+extern const char dot_quote_str[]; // = ".\x22";
+extern void _dot_quote(void);
 
-/**  File: YAFFA-ARM.ino                                                     **/
-extern cell_t* pHere;        // HERE, points to the next free position in
-                             // Forth Space
+/**  see File: YAFFA-ARM.ino                                                 **/
+extern char cDelimiter; // = ' ';          // The parsers delimiter
+
+extern char cTokenBuffer[WORD_SIZE];  // Stores Single Parsed token to be acted on
+
+extern uint8_t flags;   // Internal Flags   //  see: ../../ainsuForthsketch.cpp
+extern cell_t* pHere;   // HERE, points to the next free position in
+                        // Forth Space
+extern uint8_t state; // Holds the text interpreters compile/interpreter state
+extern cell_t* ip;   // Instruction Pointer
+extern uint8_t getToken(void);
+extern void dStack_push(cell_t value);
+extern void _throw(void);
 
 #endif
