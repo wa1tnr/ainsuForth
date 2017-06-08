@@ -6,13 +6,19 @@ This is a skeletal file and at the moment is to be ignored, as
 are most of the files added or modified on June 6, 2017.
 
 NEXT:
+	Thu Jun  8 21:52:01 UTC 2017
+	in HARDWARE.local.txt:
+
+        blinkApp needs to be factored - has stack management kludge(s).
+
+OLD_NEXT:
 	Tue Jun  6 19:06:03 UTC 2017
 
 	Try splitting and renaming and relocating code, without the
 	removal of commented code (from Dictionary.ino comment.)
 
 
-OLD_NEXT:
+OLDER_NEXT:
 	Tue Jun  6 05:32:17 UTC 2017
 
 	finish stripping the program prior to putting the pieces back
