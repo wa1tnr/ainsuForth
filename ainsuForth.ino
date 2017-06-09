@@ -1,8 +1,5 @@
-// Wed Jun  7 03:06:13 UTC 2017
-// 4735-a0b
-
-// Wed Jun  7 01:08:31 UTC 2017
-// 4735-a0a
+// Fri Jun  9 02:32:35 UTC 2017
+// 4735-a0f
 
 
 // wa1tnr: it is striking that the sketch uses 9444 bytes,
