@@ -12,7 +12,6 @@
 
 #endif // #ifdef KERNEL_QUIT
 
-// const char quit_str[] = "quit";
 const char quit_str[] = "quit";
 void _quit(void) {
   rStack_clear();
