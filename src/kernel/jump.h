@@ -1,14 +1,11 @@
-// Wed Jun  7 21:40:26 UTC 2017
-// 4735-a0e
+// Fri Jun  9 02:32:35 UTC 2017
+// 4735-a0f
 
 #ifndef KERN_JUMP
 #define KERN_JUMP
-// extern void dStack_push(cell_t value);
-// extern void rStack_push(cell_t value);
-// extern cell_t dStack_pop(void);
-// extern cell_t rStack_pop(void);
-// extern cell_t* pDoes;
-// extern cell_t* ip;
-// extern void _throw(void);
+
+extern const char jump_str[]; // = "jump";
+extern void _jump(void);
+extern cell_t* ip;   // Instruction Pointer
 
 #endif

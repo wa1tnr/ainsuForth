@@ -3,6 +3,7 @@
 
 #ifndef KERN_DO_SYS
 #define KERN_DO_SYS
+
 extern const char do_sys_str[]; // = "do-sys";
 extern void _do_sys(void);
 extern void rStack_push(cell_t value);
