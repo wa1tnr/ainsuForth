@@ -9,5 +9,4 @@ extern void _quit(void);
 extern void rStack_clear(void);
 extern char* cpToIn;
 
-
 #endif
