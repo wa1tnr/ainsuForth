@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "literal.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_LITERAL
+#ifdef EXT_KERN_LITERAL
+#include "literal.h"
 const char literal_str[] = "literal";
 // Interpretation: undefined
 // Compilation: ( x -- )

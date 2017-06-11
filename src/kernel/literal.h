@@ -1,9 +1,6 @@
 // Fri Jun  9 02:32:35 UTC 2017
 // 4735-a0f
 
-#ifndef KERN_LITERAL
-#define KERN_LITERAL
-
 // prototypes - this word
 extern const char literal_str[]; // = "literal";
 extern void _literal(void);
@@ -18,4 +15,3 @@ extern cell_t* ip;   // Instruction Pointer
 extern void dStack_push(cell_t value);
 extern cell_t dStack_pop(void);
 
-#endif

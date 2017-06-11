@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "leave_sys.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_LEAVE_SYS
+#ifdef EXT_KERN_LEAVE_SYS
+#include "leave_sys.h"
 const char leave_sys_str[] = "leave-sys";
 void _leave_sys(void) {
   rStack_pop();    // fetch limit

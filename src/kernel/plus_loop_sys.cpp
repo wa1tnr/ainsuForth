@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "plus_loop_sys.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_PLUS_LOOP_SYS
+#ifdef EXT_KERN_PLUS_LOOP_SYS
+#include "plus_loop_sys.h"
 const char plus_loop_sys_str[] = "plus_loop-sys";
 void _plus_loop_sys(void) {
   cell_t limit = rStack_pop();    // fetch limit
