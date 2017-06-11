@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "dot_quote.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_DOT_QUOTE
+#ifdef EXT_KERN_DOT_QUOTE
+#include "dot_quote.h"
 /**  File: Dictionary.ino                                                    **/
 const char dot_quote_str[] = ".\x22";
 // Compilation ("ccc<quote>" -- )

@@ -1,120 +1,124 @@
 // Fri Jun  9 02:32:35 UTC 2017
 // 4735-a0f
 
-
-// src/kern/do_sys.cpp
-// src/kern/dot_quote.cpp
-// src/kern/jump.cpp
-// src/kern/leave_sys.cpp
-// src/kern/loop_sys.cpp
-// src/kern/plus_loop_sys.cpp
-// src/kern/quit.cpp
-// src/kern/subroutine.cpp
-// src/kern/zjump.cpp
-
 #include <Arduino.h> // undef ref to setup and loop if this is missing
 #include "yaffa.h"
 #include "Dictionary.h"
 #include "Error_Codes.h"
-
-#include "yaffa.h"
 
 const char not_done_str[] = " NOT Implemented Yet \n\r";
 
 /******************************************************************************/
 /**                       Primitives for Control Flow                        **/
 /******************************************************************************/
-// const char jump_str[] = "jump";
-// void _jump(void) {
-// ip = (cell_t*)((size_t)ip + *ip);
-// }
+#ifdef INT_KERN_JUMP
+const char jump_str[] = "jump";
+void _jump(void) {
+   ip = (cell_t*)((size_t)ip + *ip);
+}
+#endif
 
-// const char zjump_str[] = "zjump";
-// void _zjump(void) {
-//   if (!dStack_pop()) ip = (cell_t*)((size_t)ip + *ip);
-//   else ip++;
-// }
+#ifdef INT_KERN_ZJUMP
+const char zjump_str[] = "zjump";
+void _zjump(void) {
+  if (!dStack_pop()) ip = (cell_t*)((size_t)ip + *ip);
+  else ip++;
+}
+#endif
 
-// const char subroutine_str[] = "subroutine";
-// void _subroutine(void) {
-//   *pDoes = (cell_t)*ip++;
-// }
+#ifdef INT_KERN_SUBROUTINE
+const char subroutine_str[] = "subroutine";
+void _subroutine(void) {
+  *pDoes = (cell_t)*ip++;
+}
+#endif
 
-// const char do_sys_str[] = "do-sys";
+#ifdef INT_KERN_DO_SYS
+const char do_sys_str[] = "do-sys-int";
 // ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
 // Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
 // condition exists if n1|u1 and n2|u2 are not the same type. Anything already
 // on the return stack becomes unavailable until the loop-control parameters
 // are discarded.
-// void _do_sys(void) {
-//   rStack_push(LOOP_SYS);
-//   rStack_push(dStack_pop());   // push index on to return stack
-//   rStack_push(dStack_pop());   // push limit on to return stack
-// }
+void _do_sys(void) {
+  rStack_push(LOOP_SYS);
+  rStack_push(dStack_pop());   // push index on to return stack
+  rStack_push(dStack_pop());   // push limit on to return stack
+}
+#endif
 
-// const char loop_sys_str[] = "loop-sys";
+#ifdef INT_KERN_LOOP_SYS
+const char loop_sys_str[] = "loop-sys";
 // ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
 // Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
 // condition exists if n1|u1 and n2|u2 are not the same type. Anything already
 // on the return stack becomes unavailable until the loop-control parameters
 // are discarded.
-// void _loop_sys(void) {
-//   cell_t limit = rStack_pop();    // fetch limit
-//   cell_t index = rStack_pop();    // fetch index
-//   index++;
-//   if (limit - index) {
-//     rStack_push(index);
-//     rStack_push(limit);
-//     ip = (cell_t*)*ip;
-//   } else {
-//     ip++;
-//     if (rStack_pop() != LOOP_SYS) {
-//       dStack_push(-22);
-//       _throw();
-//       return;
-//     }
-//   }
-// }
+void _loop_sys(void) {
+  cell_t limit = rStack_pop();    // fetch limit
+  cell_t index = rStack_pop();    // fetch index
+  index++;
+  if (limit - index) {
+    rStack_push(index);
+    rStack_push(limit);
+    ip = (cell_t*)*ip;
+  } else {
+    ip++;
+    if (rStack_pop() != LOOP_SYS) {
+      dStack_push(-22);
+      _throw();
+      return;
+    }
+  }
+}
+#endif
 
-// const char leave_sys_str[] = "leave-sys";
+
+#ifdef INT_KERN_LEAVE_SYS
+const char leave_sys_str[] = "leave-sys";
 // ( -- ) (R: loop-sys -- )
 // Discard the current loop control parameters. An ambiguous condition exists
 // if they are unavailable. Continue execution immediately following the
 // innermost syntactically enclosing DO ... LOOP or DO ... +LOOP.
-// void _leave_sys(void) {
-//   rStack_pop();    // fetch limit
-//   rStack_pop();    // fetch index
-//   if (rStack_pop() != LOOP_SYS) {
-//     dStack_push(-22);
-//     _throw();
-//     return;
-//   }
-//   ip = (cell_t*)*ip;
-// }
+void _leave_sys(void) {
+  rStack_pop();    // fetch limit
+  rStack_pop();    // fetch index
+  if (rStack_pop() != LOOP_SYS) {
+    dStack_push(-22);
+    _throw();
+    return;
+  }
+  ip = (cell_t*)*ip;
+}
+#endif
 
-// const char plus_loop_sys_str[] = "plus_loop-sys";
+
+#ifdef INT_KERN_PLUS_LOOP_SYS
+const char plus_loop_sys_str[] = "plus_loop-sys";
 // ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
 // Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
 // condition exists if n1|u1 and n2|u2 are not the same type. Anything already
 // on the return stack becomes unavailable until the loop-control parameters
 // are discarded.
-// void _plus_loop_sys(void) {
-//   cell_t limit = rStack_pop();    // fetch limit
-//   cell_t index = rStack_pop();    // fetch index
-//   index += dStack_pop();
-//   if (limit != index) {
-//     rStack_push(index);
-//     rStack_push(limit);
-//     ip = (cell_t*)*ip;
-//   } else {
-//     ip++;
-//     if (rStack_pop() != LOOP_SYS) {
-//       dStack_push(-22);
-//       _throw();
-//       return;
-//     }
-//   }
-// }
+void _plus_loop_sys(void) {
+  cell_t limit = rStack_pop();    // fetch limit
+  cell_t index = rStack_pop();    // fetch index
+  index += dStack_pop();
+  if (limit != index) {
+    rStack_push(index);
+    rStack_push(limit);
+    ip = (cell_t*)*ip;
+  } else {
+    ip++;
+    if (rStack_pop() != LOOP_SYS) {
+      dStack_push(-22);
+      _throw();
+      return;
+    }
+  }
+}
+#endif
+
 
 /*******************************************************************************/
 /**                          Core Forth Words                                 **/
@@ -1974,33 +1978,34 @@ void _exit(void) {
 /**                         ainsuForth: this stays.                           **/
 /*******************************************************************************/
 #ifdef EXCEPTION_SET
-const char throw_str[] = "throw";
+// moved to src/kernel/throw.cpp 10 June 2017
+// const char throw_str[] = "throw";
 // ( k*x n -- k*x | i*x n)
 // if any bit of n are non-zero, pop the topmost exception frame from the
 // exception stack, along with everything on the return stack above that frame.
 // ...
-void _throw(void) {
-  errorCode = dStack_pop();
-  uint8_t index = 0;
-  int tableCode;
-  //_cr();
-  Serial.print(cTokenBuffer);
-  Serial.print(F(" EXCEPTION("));
-  do {
-    tableCode = pgm_read_dword(&(exception[index].code));
-    if (errorCode == tableCode) {
-      Serial.print((int)errorCode);
-      Serial.print("): ");
-      Serial.print(exception[index].name);
-      _cr();
-    }
-    index++;
-  } while (tableCode);
-//  dStack.tos = -1;                       // Clear the stack. 
-  dStack_clear();                        // Clear the stack.
-  _quit();
-  state = FALSE;
-}  
+// void _throw(void) {
+//   errorCode = dStack_pop();
+//   uint8_t index = 0;
+//   int tableCode;
+//   //_cr();
+//   Serial.print(cTokenBuffer);
+//   Serial.print(F(" EXCEPTION("));
+//   do {
+//     tableCode = pgm_read_dword(&(exception[index].code));
+//     if (errorCode == tableCode) {
+//       Serial.print((int)errorCode);
+//       Serial.print("): ");
+//       Serial.print(exception[index].name);
+//       _cr();
+//     }
+//     index++;
+//   } while (tableCode);
+// //  dStack.tos = -1;                       // Clear the stack. 
+//   dStack_clear();                        // Clear the stack.
+//   _quit();
+//   state = FALSE;
+// }  
 
 #endif
 

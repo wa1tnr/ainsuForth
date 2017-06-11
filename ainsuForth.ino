@@ -1,6 +1,7 @@
 // Fri Jun  9 02:32:35 UTC 2017
 // 4735-a0f
 
+//  PELICAN  RHINO  GIRAFFE
 
 // wa1tnr: it is striking that the sketch uses 9444 bytes,
 // before and after the changes made during this single commit.

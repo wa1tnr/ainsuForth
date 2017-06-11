@@ -3,11 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "jump.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_JUMP
-/**  File: Dictionary.ino                                                    **/
+#ifdef EXT_KERN_JUMP
+#include "jump.h"
 const char jump_str[] = "jump";
 void _jump(void) {
   ip = (cell_t*)((size_t)ip + *ip);
