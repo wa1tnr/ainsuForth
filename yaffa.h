@@ -1,6 +1,11 @@
 // Fri Jun  9 02:32:35 UTC 2017
 // 4735-a0f
 
+// 10 June 2017: testing on Arduino M0 Pro only - not Feather M0 Express.
+//               Should make no difference.
+
+// #define EXT_KERN_DO_SYS
+// #define INT_KERN_DO_SYS
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

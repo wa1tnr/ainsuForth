@@ -3,15 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "quit.h"
 // #include "Error_Codes.h"
 
-#ifdef KERNEL_QUIT
-
-// this is kernel stuff -- leave alone
-
-#endif // #ifdef KERNEL_QUIT
-
+#ifdef EXT_KERN_QUIT
+#include "quit.h"
 const char quit_str[] = "quit";
 void _quit(void) {
   rStack_clear();
@@ -19,4 +14,4 @@ void _quit(void) {
   Serial.flush();
 }
 
-// EOF
+#endif

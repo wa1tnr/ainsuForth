@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "subroutine.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_SUBROUTINE
+#ifdef EXT_KERN_SUBROUTINE
+#include "subroutine.h"
 const char subroutine_str[] = "subroutine";
 void _subroutine(void) {
   *pDoes = (cell_t)*ip++;

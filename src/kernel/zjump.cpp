@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "zjump.h"
 // #include "Error_Codes.h"
 
-#ifdef KERN_ZJUMP
+#ifdef EXT_KERN_ZJUMP
+#include "zjump.h"
 const char zjump_str[] = "zjump";
 void _zjump(void) {
   if (!dStack_pop()) ip = (cell_t*)((size_t)ip + *ip);
