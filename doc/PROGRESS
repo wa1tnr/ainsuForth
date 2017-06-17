@@ -1,6 +1,12 @@
-// Sun Jun 11 03:08:12 UTC 2017
-// Fri Jun  9 02:32:35 UTC 2017
-// 4735-a0f
+// Sat Jun 17 19:32:00 UTC 2017
+// 4735-a0h
+
+
+  17 June 19:32z:
+
+  Created src/kernel/interpreter.cpp (and accompanying .h file).
+
+  Will work on stacks.cpp next (has dStack_push() and friends).
 
   11 June 21:36z:
 

@@ -1,5 +1,5 @@
-// Fri Jun  9 02:32:35 UTC 2017
-// 4735-a0f
+// Sun Jun 11 23:00:12 UTC 2017
+// 4735-a0g
 
 #include <Arduino.h> // undef ref to setup and loop if this is missing
 #include "yaffa.h"
@@ -1061,6 +1061,7 @@ void _cr(void) {
 //   }
 // }
 
+#ifdef INT_KERN_EXIT
 const char exit_str[] = "exit";
 // Interpretation: undefined
 // Execution: ( -- ) (R: nest-sys -- )
@@ -1070,6 +1071,7 @@ const char exit_str[] = "exit";
 void _exit(void) {
 //   ip = (cell_t*)rStack_pop();
 }
+#endif
 
 // const char fill_str[] = "fill";
 // ( c-addr u char -- )

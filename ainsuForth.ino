@@ -1,21 +1,7 @@
-// Fri Jun  9 02:32:35 UTC 2017
-// 4735-a0f
+// Sat Jun 17 19:32:00 UTC 2017
+// 4735-a0h
 
-//  PELICAN  RHINO  GIRAFFE
-
-// wa1tnr: it is striking that the sketch uses 9444 bytes,
-// before and after the changes made during this single commit.
-// It would appear that the compiler already knew something
-// non-obvious about the (then) current involvement of the
-// lines commented-out during this (one) commit -- they didn't
-// have any involvement (or they had very little of it).
-
-// That came about earlier -- their irrelevancy to the compiler -- 
-// that's the difficulty; comprehension of why that is the case.
-
-// This is something to pay attention to.
-
-
+//  MINCE  THYME  CORIANDER  PAPRIKA  BACON  TIGER
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

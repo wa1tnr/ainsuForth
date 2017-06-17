@@ -1,53 +1,98 @@
-// Fri Jun  9 02:32:35 UTC 2017
-// 4735-a0f
+// Sat Jun 17 19:32:00 UTC 2017
+// 4735-a0h
+
+/**  YAFFA - Yet Another Forth for Arduino                                   **/
+// scroll to end of file for intellectual property notices - wa1tnr
 
 // 10 June 2017: testing on Arduino M0 Pro only - not Feather M0 Express.
 //               Should make no difference.
 
-// #define EXT_KERN_DO_SYS
-// #define INT_KERN_DO_SYS
-
-/******************************************************************************/
-/**  YAFFA - Yet Another Forth for Arduino                                   **/
-/**                                                                          **/
-/**  File: yaffa.h                                                           **/
-/**  Copyright (C) 2012 Stuart Wood (swood@rochester.rr.com)                 **/
-/**                                                                          **/
-/**  This file is part of YAFFA.                                             **/
-/**                                                                          **/
-/**  YAFFA is free software: you can redistribute it and/or modify           **/
-/**  it under the terms of the GNU General Public License as published by    **/
-/**  the Free Software Foundation, either version 2 of the License, or       **/
-/**  (at your option) any later version.                                     **/
-/**                                                                          **/
-/**  YAFFA is distributed in the hope that it will be useful,                **/
-/**  but WITHOUT ANY WARRANTY; without even the implied warranty of          **/
-/**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           **/
-/**  GNU General Public License for more details.                            **/
-/**                                                                          **/
-/**  You should have received a copy of the GNU General Public License       **/
-/**  along with YAFFA.  If not, see <http://www.gnu.org/licenses/>.          **/
-/**                                                                          **/
-/******************************************************************************/
-/**                                                                          **/
-/** Processor Specific Definitions                                           **/
-/**                                                                          **/
-/** ARDUINO_ARCH_SAMD                                                        **/
-/**    __ARDUINO_SAMD_ZERO__ - Supported                                     **/
-/**                                                                          **/
-/** ARDUINO_ARCH_ESP8266 - In work                                           **/
-/**    __ARDUINO_ESP8266_ESP01                                               **/
-/**    __ARDUINO_ESP8266_ESP12                                               **/
-/**    __ARDUINO_MOD_WIFI_ESP8266                                            **/
-/**                                                                          **/
-/** Board                   Architecture  Flash        SRAM        EEPROM    **/
-/** ------                  ------------- ------       ------      -------   **/
-/** Zero                    SAMD          256K         32K         -         **/
-/** NodeMCU Amica Module    ESP8266                                          **/
-/**                                                                          **/
-/******************************************************************************/
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
+
+#define EXT_KERN_INTERPRETER
+// #define INT_KERN_INTERPRETER
+
+#define EXT_KERN_DROP
+// #define INT_KERN_DROP
+
+#define EXT_KERN_EQ
+// #define INT_KERN_EQ
+
+#define EXT_KERN_EVALUATE
+// #define INT_KERN_EVALUATE
+
+#define EXT_KERN_EXIT
+// #define INT_KERN_EXIT
+
+#define EXT_KERN_OVER
+// #define INT_KERN_OVER
+
+#define EXT_KERN_S_QUOTE
+// #define INT_KERN_S_QUOTE
+
+#define EXT_KERN_VARIABLE
+// #define INT_KERN_VARIABLE
+
+#define EXT_KERN_THROW
+// #define INT_KERN_THROW
+
+#define EXT_KERN_JUMP
+// #define INT_KERN_JUMP
+
+#define EXT_KERN_LEAVE_SYS
+// #define INT_KERN_LEAVE_SYS
+
+#define EXT_KERN_LITERAL
+// #define INT_KERN_LITERAL
+
+#define EXT_KERN_LOOP_SYS
+// #define INT_KERN_LOOP_SYS
+
+#define EXT_KERN_PLUS_LOOP_SYS
+// #define INT_KERN_PLUS_LOOP_SYS
+
+#define EXT_KERN_QUIT
+// #define INT_KERN_QUIT
+
+#define EXT_KERN_SUBROUTINE
+// #define INT_KERN_SUBROUTINE
+
+#define EXT_KERN_ZJUMP
+// #define INT_KERN_ZJUMP
+
+// -----------------------------------------------------------------------
+// 
+// either/or:
+// 
+// do not define both the INT_ and the EXT_ version of each #define below.
+// 
+// because, that would be bad.
+// 
+// -----------------------------------------------------------------------
+
+// choose one, not both, of the following two lines:
+#define EXT_KERN_TYPE
+// #define INT_KERN_TYPE
+
+// choose one, not both, of the following two lines:
+#define EXT_KERN_DO_SYS
+// #define INT_KERN_DO_SYS
+
+// They mean, roughly, 'use the external code for the definition of type()
+// and of do_sys()' .. or, alternately, use the internal ('orginal') code
+// for those functions.  That's what the EXT_ and INT_ prefixes specify --
+// external or internal versions of the same code.
+
+// One aim of this project is to externalize much of the code, to a separate
+// source file, per function.
+
+// You got this.   10 June 2017  de  wa1tnr
+
+#define EXT_KERN_DOT_QUOTE
+// #define INT_KERN_DOT_QUOTE
+
+
 
 /******************************************************************************/
 /** Memory Alignment Macros                                                  **/
@@ -238,3 +283,45 @@ typedef struct {
 #define DROP_IDX           18
 
 #endif
+
+
+/******************************************************************************/
+/**  YAFFA - Yet Another Forth for Arduino                                   **/
+/**                                                                          **/
+/**  File: YAFFA.h                                                           **/
+/**  Copyright (C) 2012 Stuart Wood (swood@rochester.rr.com)                 **/
+/**                                                                          **/
+/**  This file is part of YAFFA.                                             **/
+/**                                                                          **/
+/**  YAFFA is free software: you can redistribute it and/or modify           **/
+/**  it under the terms of the GNU General Public License as published by    **/
+/**  the Free Software Foundation, either version 2 of the License, or       **/
+/**  (at your option) any later version.                                     **/
+/**                                                                          **/
+/**  YAFFA is distributed in the hope that it will be useful,                **/
+/**  but WITHOUT ANY WARRANTY; without even the implied warranty of          **/
+/**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           **/
+/**  GNU General Public License for more details.                            **/
+/**                                                                          **/
+/**  You should have received a copy of the GNU General Public License       **/
+/**  along with YAFFA.  If not, see <http://www.gnu.org/licenses/>.          **/
+/**                                                                          **/
+/******************************************************************************/
+/**                                                                          **/
+/** Processor Specific Definitions                                           **/
+/**                                                                          **/
+/** ARDUINO_ARCH_SAMD                                                        **/
+/**    __ARDUINO_SAMD_ZERO__ - Supported                                     **/
+/**                                                                          **/
+/** ARDUINO_ARCH_ESP8266 - In work                                           **/
+/**    __ARDUINO_ESP8266_ESP01                                               **/
+/**    __ARDUINO_ESP8266_ESP12                                               **/
+/**    __ARDUINO_MOD_WIFI_ESP8266                                            **/
+/**                                                                          **/
+/** Board                   Architecture  Flash        SRAM        EEPROM    **/
+/** ------                  ------------- ------       ------      -------   **/
+/** Zero                    SAMD          256K         32K         -         **/
+/** NodeMCU Amica Module    ESP8266                                          **/
+/**                                                                          **/
+/******************************************************************************/
+

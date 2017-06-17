@@ -1,8 +1,5 @@
-// Wed Jun  7 01:08:31 UTC 2017
-// 4735-a0a
-
-// Tue Jun  6 20:55:50 UTC 2017
-// 4733-a9a
+// Sat Jun 17 19:32:00 UTC 2017
+// 4735-a0h
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -115,15 +112,6 @@ uint8_t base;  // stores the number conversion radix
 /** REPLACE_ME                                                               **/
 /******************************************************************************/
 
-//   5 /**  File: YAFFA-ARM.ino                                                     **/
-// 767	/*********************************************/
-// 768	/** clear - removes everything fromt the    **/
-// 769	/** stack.                                  **/
-// 770	/*********************************************/
-// 771	void dStack_clear(void) {
-// 772	  dStack.top = 0;
-// 773	  dStack.d[0] = 0;
-// 774	}
 
 //   5 /**  File: YAFFA-ARM.ino                                                     **/
 /*********************************************/
@@ -136,21 +124,10 @@ void dStack_clear(void) {
 }
 
 
-// 776	void rStack_clear(void) {
-// 777	  dStack.top = 0;
-// 778	  dStack.d[0] = 0;
-// 779	}
-
-
 void rStack_clear(void) {
   dStack.top = 0;
   dStack.d[0] = 0;
 }
-
-
-
-
-
 
 
 /******************************************************************************/
@@ -262,7 +239,7 @@ void loop(void) {
 //  cpSource = cpToIn = cInputBuffer;
 //  cpSourceEnd = cpSource + getLine(cpSource, BUFFER_SIZE);
 //  if (cpSourceEnd > cpSource) {
-//    interpreter();
+      interpreter();
 //    if (errorCode) {
 //        errorCode = 0;
 //    } else {
@@ -376,6 +353,7 @@ uint8_t getToken(void) {
 //   else return 0;
 }
 
+#ifdef INT_KERN_INTERPRETER
 /******************************************************************************/
 /** Interpeter - Interprets a new string                                     **/
 /**                                                                          **/
@@ -445,6 +423,8 @@ void interpreter(void) {
 //   }
 //   cpToIn = cpSource;
 }
+#endif
+
 
 /******************************************************************************/
 /** Virtual Machine that executes Code Space                                 **/

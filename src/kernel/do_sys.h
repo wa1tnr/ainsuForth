@@ -1,5 +1,11 @@
-// Fri Jun  9 02:32:35 UTC 2017
-// 4735-a0f
+// Sun Jun 11 23:00:12 UTC 2017
+// 4735-a0g
+
+// many other files in src/kernel also would get the above timestamp,
+// but it is tedious to modify them by hand, to make that happen.
+
+// So, the first file listed alphabetically generally carries the
+// latest timestamp, regardless of its true age.
 
 // prototypes - this word
 extern const char do_sys_str[]; // = "do-sys";
