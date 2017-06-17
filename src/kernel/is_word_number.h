@@ -1,5 +1,5 @@
-// Sat Jun 17 19:32:00 UTC 2017
-// 4735-a0h
+// Sat Jun 17 22:50:23 UTC 2017
+// 4735-a0j
 
 #ifdef EXT_KERN_IS_WORD_NUMBER // may need this guard
 const char charset[] = "0123456789abcdef";
