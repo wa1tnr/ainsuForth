@@ -38,7 +38,7 @@ void interpreter(void) {
         } // ends stanza that began 'if (wordFlags & IMMEDIATE)'
       } // ends stanza that began 'if (isWord(cTokenBuffer))'
       else if (isNumber(cTokenBuffer)) {
-        // _literal();
+        _literal();
       } else {
         dStack_push(-13);
         _throw();

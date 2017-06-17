@@ -40,6 +40,6 @@ extern void rStack_push(cell_t value);
 extern cell_t dStack_pop(void);
 extern uint8_t isWord(char* addr);
 extern uint8_t isNumber(char* subString);
-// extern void _literal(void);
+extern void _literal(void);
 extern void _throw(void);
 
