@@ -1,7 +1,7 @@
 // Sat Jun 17 19:32:00 UTC 2017
 // 4735-a0h
 
-//  MINCE  THYME  CORIANDER  PAPRIKA  BACON  TIGER
+//  PARANYU   TELIOS  MINCE  THYME  CORIANDER  PAPRIKA
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

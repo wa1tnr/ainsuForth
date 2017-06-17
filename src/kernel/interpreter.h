@@ -1,5 +1,5 @@
-// Sat Jun 17 19:32:00 UTC 2017
-// 4735-a0h
+// Sat Jun 17 22:50:23 UTC 2017
+// 4735-a0j
 
 // external const
 extern const char literal_str[]; // = "literal";
@@ -41,5 +41,5 @@ extern cell_t dStack_pop(void);
 extern uint8_t isWord(char* addr);
 extern uint8_t isNumber(char* subString);
 // extern void _literal(void);
-// extern void _throw(void);
+extern void _throw(void);
 

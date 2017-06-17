@@ -10,6 +10,17 @@
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
 
+#define EXT_KERN_IS_WORD_NUMBER
+// #define INT_KERN_IS_WORD_NUMBER
+
+// #define EXT_KERN_GETTOKEN
+#define EXT_KERN_GETTOKEN
+// #define INT_KERN_GETTOKEN
+
+// #define EXT_KERN_STACKS
+#define EXT_KERN_STACKS
+// #define INT_KERN_STACKS
+
 #define EXT_KERN_INTERPRETER
 // #define INT_KERN_INTERPRETER
 

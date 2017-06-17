@@ -1,3 +1,4 @@
+// Sat Jun 17 20:20:39 UTC 2017
 // Sat Jun 17 19:32:00 UTC 2017
 // 4735-a0h
 
@@ -24,7 +25,9 @@ asm(" .section .version\n"
 const char prompt_str[] = ">> ";
 const char compile_prompt_str[] = "|  ";
 const char ok_str[] = " OK";
+#ifdef INT_KERN_IS_WORD_NUMBER
 const char charset[] = "0123456789abcdef";
+#endif
 const char sp_str[] = " ";
 const char tab_str[] = "\t";
 const char hexidecimal_str[] = "$";
@@ -113,6 +116,7 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 
 
+#ifdef INT_KERN_STACKS
 //   5 /**  File: YAFFA-ARM.ino                                                     **/
 /*********************************************/
 /** clear - removes everything from the     **/
@@ -128,6 +132,9 @@ void rStack_clear(void) {
   dStack.top = 0;
   dStack.d[0] = 0;
 }
+#endif // #ifdef INT_KERN_STACKS
+
+
 
 
 /******************************************************************************/
@@ -313,6 +320,7 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
 //   return (count);
 }
 
+#ifdef INT_KERN_GETTOKEN
 /******************************************************************************/
 /** GetToken                                                                 **/
 /**   Find the next token in the buffer and stores it into the token buffer  **/
@@ -352,6 +360,7 @@ uint8_t getToken(void) {
 //   if (tokenIdx) return tokenIdx;
 //   else return 0;
 }
+#endif // #ifdef INT_KERN_GETTOKEN
 
 #ifdef INT_KERN_INTERPRETER
 /******************************************************************************/
@@ -448,6 +457,7 @@ void executeWord(void) {
 //   flags &= ~EXECUTE;
 }
 
+#ifdef INT_KERN_IS_WORD_NUMBER
 /******************************************************************************/
 /** Find the word in the Dictionaries                                        **/
 /** Return execution token value in the w register.                          **/
@@ -534,6 +544,8 @@ uint8_t isNumber(char* subString) {
 //   return 1;
 }
 
+#endif
+
 /******************************************************************************/
 /** freeMem returns the amount of free forth space left.                     **/
 /******************************************************************************/
@@ -580,6 +592,11 @@ void closeEntry(void) {
                              // of the new word definition
 }
 
+
+
+
+
+#ifdef INT_KERN_STACKS
 /******************************************************************************/
 /** Stack Functions                                                          **/
 /**   Data Stack "stack" - A stack that may be used for passing parameters   **/
@@ -589,6 +606,7 @@ void closeEntry(void) {
 /**   Return Stack "rStack" - A stack that may be used for program execution **/
 /**   nesting, do-loop execution, temporary storage, and other purposes.     **/
 /******************************************************************************/
+
 /*********************************************/
 /** Push (place) a cell onto the stack      **/
 /*********************************************/
@@ -725,6 +743,9 @@ uint8_t rStack_size(void) {
 //   dStack.top = 0;
 //   dStack.d[0] = 0;
 // }
+#endif // #ifdef INT_KERN_STACKS
+
+
 
 /******************************************************************************/
 /** String and Serial Functions                                              **/

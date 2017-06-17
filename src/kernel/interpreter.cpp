@@ -1,5 +1,5 @@
-// Sat Jun 17 19:32:00 UTC 2017
-// 4735-a0h
+// Sat Jun 17 22:50:23 UTC 2017
+// 4735-a0j
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -41,7 +41,7 @@ void interpreter(void) {
         // _literal();
       } else {
         dStack_push(-13);
-        // _throw();
+        _throw();
       }
     } // ends stanza that began 'if (state)'
 
@@ -52,7 +52,7 @@ void interpreter(void) {
       if (isWord(cTokenBuffer)) {
         if (wordFlags & COMP_ONLY) {
           dStack_push(-14);
-          // _throw();
+          _throw();
           return;
         }
         if (w > 255) {
@@ -70,7 +70,7 @@ void interpreter(void) {
         // Is something supposed to be here?
       } else {
         dStack_push(-13);
-        // _throw();
+        _throw();
         return;
       }
     } // ends stanza that began 'if (state)'
