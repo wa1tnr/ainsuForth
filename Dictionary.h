@@ -1,6 +1,8 @@
-// Sat Jun 17 22:50:23 UTC 2017
-// 4735-a0j
+// Sun Jun 18 02:05:55 UTC 2017
+// 4735-a0k
 
+// #include "src/kernel/stacks.h"
+#include "src/kernel/interpreter.h"
 #include "src/kernel/do_sys.h"
 #include "src/kernel/dot_quote.h"
 #include "src/kernel/drop.h"
@@ -22,14 +24,20 @@
 #include "src/kernel/warm.h"
 #include "src/kernel/zjump.h"
 
-
-/**  File: YAFFA-ARM.ino                                                            **/
-
+extern char* cpSource;                // Pointer to the string location that we will
+                                      // evaluate. This could be the input buffer or
+                                      // some other location in memory
+extern char* cpSourceEnd;             // Points to the end of the source string
 extern char cTokenBuffer[WORD_SIZE];  // Stores Single Parsed token to be acted on
+extern userEntry_t* pLastUserEntry; // = NULL;
+extern userEntry_t* pUserEntry; // = NULL;
 extern int8_t errorCode ; // = 0;
-extern cell_t* pHere;        // HERE, points to the next free position in
-                             // Forth Space
-extern uint8_t state; // Holds the text interpreters compile/interpreter state
+extern cell_t* pHere;     // HERE, points to the next free position in
+                          // Forth Space
+extern uint8_t state;     // Holds the text interpreters compile/interpreter state
 extern cell_t dStack_pop(void);
+extern uint8_t dStack_size(void);
 extern void dStack_clear(void);
+extern void displayValue(void);
 
+extern uint8_t base;  // stores the number conversion radix

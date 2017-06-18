@@ -1,5 +1,5 @@
-// Sun Jun 11 23:00:12 UTC 2017
-// 4735-a0g
+// Sun Jun 18 02:05:55 UTC 2017
+// 4735-a0k
 
 #include <Arduino.h> // undef ref to setup and loop if this is missing
 #include "yaffa.h"
@@ -7,6 +7,12 @@
 #include "Error_Codes.h"
 
 const char not_done_str[] = " NOT Implemented Yet \n\r";
+
+const char sp_str[] = " "; // does not belong here
+
+stack_t dStack; // no idea where this should go
+stack_t rStack; // no idea where this should go
+
 
 /******************************************************************************/
 /**                       Primitives for Control Flow                        **/
@@ -201,12 +207,12 @@ void _plus_loop_sys(void) {
 //   _drop();
 // }
 
-// const char star_str[] = "*";
+const char star_str[] = "*";
 // ( n1|u1 n2|u2 -- n3|u3 )
 // multiply n1|u1 by n2|u2 giving the product n3|u3
-// void _star(void) {
-//   dStack_push(dStack_pop() * dStack_pop());
-// }
+void _star(void) {
+  dStack_push(dStack_pop() * dStack_pop());
+}
 
 // const char star_slash_str[] = "*/";
 // ( n1 n2 n3 -- n4 )
@@ -233,14 +239,14 @@ void _plus_loop_sys(void) {
 //   dStack_push((cell_t)(d / n3));
 // }
 
-// const char plus_str[] = "+";
+const char plus_str[] = "+";
 // ( n1|u1 n2|u2 -- n3|u3 )
 // add n2|u2 to n1|u1, giving the sum n3|u3
-// void _plus(void) {
-//   cell_t x = dStack_pop();
-//   cell_t y = dStack_pop();
-//   dStack_push(x +  y);
-// }
+void _plus(void) {
+  cell_t x = dStack_pop();
+  cell_t y = dStack_pop();
+  dStack_push(x +  y);
+}
 
 // const char plus_store_str[] = "+!";
 // ( n|u a-addr -- )
@@ -298,20 +304,20 @@ void _plus_loop_sys(void) {
 //   *pHere++ = dStack_pop();
 // }
 
-// const char minus_str[] = "-";
+const char minus_str[] = "-";
 // ( n1|u1 n2|u2 -- n3|u3 )
-// void _minus(void) {
-//   cell_t temp = dStack_pop();
-//   dStack_push(dStack_pop() -  temp);
-// }
+void _minus(void) {
+  cell_t temp = dStack_pop();
+  dStack_push(dStack_pop() -  temp);
+}
 
-// const char dot_str[] = ".";
+const char dot_str[] = ".";
 // ( n -- )
 // display n in free field format
-// void _dot(void) {
-//   w = dStack_pop();
-//   displayValue();
-// }
+void _dot(void) {
+  w = dStack_pop();
+  displayValue();
+}
 
 // moved to src/kernel/dot_quote.cpp: const char dot_quote_str[] = ".\x22";
 
@@ -350,18 +356,18 @@ void _plus_loop_sys(void) {
 //   }
 // }
 
-// const char slash_str[] = "/";
+const char slash_str[] = "/";
 // ( n1 n2 -- n3 )
 // divide n1 by n2 giving a single cell quotient n3
-// void _slash(void) {
-//   cell_t temp = dStack_pop();
-//   if (temp)
-//     dStack_push(dStack_pop() /  temp);
-//   else {
-//     dStack_push(-10);
-//     _throw();
-//   }
-// }
+void _slash(void) {
+  cell_t temp = dStack_pop();
+  if (temp)
+    dStack_push(dStack_pop() /  temp);
+  else {
+    dStack_push(-10);
+    _throw();
+  }
+}
 
 // const char slash_mod_str[] = "/mod";
 // ( n1 n2 -- n3 n4)
@@ -386,13 +392,13 @@ void _plus_loop_sys(void) {
 //   else dStack_push(FALSE);
 // }
 
-// const char zero_equal_str[] = "0=";
+const char zero_equal_str[] = "0=";
 // ( n -- flag )
 // flag is true if and only if n is equal to zero.
-// void _zero_equal(void) {
-//   if (dStack_pop() == 0) dStack_push(TRUE);
-//   else dStack_push(FALSE);
-// }
+void _zero_equal(void) {
+  if (dStack_pop() == 0) dStack_push(TRUE);
+  else dStack_push(FALSE);
+}
 
 // const char one_plus_str[] = "1+";
 // ( n1|u1 -- n2|u2 )
@@ -671,13 +677,13 @@ void _plus_loop_sys(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-// const char abs_str[] = "abs";
+const char abs_str[] = "abs";
 // ( n -- u)
 // u is the absolute value of n 
-// void _abs(void) {
-//   cell_t n = dStack_pop();
-//   dStack_push(n < 0 ? 0 - n : n);
-// }
+void _abs(void) {
+  cell_t n = dStack_pop();
+  dStack_push(n < 0 ? 0 - n : n);
+}
 
 // const char accept_str[] = "accept";
 // ( c-addr +n1 -- +n2 )
@@ -722,12 +728,12 @@ void _plus_loop_sys(void) {
 //   }
 // }
 
-// const char and_str[] = "and";
+const char and_str[] = "and";
 // ( x1 x2 -- x3 )
 // x3 is the bit by bit logical and of x1 with x2
-// void _and(void) {
-//   dStack_push(dStack_pop() & dStack_pop());
-// }
+void _and(void) {
+  dStack_push(dStack_pop() & dStack_pop());
+}
 
 // const char base_str[] = "base";
 // ( -- a-addr)
@@ -821,18 +827,18 @@ void _plus_loop_sys(void) {
 //   closeEntry();
 // }
 
-// const char count_str[] = "count";
+const char count_str[] = "count";
 // ( c-addr1 -- c-addr2 u )
 // Return the character string specification for the counted string stored a
 // c-addr1. c-addr2 is the address of the first character after c-addr1. u is the 
 // contents of the charater at c-addr1, which is the length in characters of the
 // string at c-addr2.
-// void _count(void) {
-//   uint8_t* addr = (uint8_t*)dStack_pop();
-//   cell_t value = *addr++;
-//   dStack_push((size_t)addr);
-//   dStack_push(value);
-// }
+void _count(void) {
+  uint8_t* addr = (uint8_t*)dStack_pop();
+  cell_t value = *addr++;
+  dStack_push((size_t)addr);
+  dStack_push(value);
+}
 
 
 
@@ -876,12 +882,12 @@ void _cr(void) {
 //   if (!state) closeEntry();           // Close the entry if interpreting
 // }
 
-// const char decimal_str[] = "decimal";
+const char decimal_str[] = "decimal";
 // ( -- )
 // Set BASE to 10
-// void _decimal(void) { // value --
-//   base = DECIMAL;
-// }
+void _decimal(void) { // value --
+  base = DECIMAL;
+}
 
 // const char depth_str[] = "depth";
 // ( -- +n )
@@ -918,12 +924,12 @@ void _cr(void) {
 //   dStack_pop();
 // }
 
-// const char dupe_str[] = "dup";
+const char dupe_str[] = "dup";
 // ( x -- x x )
 // Duplicate x
-// void _dupe(void) {
-//   dStack_push(dStack_peek(0));
-// }
+void _dupe(void) {
+  dStack_push(dStack_peek(0));
+}
 
 // const char else_str[] = "else";
 // Interpretation: Undefine
@@ -937,12 +943,12 @@ void _cr(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-// const char emit_str[] = "emit";
+const char emit_str[] = "emit";
 // ( x -- )
 // display x as a character
-// void _emit(void) {
-//   Serial.print((char) dStack_pop());
-// }
+void _emit(void) {
+  Serial.print((char) dStack_pop());
+}
 
 // const char environment_str[] = "environment?";
 // ( c-addr u  -- false|i*x true )
@@ -1020,46 +1026,46 @@ void _cr(void) {
 //   _throw();
 // }
 
-// const char evaluate_str[] = "evaluate";
+const char evaluate_str[] = "evaluate";
 // ( i*x c-addr u  -- j*x )
 // Save the current input source specification. Store minus-one (-1) in SOURCE-ID
 // if it is present. Make the string described by c-addr and u both the input
 // source and input buffer, set >IN to zero, and interpret. When the parse area
 // is empty, restore the prior source specification. Other stack effects are due
 // to the words EVALUATEd.
-// void _evaluate(void) {
-//   char* tempSource = cpSource;
-//   char* tempSourceEnd = cpSourceEnd;
-//   char* tempToIn = cpToIn;
+void _evaluate(void) {
+  char* tempSource = cpSource;
+  char* tempSourceEnd = cpSourceEnd;
+  char* tempToIn = cpToIn;
 
-//   uint8_t length = dStack_pop();
-//   cpSource = (char*)dStack_pop();
-//   cpSourceEnd = cpSource + length;
-//   cpToIn = cpSource;
-//   interpreter();
-//   cpSource = tempSource;
-//   cpSourceEnd = tempSourceEnd;
-//   cpToIn = tempToIn;
-// }
+  uint8_t length = dStack_pop();
+  cpSource = (char*)dStack_pop();
+  cpSourceEnd = cpSource + length;
+  cpToIn = cpSource;
+  interpreter();
+  cpSource = tempSource;
+  cpSourceEnd = tempSourceEnd;
+  cpToIn = tempToIn;
+}
 
 // const char execute_str[] = "execute";
 // ( i*x xt -- j*x )
 // Remove xt from the stack and preform the semantics identified by it. Other
 // stack effects are due to the word EXECUTEd
-// void _execute(void) {
-//   func function;
-//   w = dStack_pop();
-//   if (w > 255) {
-    // rpush(0);
-//     rStack_push((cell_t) ip);        // CAL - Push our return address
-//     ip = (cell_t *)w;          // set the ip to the XT (memory location)
-//     executeWord();
-//   } else {
-//     function = flashDict[w - 1].function;
-//     function();
-//     if (errorCode) return;
-//   }
-// }
+void _execute(void) {
+  func function;
+  w = dStack_pop();
+  if (w > 255) {
+    // comment: see original source for extra commented-out 1 line of code here
+    rStack_push((cell_t) ip);        // CAL - Push our return address
+    ip = (cell_t *)w;          // set the ip to the XT (memory location)
+    executeWord();
+  } else {
+    function = flashDict[w - 1].function;
+    function();
+    if (errorCode) return;
+  }
+}
 
 #ifdef INT_KERN_EXIT
 const char exit_str[] = "exit";
@@ -1313,24 +1319,24 @@ void _exit(void) {
 //   }
 // }
 
-// const char negate_str[] = "negate";
+const char negate_str[] = "negate";
 // ( n1 -- n2 )
 // Negate n1, giving its arithmetic inverse n2.
-// void _negate(void) {
-//   dStack_push(-dStack_pop());
-// }
+void _negate(void) {
+  dStack_push(-dStack_pop());
+}
 
-// const char or_str[] = "or";
+const char or_str[] = "or";
 // ( x1 x2 -- x3 )
 // x3 is the bit by bit logical or of x1 with x2
-// void _or(void) {
-//   dStack_push(dStack_pop() |  dStack_pop());
-// }
+void _or(void) {
+  dStack_push(dStack_pop() |  dStack_pop());
+}
 
 // const char over_str[] = "over";
 // ( x1 x2 -- x1 x2 x1 )
 // void _over(void) {
-//   dStack_push(dStack_peek(1));
+  // dStack_push(dStack_peek(1));
 // }
 
 // const char postpone_str[] = "postpone";
@@ -1415,16 +1421,16 @@ void _exit(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-// const char rot_str[] = "rot";
+const char rot_str[] = "rot";
 // ( x1 x2 x3 -- x2 x3 x1)
-// void _rot(void) {
-//   cell_t x3 = dStack_pop();
-//   cell_t x2 = dStack_pop();
-//   cell_t x1 = dStack_pop();
-//   dStack_push(x2);
-//   dStack_push(x3);
-//   dStack_push(x1);
-// }
+void _rot(void) {
+  cell_t x3 = dStack_pop();
+  cell_t x2 = dStack_pop();
+  cell_t x1 = dStack_pop();
+  dStack_push(x2);
+  dStack_push(x3);
+  dStack_push(x1);
+}
 
 // const char rshift_str[] = "rshift";
 // ( x1 u -- x2 )
@@ -1507,23 +1513,24 @@ void _exit(void) {
 //   dStack_push(strlen(cInputBuffer));
 // }
 
-// const char space_str[] = "space";
+
+const char space_str[] = "space";
 // ( -- )
 // Display one space
-// void _space(void) {
-//   Serial.print(sp_str);
-// }
+void _space(void) {
+  Serial.print(sp_str);
+}
 
-// const char spaces_str[] = "spaces";
+const char spaces_str[] = "spaces";
 // ( n -- )
 // if n is greater than zero, display n space
-// void _spaces(void) {
-//   char n = (char) dStack_pop();
-//   while (n > 0) {
-//     Serial.print(sp_str);
-//     n--;
-//   }
-// }
+void _spaces(void) {
+  char n = (char) dStack_pop();
+  while (n > 0) {
+    Serial.print(sp_str);
+    n--;
+  }
+}
 
 // const char state_str[] = "state";
 // ( -- a-addr )
@@ -1532,15 +1539,15 @@ void _exit(void) {
 //   dStack_push((size_t)&state);
 // }
 
-// const char swap_str[] = "swap";
-// void _swap(void) { // x y -- y x
-//   cell_t x, y;
+const char swap_str[] = "swap";
+void _swap(void) { // x y -- y x
+  cell_t x, y;
 
-//   y = dStack_pop();
-//   x = dStack_pop();
-//   dStack_push(y);
-//   dStack_push(x);
-// }
+  y = dStack_pop();
+  x = dStack_pop();
+  dStack_push(y);
+  dStack_push(x);
+}
 
 // const char then_str[] = "then";
 // Interpretation: Undefine
@@ -1551,24 +1558,14 @@ void _exit(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-// const char type_str[] = "type";
-// ( c-addr u -- )
-// if u is greater than zero display character string specified by c-addr and u
-// void _type(void) {
-//   uint8_t length = (uint8_t)dStack_pop();
-//   char* addr = (char*)dStack_pop();
-//   for (char i = 0; i < length; i++)
-//     Serial.print(*addr++);
-// }
-
-// const char u_dot_str[] = "u.";
+const char u_dot_str[] = "u.";
 // ( u -- )
 // Displau u in free field format
 // tested and fixed by Alex Moskovskij
-// void _u_dot(void) {
-//   Serial.print((ucell_t) dStack_pop());
-//   Serial.print(F(" "));
-// }
+void _u_dot(void) {
+  Serial.print((ucell_t) dStack_pop());
+  Serial.print(F(" "));
+}
 
 // const char u_lt_str[] = "u<";
 // ( u1 u2 -- flag )
@@ -1660,7 +1657,7 @@ void _exit(void) {
 //   dStack_push(dest);
 // }
 
-// const char word_str[] = "word";
+const char word_str[] = "word";
 // ( char "<chars>ccc<chars>" -- c-addr )
 // Skip leading delimiters. Parse characters ccc delimited by char. An ambiguous
 // condition exists if the length of the parsed string is greater than the
@@ -1675,30 +1672,30 @@ void _exit(void) {
 // NOTE: The requirement to follow the string with a space is obsolescent and is
 // included as a concession to existing programs that use CONVERT. A program shall
 // not depend on the existence of the space.
-// void _word(void) {
-//   uint8_t *start, *ptr;
+void _word(void) {
+  uint8_t *start, *ptr;
 
-//   cDelimiter = (char)dStack_pop();
-//   start = (uint8_t *)pHere++;
-//   ptr = (uint8_t *)pHere;
-//   while (cpToIn <= cpSourceEnd) {
-//     if (*cpToIn == cDelimiter || *cpToIn == 0) {
-//       *((cell_t *)start) = (ptr - start) - sizeof(cell_t); // write the length byte
-//       pHere = (cell_t *)start;                     // reset pHere (transient memory)
-//       dStack_push((size_t)start);                // push the c-addr onto the stack
-//       cpToIn++;
-//       break;
-//     } else *ptr++ = *cpToIn++;
-//   }
-//   cDelimiter = ' ';
-// }
+  cDelimiter = (char)dStack_pop();
+  start = (uint8_t *)pHere++;
+  ptr = (uint8_t *)pHere;
+  while (cpToIn <= cpSourceEnd) {
+    if (*cpToIn == cDelimiter || *cpToIn == 0) {
+      *((cell_t *)start) = (ptr - start) - sizeof(cell_t); // write the length byte
+      pHere = (cell_t *)start;                     // reset pHere (transient memory)
+      dStack_push((size_t)start);                // push the c-addr onto the stack
+      cpToIn++;
+      break;
+    } else *ptr++ = *cpToIn++;
+  }
+  cDelimiter = ' ';
+}
 
-// const char xor_str[] = "xor";
+const char xor_str[] = "xor";
 // ( x1 x2 -- x3 )
 // x3 is the bit by bit exclusive or of x1 with x2
-// void _xor(void) {
-//   dStack_push(dStack_pop() ^  dStack_pop());
-// }
+void _xor(void) {
+  dStack_push(dStack_pop() ^  dStack_pop());
+}
 
 // const char left_bracket_str[] = "[";
 // Interpretation: undefined
@@ -1762,16 +1759,16 @@ void _exit(void) {
 /**                          Core Extension Set                               **/
 /*******************************************************************************/
 #ifdef CORE_EXT_SET
-// const char dot_paren_str[] = ".(";
+const char dot_paren_str[] = ".(";
 // ( "ccc<paren>" -- )
 // Parse and display ccc delimitied by ) (right parenthesis). ,( is an imedeate
 // word
-// void _dot_paren(void) { 
-//   dStack_push(')');
-//   _word();
-//   _count();
-//   _type();
-// }
+void _dot_paren(void) { 
+  dStack_push(')');
+  _word();
+  _count();
+  _type();
+}
 
 // const char zero_not_equal_str[] = "0<>";
 // ( x -- flag)
@@ -1861,12 +1858,12 @@ void _exit(void) {
 //   else dStack_push(FALSE); 
 // }
 
-// const char hex_str[] = "hex";
+const char hex_str[] = "hex";
 // ( -- )
 // Set BASE to 16
-// void _hex(void) { // value --
-//   base = HEX;
-// }
+void _hex(void) { // value --
+  base = HEX;
+}
 
 // const char case_str[] = "case";
 // Contributed by Craig Lindley
@@ -2047,19 +2044,36 @@ void _key_question(void) {
 /**                          Programming Tools Set                            **/
 /*******************************************************************************/
 #ifdef TOOLS_SET
+
+// 2023 const char dot_s_str[] = ".s";
+// 2024 void _dot_s(void) {
+// 2025   char i;
+// 2026 //  char depth = dStack.tos + 1;
+// 2027   char depth = dStack_size();
+// 2028 //  if (dStack.tos >= 0) {
+// 2029   if (depth > 0) {
+// 2030     for (i = 0; i < depth ; i++) {
+// 2031 //      w = dStack.data[i];
+// 2032       w = dStack_peek(i);
+// 2033       displayValue();
+// 2034     }
+// 2035   }
+// 2036 }
+
+
 const char dot_s_str[] = ".s";
 void _dot_s(void) {
-//   char i;
-//  char depth = dStack.tos + 1;
-//   char depth = dStack_size();
-//  if (dStack.tos >= 0) {
-//   if (depth > 0) {
-//     for (i = 0; i < depth ; i++) {
-//      w = dStack.data[i];
-//       w = dStack_peek(i);
-//       displayValue();
-//     }
-//   }
+   char i;
+   // char depth = dStack.tos + 1;
+   char depth = dStack_size();
+   //  if (dStack.tos >= 0) {
+   if (depth > 0) {
+     for (i = 0; i < depth ; i++) {
+     // w = dStack.data[i];
+       w = dStack_peek(i);
+       displayValue();
+     }
+   }
 }
 
 const char dump_str[] = "dump";
@@ -2158,38 +2172,40 @@ void _see(void) {
 //   Serial.println();
 }
 
+// this violates ainsuForthsketch.cpp 's primacy on sp_str but compiler isn't complaining.
+
 const char words_str[] = "words";
 void _words(void) { // --
-//   uint8_t count = 0;
-//   uint8_t index = 0;
-//   uint8_t length = 0;
-//   char* pChar;
+  uint8_t count = 0;
+  uint8_t index = 0;
+  uint8_t length = 0;
+  char* pChar;
 
-//   while (flashDict[index].name) {
-//     if (count > 70) {
-//       Serial.println();
-//       count = 0;
-//     }
-//     if (!(flashDict[index].flags & SMUDGE)) {
-//       count += Serial.print(flashDict[index].name);
-//       count += Serial.print(sp_str);
-//     }
-//     index++;
-//   }
+   while (flashDict[index].name) {
+     if (count > 70) {
+      Serial.println();
+      count = 0;
+     }
+     if (!(flashDict[index].flags & SMUDGE)) {
+      count += Serial.print(flashDict[index].name);
+      count += Serial.print(sp_str);
+     }
+    index++;
+   }
 
-//   pUserEntry = pLastUserEntry;
-//   while (pUserEntry) {
-//     if (count > 70) {
-//       Serial.println();
-//       count = 0;
-//     }
-//     if (!(pUserEntry->flags & SMUDGE)) {
-//       count += Serial.print(pUserEntry->name);
-//       count += Serial.print(sp_str);
-//     }
-//     pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-//   }
-//   Serial.println();
+  pUserEntry = pLastUserEntry;
+   while (pUserEntry) {
+     if (count > 70) {
+      Serial.println();
+      count = 0;
+     }
+     if (!(pUserEntry->flags & SMUDGE)) {
+      count += Serial.print(pUserEntry->name);
+      count += Serial.print(sp_str);
+     }
+    pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
+   }
+  Serial.println();
 }
 
 #endif
@@ -2236,7 +2252,7 @@ void _freeMem(void) {
 
 const char delay_str[] = "delay";
 void _delay(void) {
-//   delay(dStack_pop());
+  delay(dStack_pop());
 }
 
 const char pinWrite_str[] = "pinWrite";
@@ -2298,32 +2314,38 @@ const flashEntry_t flashDict[] = {
   /* referenced when compiling code                    */
   /*****************************************************/
   { exit_str,           _exit,            NORMAL },
-//   { literal_str,        _literal,         IMMEDIATE },
-//   { type_str,           _type,            NORMAL },
-//   { jump_str,           _jump,            SMUDGE },
-//   { zjump_str,          _zjump,           SMUDGE },
-//   { subroutine_str,     _subroutine,      SMUDGE },
-//   { throw_str,          _throw,           NORMAL },
+  { literal_str,        _literal,         IMMEDIATE },
+  { type_str,           _type,            NORMAL },
+  { jump_str,           _jump,            SMUDGE },
+  { zjump_str,          _zjump,           SMUDGE },
+  { subroutine_str,     _subroutine,      SMUDGE },
+  { throw_str,          _throw,           NORMAL },
   { do_sys_str,         _do_sys,          SMUDGE },
-//   { loop_sys_str,       _loop_sys,        SMUDGE },
-//   { leave_sys_str,      _leave_sys,       SMUDGE },
-//   { plus_loop_sys_str,  _plus_loop_sys,   SMUDGE },
-//   { evaluate_str,       _evaluate,        NORMAL },
-//   { s_quote_str,        _s_quote,         IMMEDIATE + COMP_ONLY },
+  { loop_sys_str,       _loop_sys,        SMUDGE },
+  { leave_sys_str,      _leave_sys,       SMUDGE },
+  { plus_loop_sys_str,  _plus_loop_sys,   SMUDGE },
+  { evaluate_str,       _evaluate,        NORMAL },
+  { s_quote_str,        _s_quote,         IMMEDIATE + COMP_ONLY },
 
 // belongs in flashDict.cpp along with the rest of this:
   { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
 // commented out here to satisfy short-term goal (compiler needs to be kept happy)
 
-//   { variable_str,       _variable,        NORMAL },
-//   { over_str,           _over,            NORMAL }, // CAL
-//   { eq_str,             _eq,              NORMAL }, // CAL
-//   { drop_str,           _drop,            NORMAL }, // CAL
+  { variable_str,       _variable,        NORMAL },
+  { over_str,           _over,            NORMAL }, // CAL
+  { eq_str,             _eq,              NORMAL }, // CAL
+  { drop_str,           _drop,            NORMAL }, // CAL
 
   /*****************************************************/
   /* Order does not matter after here                  */
   /* Core Words                                        */
   /*****************************************************/
+   { warm_str,           _warm,            NORMAL },
+   { dot_str,            _dot,             NORMAL },
+   { minus_str,          _minus,           NORMAL },
+   { plus_str,           _plus,            NORMAL },
+   { star_str,           _star,            NORMAL },
+   { zero_equal_str,     _zero_equal,      NORMAL },
 //   { abort_str,          _abort,           NORMAL },
 //   { store_str,          _store,           NORMAL },
 //   { number_sign_str,    _number_sign,     NORMAL },
@@ -2331,19 +2353,14 @@ const flashEntry_t flashDict[] = {
 //   { number_sign_s_str,  _number_sign_s,   NORMAL },
 //   { tick_str,           _tick,            NORMAL },
 //   { paren_str,          _paren,           IMMEDIATE },
-//   { star_str,           _star,            NORMAL },
 //   { star_slash_str,     _star_slash,      NORMAL },
 //   { star_slash_mod_str, _star_slash_mod,  NORMAL },
-//   { plus_str,           _plus,            NORMAL },
 //   { plus_store_str,     _plus_store,      NORMAL },
 //   { plus_loop_str,      _plus_loop,       IMMEDIATE + COMP_ONLY },
 //   { comma_str,          _comma,           NORMAL },
-//   { minus_str,          _minus,           NORMAL },
-//   { dot_str,            _dot,             NORMAL },
-//   { slash_str,          _slash,           NORMAL },
+   { slash_str,          _slash,           NORMAL },
 //   { slash_mod_str,      _slash_mod,       NORMAL },
 //   { zero_less_str,      _zero_less,       NORMAL },
-//   { zero_equal_str,     _zero_equal,      NORMAL },
 //   { one_plus_str,       _one_plus,        NORMAL },
 //   { one_minus_str,      _one_minus,       NORMAL },
 //   { two_store_str,      _two_store,       NORMAL },
@@ -2367,12 +2384,12 @@ const flashEntry_t flashDict[] = {
 //   { question_dup_str,   _question_dup,    NORMAL },
 //   { fetch_str,          _fetch,           NORMAL },
 //   { abort_quote_str,    _abort_quote,     IMMEDIATE + COMP_ONLY },
-//   { abs_str,            _abs,             NORMAL },
+   { abs_str,            _abs,             NORMAL },
 //   { accept_str,         _accept,          NORMAL },
 //   { align_str,          _align,           NORMAL },
 //   { aligned_str,        _aligned,         NORMAL },
 //   { allot_str,          _allot,           NORMAL },
-//   { and_str,            _and,             NORMAL },
+   { and_str,            _and,             NORMAL },
 //   { base_str,           _base,            NORMAL },
 //   { begin_str,          _begin,           IMMEDIATE + COMP_ONLY },
 //   { bl_str,             _bl,              NORMAL },
@@ -2384,19 +2401,19 @@ const flashEntry_t flashDict[] = {
 //   { char_str,           _char,            NORMAL },
 //   { char_plus_str,      _char_plus,       NORMAL },
 
-//  { chars_str,          _chars,           NORMAL },
+//   { chars_str,          _chars,           NORMAL },
 //   { constant_str,       _constant,        NORMAL },
-//   { count_str,          _count,           NORMAL },
-//   { cr_str,             _cr,              NORMAL },
+   { count_str,          _count,           NORMAL },
+   { cr_str,             _cr,              NORMAL },
 //   { create_str,         _create,          NORMAL },
-//   { decimal_str,        _decimal,         NORMAL },
+   { decimal_str,        _decimal,         NORMAL },
 //   { depth_str,          _depth,           NORMAL },
 //   { do_str,             _do,              IMMEDIATE + COMP_ONLY },
 //   { does_str,           _does,            IMMEDIATE + COMP_ONLY },
 //   { drop_str,           _drop,            NORMAL },
-//   { dupe_str,           _dupe,            NORMAL },
+   { dupe_str,           _dupe,            NORMAL },
 //   { else_str,           _else,            IMMEDIATE + COMP_ONLY },
-//   { emit_str,           _emit,            NORMAL },
+   { emit_str,           _emit,            NORMAL },
 //   { environment_str,    _environment,     NORMAL },
 //   { execute_str,        _execute,         NORMAL },
 //   { fill_str,           _fill,            NORMAL },
@@ -2418,49 +2435,52 @@ const flashEntry_t flashDict[] = {
 //   { min_str,            _min,             NORMAL },
 //   { mod_str,            _mod,             NORMAL },
 //   { move_str,           _move,            NORMAL },
-//   { negate_str,         _negate,          NORMAL },
-//   { or_str,             _or,              NORMAL },
+   { negate_str,         _negate,          NORMAL },
+   { or_str,             _or,              NORMAL },
+
+// duplicated above:
 //   { over_str,           _over,            NORMAL },
+
 //   { postpone_str,       _postpone,        IMMEDIATE + COMP_ONLY },
-//   { quit_str,           _quit,            NORMAL },
+   { quit_str,           _quit,            NORMAL },
 //   { r_from_str,         _r_from,          NORMAL },
 //   { r_fetch_str,        _r_fetch,         NORMAL },
 //   { recurse_str,        _recurse,         IMMEDIATE + COMP_ONLY },
 //   { repeat_str,         _repeat,          IMMEDIATE + COMP_ONLY },
-//   { rot_str,            _rot,             NORMAL },
+   { rot_str,            _rot,             NORMAL },
 //   { rshift_str,         _rshift,          NORMAL },
 //   { s_to_d_str,         _s_to_d,          NORMAL },
 //   { sign_str,           _sign,            NORMAL },
 //   { sm_slash_rem_str,   _sm_slash_rem,    NORMAL },
 //   { source_str,         _source,          NORMAL },
-//   { space_str,          _space,           NORMAL },
-//   { spaces_str,         _spaces,          NORMAL },
+   { space_str,          _space,           NORMAL },
+   { spaces_str,         _spaces,          NORMAL },
 //   { state_str,          _state,           NORMAL },
-//   { swap_str,           _swap,            NORMAL },
+   { swap_str,           _swap,            NORMAL },
 //   { then_str,           _then,            IMMEDIATE + COMP_ONLY },
-//   { u_dot_str,          _u_dot,           NORMAL },
+   { u_dot_str,          _u_dot,           NORMAL },
 //   { u_lt_str,           _u_lt,            NORMAL },
 //   { um_star_str,        _um_star,         NORMAL },
 //   { um_slash_mod_str,   _um_slash_mod,    NORMAL },
 //   { unloop_str,         _unloop,          NORMAL + COMP_ONLY },
 //   { until_str,          _until,           IMMEDIATE + COMP_ONLY },
 //   { while_str,          _while,           IMMEDIATE + COMP_ONLY },
-//   { word_str,           _word,            NORMAL },
-//   { xor_str,            _xor,             NORMAL },
+   { word_str,           _word,            NORMAL },
+   { xor_str,            _xor,             NORMAL },
 //   { left_bracket_str,   _left_bracket,    IMMEDIATE },
 //   { bracket_tick_str,   _bracket_tick,    IMMEDIATE },
 //   { bracket_char_str,   _bracket_char,    IMMEDIATE },
 //   { right_bracket_str,  _right_bracket,   NORMAL },
 
 #ifdef CORE_EXT_SET
-//   { dot_paren_str,      _dot_paren,       IMMEDIATE },
+   { dot_paren_str,      _dot_paren,       IMMEDIATE },
 //   { zero_not_equal_str, _zero_not_equal,  NORMAL },
 //   { zero_greater_str,   _zero_greater,    NORMAL },
 //   { two_to_r_str,       _two_to_r,        NORMAL },
 //   { two_r_from_str,     _two_r_from,      NORMAL },
 //   { two_r_fetch_str,    _two_r_fetch,     NORMAL },
 //   { neq_str,            _neq,             NORMAL },
-//   { hex_str,            _hex,             NORMAL },
+   { hex_str,            _hex,             NORMAL },
 //   { case_str,           _case,            IMMEDIATE + COMP_ONLY },    // CAL
 //   { of_str,             _of,              IMMEDIATE + COMP_ONLY },    // CAL
 //   { endof_str,          _endof,           IMMEDIATE + COMP_ONLY },    // CAL
@@ -2484,10 +2504,10 @@ const flashEntry_t flashDict[] = {
 #endif
 
 #ifdef TOOLS_SET
-//   { dot_s_str,          _dot_s,           NORMAL },
+   { dot_s_str,          _dot_s,           NORMAL },
 //   { dump_str,           _dump,            NORMAL },
 //   { see_str,            _see,             NORMAL },
-//   { words_str,          _words,           NORMAL },
+   { words_str,          _words,           NORMAL },
 #endif
 
 #ifdef SEARCH_SET
@@ -2498,7 +2518,7 @@ const flashEntry_t flashDict[] = {
 
 #ifdef EN_ARDUINO_OPS
 //   { freeMem_str,        _freeMem,         NORMAL },
-//   { delay_str,          _delay,           NORMAL },
+   { delay_str,          _delay,           NORMAL },
 //   { pinWrite_str,       _pinWrite,        NORMAL },
 //   { pinMode_str,        _pinMode,         NORMAL },
 //   { pinRead_str,        _pinRead,         NORMAL },
