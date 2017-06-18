@@ -120,18 +120,74 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird. ");
+  Serial.print("\n warm boot message - early bird. KEPOK ");
 
   delay(4 * 100);
 
+  Serial.print("\033\133"); // ESC [
+  Serial.print("\063\063"); // 33 - yellow fg
+  Serial.print("m");        // for the stanza
+
+  Serial.print("\033\133"); // ESC [
+  Serial.print("\064\064"); // 44 - blue bg
+  Serial.print("m");        // for the stanza
+
+// 203   Serial.print("\033\133"); // ESC [
+// 204 
+// 205   Serial.print("\063\063"); // 33 - yellow fg
+// 206   Serial.print("m");        // for the stanza
+// 207 
+// 208   Serial.print("\033\133"); // ESC [
+// 209 
+// 210   Serial.print("\064\064"); // 44 - blue bg
+// 211   Serial.print("m");        // for the stanza
+
+
+
+
+
+
   // Serial.print("\n YAFFA - Yet Another Forth For Arduino, ");
-  Serial.print("\n\n     ainsuForth - 2017 - wa1tnr\n         YAFFA - Yet Another Forth For Arduino, \n");
 
 //  Serial.print("Version ");
 //  Serial.print(YAFFA_MAJOR,DEC);
 //  Serial.print(".");
 //  Serial.println(YAFFA_MINOR,DEC);
-    Serial.print("         Copyright (C) 2012 Stuart Wood    words: ");
+
+
+    Serial.print("\033\133"); // ESC [
+    Serial.print("\064\060"); // 40 - black bg
+    Serial.print("m");        // for the stanza
+
+    Serial.print("\n\n   ");  // leading black space on the wa1tnr line
+
+
+
+    Serial.print("\033\133"); // ESC [
+    Serial.print("\064\064"); // 44 - blue bg
+    Serial.print("m");        // for the stanza
+
+
+    Serial.print("  ainsuForth - 2017 - wa1tnr  ");
+
+    Serial.print("\033\133"); // ESC [
+    Serial.print("\064\060"); // 40 - black bg
+    Serial.print("m");        // for the stanza
+    Serial.print("  words: ");
+    pFlashEntry = flashDict;
+    w = 0;
+    while (pFlashEntry->name) { // Good for the Zero
+      w++;
+      pFlashEntry++;
+    }
+    Serial.print(w);
+
+
+    Serial.print("  \n         YAFFA - Yet Another Forth For Arduino, \n");
+
+
+    Serial.print("         Copyright (C) 2012 Stuart Wood\n");
+
 //  Serial.print(" This program comes with ABSOLUTELY NO WARRANTY.\r\n");
 //  Serial.print(" This is free software, and you are welcome to\r\n");
 //  Serial.println(" redistribute it under certain conditions.\r\n");
@@ -141,13 +197,7 @@ void setup(void) {
 //  Serial.print(" Terminal Echo is ");
 //  Serial.print(flags & ECHO_ON ? "On\r\n" : "Off\r\n");
 //  Serial.print(" Pre-Defined Words : ");
-  pFlashEntry = flashDict;
-  w = 0;
-  while (pFlashEntry->name) { // Good for the Zero
-    w++;
-    pFlashEntry++;
-  }
-  Serial.println(w);
+
 
 //  Serial.println("\r\n Environment Parameters: ");
 //  Serial.print(" Counted String Length: \t");
@@ -209,6 +259,7 @@ void setup(void) {
 //  Serial.print((size_t)&forthSpace[0], HEX);
 //  Serial.print(", Ends at $");
 //  Serial.println((size_t)&forthSpace[FORTH_SIZE] - 1, HEX);
+
 
   Serial.print(prompt_str);
 }
