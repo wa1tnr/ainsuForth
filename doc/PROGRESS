@@ -1,5 +1,16 @@
-// Sat Jun 17 19:32:00 UTC 2017
-// 4735-a0h
+// Sun Jun 18 02:05:55 UTC 2017
+// 4735-a0k
+
+
+  18 June 02:05z:
+
+  Pushed one out -- a primitive Forth now exists.  Program is
+  no longer marked as broken; program is no longer broken.
+
+  It does something.  Interactively.  Sign on and see, after
+  uploading to the Arduino M0+ family (M0 Pro, Adafruit Feather M0
+  series, and so on).
+
 
 
   17 June 19:32z:
