@@ -120,7 +120,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird. KEPOK ");
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  FILVA");
 
   delay(4 * 100);
 
