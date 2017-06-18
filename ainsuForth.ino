@@ -1,9 +1,9 @@
-// Sun Jun 18 02:05:55 UTC 2017
-// 4735-a0k
+// Sun Jun 18 15:04:16 UTC 2017
+// 4735-a0m
 
 //  KEPOK  FILVA
 
-//  PRIMITIVE FORTH - working 18 June - PARANYU   TELIOS  MINCE  THYME
+//  PRIMITIVE FORTH - working 18 June -  CUFAX  MILUBUS  RAKUVI  PARANYU   TELIOS
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

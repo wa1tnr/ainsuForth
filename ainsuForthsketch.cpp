@@ -1,5 +1,5 @@
-// Sun Jun 18 02:05:55 UTC 2017
-// 4735-a0k
+// Sun Jun 18 15:04:16 UTC 2017
+// 4735-a0m
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -24,8 +24,8 @@ asm(" .section .version\n"
 const char prompt_str[] = ">> ";
 const char compile_prompt_str[] = "|  ";
 const char ok_str[] = " OK";
-#ifdef INT_KERN_IS_WORD_NUMBER
-#endif
+
+
 const char spS_str[] = " ";  // kludge - renamed to make it unique
 const char tab_str[] = "\t";
 const char hexidecimal_str[] = "$";
@@ -104,8 +104,8 @@ uint8_t base;  // stores the number conversion radix
 
 /******************************************************************************/
 
-#ifdef INT_KERN_STACKS
-#endif // #ifdef INT_KERN_STACKS
+
+
 
 /******************************************************************************/
 /** Initialization                                                           **/
@@ -120,10 +120,13 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  FILVA");
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  FILVA"); // instant confirmation
 
-  delay(4 * 100);
+  delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
+                  // to give the operator time to task switch from upload
+                  // to first signon.
 
+  // colours - entirely optional
   Serial.print("\033\133"); // ESC [
   Serial.print("\063\063"); // 33 - yellow fg
   Serial.print("m");        // for the stanza
@@ -265,6 +268,7 @@ void setup(void) {
 }
 
 
+#ifdef INT_KERN_GETKEY
 /******************************************************************************/
 /** getKey                                                                   **/
 /**   waits for the next valid key to be entered and return its value        **/
@@ -284,7 +288,9 @@ char getKey(void) {
     }
   }
 }
+#endif
 
+#ifdef INT_KERN_GETLINE
 /******************************************************************************/
 /** getLine                                                                  **/
 /**   read in a line of text ended by a Carriage Return (ASCII 13)           **/
@@ -316,6 +322,7 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
   } while (count < buffSize);
   return (count);
 }
+#endif
 
 
 
@@ -349,11 +356,11 @@ void loop(void) {
   }
 }
 
-#ifdef INT_KERN_GETTOKEN
-#endif
 
-#ifdef INT_KERN_INTERPRETER
-#endif
+
+
+
+
 
 
 /******************************************************************************/
@@ -378,8 +385,8 @@ void executeWord(void) {
 //   flags &= ~EXECUTE;
 }
 
-#ifdef INT_KERN_IS_WORD_NUMBER
-#endif
+
+
 
 /******************************************************************************/
 /** freeMem returns the amount of free forth space left.                     **/
@@ -431,8 +438,8 @@ void closeEntry(void) {
 
 
 
-#ifdef INT_KERN_STACKS
-#endif // #ifdef INT_KERN_STACKS
+
+
 
 
 
