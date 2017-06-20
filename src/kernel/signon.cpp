@@ -13,17 +13,9 @@
 void signOn(void) {
   // Serial.begin(19200);     // Open serial communications:
 
-  // flags = ECHO_ON;
-  // base = DECIMAL;
+  // Serial.print("\n warm boot message - early bird."); // instant confirmation
 
-  // pHere = &forthSpace[0];
-  // pOldHere = pHere;
-  
-  // Serial.print("\n warm boot message - early bird.  //  KEPOK  FILVA-MELFON"); // instant confirmation
-
-  // delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
-                  // to give the operator time to task switch from upload
-                  // to first signon.
+  // delay(9 * 100);
 
   // colours - entirely optional
   Serial.print("\033\133"); // ESC [
@@ -44,11 +36,6 @@ void signOn(void) {
 // 210   Serial.print("\064\064"); // 44 - blue bg
 // 211   Serial.print("m");        // for the stanza
 
-
-
-
-
-
   // Serial.print("\n YAFFA - Yet Another Forth For Arduino, ");
 
 //  Serial.print("Version ");
@@ -56,19 +43,15 @@ void signOn(void) {
 //  Serial.print(".");
 //  Serial.println(YAFFA_MINOR,DEC);
 
-
     Serial.print("\033\133"); // ESC [
     Serial.print("\064\060"); // 40 - black bg
     Serial.print("m");        // for the stanza
 
-    Serial.print("\n\n   ");  // leading black space on the wa1tnr line
-
-
+    Serial.print("\r\n\r\n   ");  // leading black space on the wa1tnr line
 
     Serial.print("\033\133"); // ESC [
     Serial.print("\064\064"); // 44 - blue bg
     Serial.print("m");        // for the stanza
-
 
     Serial.print("  ainsuForth - 2017 - wa1tnr  ");
 
@@ -85,8 +68,7 @@ void signOn(void) {
     Serial.print(w);
 
 
-    Serial.print("  \n         YAFFA - Yet Another Forth For Arduino, \n");
-
+    Serial.print("  \r\n         YAFFA - Yet Another Forth For Arduino, \n");
 
     Serial.print("         Copyright (C) 2012 Stuart Wood\n");
 
@@ -162,8 +144,7 @@ void signOn(void) {
 //  Serial.print(", Ends at $");
 //  Serial.println((size_t)&forthSpace[FORTH_SIZE] - 1, HEX);
 
-
-  // Serial.print(prompt_str);
+// Serial.print(prompt_str);
 }
 
 #endif

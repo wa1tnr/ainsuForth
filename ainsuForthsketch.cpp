@@ -105,8 +105,6 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 
 
-
-
 /******************************************************************************/
 /** Initialization                                                           **/
 /******************************************************************************/
@@ -160,9 +158,6 @@ void loop(void) {
 }
 
 
-#ifdef INT_KERN_EXEC_WORD
-#endif
-
 /******************************************************************************/
 /** freeMem returns the amount of free forth space left.                     **/
 /******************************************************************************/
@@ -172,8 +167,6 @@ static unsigned int freeMem(void) {
 
 
 #ifdef INT_KERN_ENTRY
-void openEntry(void) { }
-void closeEntry(void) { }
 #endif
 
 
