@@ -2,6 +2,7 @@
 // 4735-a0m-01
 
 // #include "src/kernel/execute_word.h"
+#include "src/kernel/signon.h"
 #include "src/kernel/getkey.h"
 #include "src/kernel/getline.h"
 #include "src/kernel/stacks.h"

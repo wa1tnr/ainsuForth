@@ -1,7 +1,7 @@
 // Tue Jun 20 03:39:44 UTC 2017
 // 4735-a0m-02
 
-// +entry.cpp   +execute_word.cpp
+// +signon.cpp   +entry.cpp
 
 // KEPOK  FILVA
 

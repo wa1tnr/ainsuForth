@@ -126,14 +126,15 @@ void setup(void) {
                   // to give the operator time to task switch from upload
                   // to first signon.
 
+  signOn();
   // colours - entirely optional
-  Serial.print("\033\133"); // ESC [
-  Serial.print("\063\063"); // 33 - yellow fg
-  Serial.print("m");        // for the stanza
+  // Serial.print("\033\133"); // ESC [
+  // Serial.print("\063\063"); // 33 - yellow fg
+  // Serial.print("m");        // for the stanza
 
-  Serial.print("\033\133"); // ESC [
-  Serial.print("\064\064"); // 44 - blue bg
-  Serial.print("m");        // for the stanza
+  // Serial.print("\033\133"); // ESC [
+  // Serial.print("\064\064"); // 44 - blue bg
+  // Serial.print("m");        // for the stanza
 
 // 203   Serial.print("\033\133"); // ESC [
 // 204 
@@ -158,38 +159,38 @@ void setup(void) {
 //  Serial.println(YAFFA_MINOR,DEC);
 
 
-    Serial.print("\033\133"); // ESC [
-    Serial.print("\064\060"); // 40 - black bg
-    Serial.print("m");        // for the stanza
+    // Serial.print("\033\133"); // ESC [
+    // Serial.print("\064\060"); // 40 - black bg
+    // Serial.print("m");        // for the stanza
 
-    Serial.print("\n\n   ");  // leading black space on the wa1tnr line
-
-
-
-    Serial.print("\033\133"); // ESC [
-    Serial.print("\064\064"); // 44 - blue bg
-    Serial.print("m");        // for the stanza
+    // Serial.print("\n\n   ");  // leading black space on the wa1tnr line
 
 
-    Serial.print("  ainsuForth - 2017 - wa1tnr  ");
 
-    Serial.print("\033\133"); // ESC [
-    Serial.print("\064\060"); // 40 - black bg
-    Serial.print("m");        // for the stanza
-    Serial.print("  words: ");
-    pFlashEntry = flashDict;
-    w = 0;
-    while (pFlashEntry->name) { // Good for the Zero
-      w++;
-      pFlashEntry++;
-    }
-    Serial.print(w);
+    // Serial.print("\033\133"); // ESC [
+    // Serial.print("\064\064"); // 44 - blue bg
+    // Serial.print("m");        // for the stanza
 
 
-    Serial.print("  \n         YAFFA - Yet Another Forth For Arduino, \n");
+    // Serial.print("  ainsuForth - 2017 - wa1tnr  ");
+
+    // Serial.print("\033\133"); // ESC [
+    // Serial.print("\064\060"); // 40 - black bg
+    // Serial.print("m");        // for the stanza
+    // Serial.print("  words: ");
+    // pFlashEntry = flashDict;
+    // w = 0;
+    // while (pFlashEntry->name) { // Good for the Zero
+    //   w++;
+    //   pFlashEntry++;
+    // }
+    // Serial.print(w);
 
 
-    Serial.print("         Copyright (C) 2012 Stuart Wood\n");
+    // Serial.print("  \n         YAFFA - Yet Another Forth For Arduino, \n");
+
+
+    // Serial.print("         Copyright (C) 2012 Stuart Wood\n");
 
 //  Serial.print(" This program comes with ABSOLUTELY NO WARRANTY.\r\n");
 //  Serial.print(" This is free software, and you are welcome to\r\n");
@@ -268,13 +269,6 @@ void setup(void) {
 }
 
 
-#ifdef INT_KERN_GETKEY
-#endif
-
-#ifdef INT_KERN_GETLINE
-#endif
-
-
 /******************************************************************************/
 /** Outer interpreter                                                        **/
 /******************************************************************************/
@@ -306,29 +300,7 @@ void loop(void) {
 
 
 #ifdef INT_KERN_EXEC_WORD
-/******************************************************************************/
-/** Virtual Machine that executes Code Space                                 **/
-/******************************************************************************/
-void executeWord(void) {
-//   func function;
-//   flags |= EXECUTE;
-//   while (ip != NULL) {
-//     w = *ip++;
-//     if (w > 255) {
-      // ip is an address in code space
-//       rStack_push((size_t)ip); // push the address to return to
-//       ip = (cell_t*)w;          // set the ip to the new address
-//     }
-//     else {
-//       function = flashDict[w - 1].function;
-//       function();
-//       if (errorCode) return;
-//     }
-//   }
-//   flags &= ~EXECUTE;
-}
 #endif
-
 
 /******************************************************************************/
 /** freeMem returns the amount of free forth space left.                     **/
@@ -337,45 +309,10 @@ static unsigned int freeMem(void) {
 //   return (pHere - forthSpace);
 }
 
+
 #ifdef INT_KERN_ENTRY
-/******************************************************************************/
-/** Start a New Entry in the Dictionary                                      **/
-/******************************************************************************/
-void openEntry(void) {
-//   uint8_t index = 0;
-//   pOldHere = pHere;            // Save the old location of HERE so we can
-                               // abort out of the new definition
-//   pNewUserEntry = (userEntry_t*)pHere;
-//   if (pLastUserEntry == NULL)
-//     pNewUserEntry->prevEntry = 0;              // Initialize User Dictionary
-//   else pNewUserEntry->prevEntry = pLastUserEntry;
-//   if (!getToken()) {
-//    dStack_push(-16);
-    // _throw();
-//   }
-//   char* ptr = pNewUserEntry->name;
-//   do {
-//     *ptr++ = cTokenBuffer[index++];
-//   } while (cTokenBuffer[index] != '\0');
-//   *ptr++ = '\0';
-//   pHere = (cell_t *)ptr;
-//   ALIGN_P(pHere);
-
-//   pNewUserEntry->cfa = pHere;
-//   pCodeStart = pHere;
-}
-
-/******************************************************************************/
-/** Finish an new Entry in the Dictionary                                    **/
-/******************************************************************************/
-void closeEntry(void) {
-//   if (errorCode == 0) {
-//     *pHere++ = EXIT_IDX;
-//     pNewUserEntry->flags = 0; // clear the word's flags
-//     pLastUserEntry = pNewUserEntry;
-//   } else pHere = pOldHere;   // Revert pHere to what it was before the start
-                             // of the new word definition
-}
+void openEntry(void) { }
+void closeEntry(void) { }
 #endif
 
 
