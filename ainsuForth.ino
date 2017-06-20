@@ -1,5 +1,7 @@
 // Tue Jun 20 18:57:54 UTC 2017
-// 4735-a0p-00-
+// 4735-a0p-01-
+
+// future: flashDict.cpp will eventually lose most (or all) definitions.
 
 // ++flashDict.cpp  +strings.cpp   +signon.cpp   +entry.cpp
 

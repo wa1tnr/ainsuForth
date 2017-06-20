@@ -1,5 +1,5 @@
 // Tue Jun 20 18:57:54 UTC 2017
-// 4735-a0p-00-
+// 4735-a0p-01-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -8,6 +8,7 @@
 #include "Error_Codes.h"
 
 const char not_done_str[] = " NOT Implemented Yet \n\r";
+
 const char sp_str[] = " "; // does not belong here
 stack_t dStack; // no idea where this should go
 stack_t rStack; // no idea where this should go
@@ -30,114 +31,6 @@ static void _two_drop(void) {
 /******************************************************************************/
 /**                       Primitives for Control Flow                        **/
 /******************************************************************************/
-#ifdef INT_KERN_JUMP
-const char jump_str[] = "jump";
-void _jump(void) {
-   ip = (cell_t*)((size_t)ip + *ip);
-}
-#endif
-
-#ifdef INT_KERN_ZJUMP
-const char zjump_str[] = "zjump";
-void _zjump(void) {
-  if (!dStack_pop()) ip = (cell_t*)((size_t)ip + *ip);
-  else ip++;
-}
-#endif
-
-#ifdef INT_KERN_SUBROUTINE
-const char subroutine_str[] = "subroutine";
-void _subroutine(void) {
-  *pDoes = (cell_t)*ip++;
-}
-#endif
-
-#ifdef INT_KERN_DO_SYS
-const char do_sys_str[] = "do-sys-int";
-// ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
-// Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
-// condition exists if n1|u1 and n2|u2 are not the same type. Anything already
-// on the return stack becomes unavailable until the loop-control parameters
-// are discarded.
-void _do_sys(void) {
-  rStack_push(LOOP_SYS);
-  rStack_push(dStack_pop());   // push index on to return stack
-  rStack_push(dStack_pop());   // push limit on to return stack
-}
-#endif
-
-#ifdef INT_KERN_LOOP_SYS
-const char loop_sys_str[] = "loop-sys";
-// ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
-// Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
-// condition exists if n1|u1 and n2|u2 are not the same type. Anything already
-// on the return stack becomes unavailable until the loop-control parameters
-// are discarded.
-void _loop_sys(void) {
-  cell_t limit = rStack_pop();    // fetch limit
-  cell_t index = rStack_pop();    // fetch index
-  index++;
-  if (limit - index) {
-    rStack_push(index);
-    rStack_push(limit);
-    ip = (cell_t*)*ip;
-  } else {
-    ip++;
-    if (rStack_pop() != LOOP_SYS) {
-      dStack_push(-22);
-      _throw();
-      return;
-    }
-  }
-}
-#endif
-
-
-#ifdef INT_KERN_LEAVE_SYS
-const char leave_sys_str[] = "leave-sys";
-// ( -- ) (R: loop-sys -- )
-// Discard the current loop control parameters. An ambiguous condition exists
-// if they are unavailable. Continue execution immediately following the
-// innermost syntactically enclosing DO ... LOOP or DO ... +LOOP.
-void _leave_sys(void) {
-  rStack_pop();    // fetch limit
-  rStack_pop();    // fetch index
-  if (rStack_pop() != LOOP_SYS) {
-    dStack_push(-22);
-    _throw();
-    return;
-  }
-  ip = (cell_t*)*ip;
-}
-#endif
-
-
-#ifdef INT_KERN_PLUS_LOOP_SYS
-const char plus_loop_sys_str[] = "plus_loop-sys";
-// ( n1|u1 n2|u2 -- ) (R: -- loop_sys )
-// Set up loop control parameters with index n2|u2 and limit n1|u1. An ambiguous
-// condition exists if n1|u1 and n2|u2 are not the same type. Anything already
-// on the return stack becomes unavailable until the loop-control parameters
-// are discarded.
-void _plus_loop_sys(void) {
-  cell_t limit = rStack_pop();    // fetch limit
-  cell_t index = rStack_pop();    // fetch index
-  index += dStack_pop();
-  if (limit != index) {
-    rStack_push(index);
-    rStack_push(limit);
-    ip = (cell_t*)*ip;
-  } else {
-    ip++;
-    if (rStack_pop() != LOOP_SYS) {
-      dStack_push(-22);
-      _throw();
-      return;
-    }
-  }
-}
-#endif
-
 
 /*******************************************************************************/
 /**                          Core Forth Words                                 **/
@@ -332,42 +225,6 @@ void _dot(void) {
   displayValue();
 }
 
-// moved to src/kernel/dot_quote.cpp: const char dot_quote_str[] = ".\x22";
-
-// Compilation ("ccc<quote>" -- )
-// Parse ccc delimited by ". Append the run time semantics given below to
-// the current definition.
-// Run-Time ( -- )
-// Display ccc.
-
-// moved and truncated at src/kernel/dot_quote.cpp: void _dot_quote(void) {
-
-//   uint8_t i;
-//   char length;
-//   if (flags & EXECUTE) {
-//     Serial.print((char*)ip); // Print the string at the istuction pointer (ip)
-//     cell_t len = strlen((char*)ip) + 1;  // include null terminator
-//     ip = (cell_t*)((size_t)ip + len); // Move the ip to the end of the string 
-//     ALIGN_P(ip); // and align it.
-//   }
-//   else if (state) {
-//     cDelimiter = '"';
-//     if (!getToken()) {
-//       dStack_push(-16);
-//       _throw();
-//     }
-//     length = strlen(cTokenBuffer);
-//     *pHere++ = DOT_QUOTE_IDX;
-//     char *ptr = (char *) pHere;
-//     for (uint8_t i = 0; i < length; i++) {
-//       *ptr++ = cTokenBuffer[i];
-//     }
-//     *ptr++ = '\0';    // Terminate String
-//     pHere = (cell_t *)ptr;
-//     ALIGN_P(pHere);  // re- align the pHere for any new code
-//     cDelimiter = ' ';
-//   }
-// }
 
 const char slash_str[] = "/";
 // ( n1 n2 -- n3 )
@@ -854,16 +711,6 @@ void _count(void) {
 }
 
 
-
-//   4	/**  File: Dictionary.ino                                                    **/
-// 833	const char cr_str[] = "cr";
-// 834	// ( -- )
-// 835	// Carriage Return
-// 836	void _cr(void) {
-// 837	  Serial.println();
-// 838	}
-
-
 const char cr_str[] = "cr"; // ( -- ) Carriage Return
 void _cr(void) {
   Serial.println();
@@ -1078,15 +925,6 @@ void _execute(void) {
 }
 
 #ifdef INT_KERN_EXIT
-// const char exit_str[] = "exit";
-// Interpretation: undefined
-// Execution: ( -- ) (R: nest-sys -- )
-// Return control to the calling definition specified by nest-sys. Before
-// executing EXIT within a do-loop, a program shall discard the loop-control
-// parameters by executing UNLOOP.
-// void _exit(void) {
-//   ip = (cell_t*)rStack_pop();
-// }
 #endif
 
 // const char fill_str[] = "fill";
@@ -1451,42 +1289,7 @@ void _rot(void) {
 //   dStack_push((ucell_t)x1 >> u);
 // }
 
-// const char s_quote_str[] = "s\x22"; 
-// Interpretation: Interpretation semantics for this word are undefined.
-// Compilation: ("ccc<quote>" -- )
-// Parse ccc delimited by ". Append the run-time semantics given below to the
-// current definition.
-// Run-Time: ( -- c-addr u )
-// Return c-addr and u describing a string consisting of the characters ccc. A program
-// shall not alter the returned string.
-// void _s_quote(void) {
-//   uint8_t i;
-//   char length;
-//   if (flags & EXECUTE) {
-//     dStack_push((size_t)ip);
-//     cell_t len = strlen((char*)ip);
-//     dStack_push(len++);    // increment for the null terminator
-//     ALIGN(len);
-//     ip = (cell_t*)((size_t)ip + len);
-//  }
-//  else if (state) {
-//     cDelimiter = '"';
-//     if (!getToken()) {
-//       dStack_push(-16);
-//       _throw();
-//     }
-//     length = strlen(cTokenBuffer);
-//     *pHere++ = S_QUOTE_IDX;
-//     char *ptr = (char*)pHere;
-//     for (uint8_t i = 0; i < length; i++) {
-//       *ptr++ = cTokenBuffer[i];
-//     }
-//     *ptr++ = '\0';    // Terminate String
-//     pHere = (cell_t *)ptr;
-//     ALIGN_P(pHere);  // re- align pHere for any new code
-//     cDelimiter = ' ';
-//   }
-// }
+
 
 // const char s_to_d_str[] = "s>d";
 // ( n -- d )
@@ -1495,6 +1298,8 @@ void _rot(void) {
 //   dStack_push(n);
 //   dStack_push(0);
 // }
+
+
 
 // const char sign_str[] = "sign";
 // ( n -- )
@@ -1987,38 +1792,7 @@ void _hex(void) { // value --
 /**                         ainsuForth: this stays.                           **/
 /*******************************************************************************/
 #ifdef EXCEPTION_SET
-// moved to src/kernel/throw.cpp 10 June 2017
-// const char throw_str[] = "throw";
-// ( k*x n -- k*x | i*x n)
-// if any bit of n are non-zero, pop the topmost exception frame from the
-// exception stack, along with everything on the return stack above that frame.
-// ...
-// void _throw(void) {
-//   errorCode = dStack_pop();
-//   uint8_t index = 0;
-//   int tableCode;
-//   //_cr();
-//   Serial.print(cTokenBuffer);
-//   Serial.print(F(" EXCEPTION("));
-//   do {
-//     tableCode = pgm_read_dword(&(exception[index].code));
-//     if (errorCode == tableCode) {
-//       Serial.print((int)errorCode);
-//       Serial.print("): ");
-//       Serial.print(exception[index].name);
-//       _cr();
-//     }
-//     index++;
-//   } while (tableCode);
-// //  dStack.tos = -1;                       // Clear the stack. 
-//   dStack_clear();                        // Clear the stack.
-//   _quit();
-//   state = FALSE;
-// }  
-
 #endif
-
-// ###bookmark
 
 /*******************************************************************************/
 /**                             Facility Set                                  **/
@@ -2055,31 +1829,12 @@ void _key_question(void) {
 /*******************************************************************************/
 #ifdef TOOLS_SET
 
-// 2023 const char dot_s_str[] = ".s";
-// 2024 void _dot_s(void) {
-// 2025   char i;
-// 2026 //  char depth = dStack.tos + 1;
-// 2027   char depth = dStack_size();
-// 2028 //  if (dStack.tos >= 0) {
-// 2029   if (depth > 0) {
-// 2030     for (i = 0; i < depth ; i++) {
-// 2031 //      w = dStack.data[i];
-// 2032       w = dStack_peek(i);
-// 2033       displayValue();
-// 2034     }
-// 2035   }
-// 2036 }
-
-
 const char dot_s_str[] = ".s";
 void _dot_s(void) {
    char i;
-   // char depth = dStack.tos + 1;
    char depth = dStack_size();
-   //  if (dStack.tos >= 0) {
    if (depth > 0) {
      for (i = 0; i < depth ; i++) {
-     // w = dStack.data[i];
        w = dStack_peek(i);
        displayValue();
      }
@@ -2182,8 +1937,6 @@ void _see(void) {
 //   Serial.println();
 }
 
-// this violates ainsuForthsketch.cpp 's primacy on sp_str but compiler isn't complaining.
-
 const char words_str[] = "words";
 void _words(void) { // --
   uint8_t count = 0;
@@ -2236,19 +1989,19 @@ void _words(void) { // --
 /**                         EEPROM Operations                                  **/
 /********************************************************************************/
 #ifdef EN_EEPROM_OPS
-const char eeRead_str[] = "eeRead";
-void _eeprom_read(void) {             // address -- value
+// const char eeRead_str[] = "eeRead";
+// void _eeprom_read(void) {             // address -- value
 //   dStack_push(EEPROM.read(dStack_pop()));
-}
+// }
 
-const char eeWrite_str[] = "eeWrite";
-void _eeprom_write(void) {             // value address --
+// const char eeWrite_str[] = "eeWrite";
+// void _eeprom_write(void) {             // value address --
 //   char address;
 //   char value;
 //   address = (char) dStack_pop();
 //   value = (char) dStack_pop();
 //   EEPROM.write(address, value);
-}
+// }
 #endif
 
 /********************************************************************************/
