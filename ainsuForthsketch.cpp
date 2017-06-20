@@ -1,5 +1,5 @@
-// Sun Jun 18 16:24:18 UTC 2017
-// 4735-a0m-01
+// Tue Jun 20 03:39:44 UTC 2017
+// 4735-a0m-02
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -337,6 +337,7 @@ static unsigned int freeMem(void) {
 //   return (pHere - forthSpace);
 }
 
+#ifdef INT_KERN_ENTRY
 /******************************************************************************/
 /** Start a New Entry in the Dictionary                                      **/
 /******************************************************************************/
@@ -375,14 +376,7 @@ void closeEntry(void) {
 //   } else pHere = pOldHere;   // Revert pHere to what it was before the start
                              // of the new word definition
 }
-
-
-
-
-
-
-
-
+#endif
 
 
 /******************************************************************************/

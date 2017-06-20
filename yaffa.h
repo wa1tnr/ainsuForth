@@ -1,5 +1,5 @@
-// Sun Jun 18 16:24:18 UTC 2017
-// 4735-a0m-01
+// Tue Jun 20 03:39:44 UTC 2017
+// 4735-a0m-02
 
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
 // scroll to end of file for intellectual property notices - wa1tnr
@@ -10,6 +10,9 @@
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
 
+
+#define EXT_KERN_ENTRY
+// #define INT_KERN_ENTRY
 
 #define EXT_KERN_EXEC_WORD
 // #define INT_KERN_EXEC_WORD

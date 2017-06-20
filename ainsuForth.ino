@@ -1,11 +1,11 @@
-// Sun Jun 18 16:24:18 UTC 2017
-// 4735-a0m-01
+// Tue Jun 20 03:39:44 UTC 2017
+// 4735-a0m-02
 
-// +execute_word.cpp
+// +entry.cpp   +execute_word.cpp
 
-//   KEPOK  FILVA
+// KEPOK  FILVA
 
-//   PRIMITIVE FORTH - working 18 June -  MELFON  TRAKTOR  CUFAX  MILUBUS  RAKUVI
+// PRIMITIVE FORTH - working 18 June -  MELFON  TRAKTOR  CUFAX  MILUBUS  RAKUVI
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
