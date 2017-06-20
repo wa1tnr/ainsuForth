@@ -1,5 +1,5 @@
-// Tue Jun 20 03:39:44 UTC 2017
-// 4735-a0m-02
+// Tue Jun 20 21:33:06 UTC 2017
+// 4735-a0p-02-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -118,7 +118,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  FILVA-MELFON"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  MARVIK--CHUNZH"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload
@@ -165,35 +165,10 @@ static unsigned int freeMem(void) {
 //   return (pHere - forthSpace);
 }
 
-
 #ifdef INT_KERN_ENTRY
 #endif
 
-
 #ifdef INT_KERN_STRINGS
-/******************************************************************************/
-/** String and Serial Functions                                              **/
-/******************************************************************************/
-void displayValue(void) {
-  switch (base) {
-    case DECIMAL: 
-      Serial.print(w, DEC);
-      break;
-    case HEXIDECIMAL:
-      // Serial.print(hexidecimal_str); 
-      Serial.print(w, HEX);
-      break;
-    case OCTAL:
-      // Serial.print(octal_str); 
-      Serial.print(w, OCT);
-      break;
-    case BINARY:  
-      // Serial.print(binary_str); 
-      Serial.print(w, BIN);
-      break;
-  }
-  // Serial.print(sp_str);
-}
 #endif
 
 /******************************************************************************/
@@ -217,7 +192,6 @@ char* xtToName(cell_t xt) {
 //   }
 //   return 0;
 }
-
 
 
 /******************************************************************************/
@@ -252,63 +226,9 @@ char* xtToName(cell_t xt) {
 /**  The goal is to support at a minimum the ANS Forth C core word set and   **/
 /**  to implement wrappers for the basic I/O functions found in the Arduino  **/
 /**  library.                                                                **/
+/**                                                                          **/
 /**  YAFFA uses two dictionaries, one for built in words and is stored in    **/
 /**  flash memory, and the other for user defined words, that is found in    **/
 /**  RAM.                                                                    **/
-/**                                                                          **/
-/******************************************************************************/
-/**                                                                          **/
-/**  REVISION HISTORY:                                                       **/
-/**                                                                          **/
-/**    0.7.0                                                                 **/
-/**    - Fixed the how LEAVE is handled in LOOP and +LOOP.                   **/
-/**    0.6.2                                                                 **/
-/**    - Added words ">NUMBER", "KEY?", ".(", "0<>", "0>", "2>R", "2R>",     **/
-/**      "2R@".                                                              **/
-/**    - Removed static from the function headers to avoid compilation       **/
-/**      errors with the new 1.6.6 Arduino IDE.                              **/
-/**                                                                          **/
-/**                                                                          **/
-/** 2017: changed to yaffa.h -- reverting possibly what is mentioned         **/
-/**       on the lines, below this one.                                      **/
-/**                                                                          **/
-/**                                                                          **/
-/**    - changed file names from yaffa.h to YAFFA.h and Yaffa.ino to         **/
-/**      YAFFA.ino and the #includes to reflect the capatilized name. This   **/
-/**      helps with cheking out the project from github without renaming     **/
-/**      files.                                                              **/
-/**                                                                          **/
-/**                                                                          **/
-/**    - Fixed comments for pinWrite and pinMode.                            **/
-/**    - yaffa.h reorganized for different architectures                     **/
-/**    - Replaced Serial.print(PSTR()) with Serial.print(F())                **/
-/**    0.6.1                                                                 **/
-/**    - Documentation cleanup. thanks to Dr. Hugh Sasse, BSc(Hons), PhD     **/
-/**    0.6                                                                   **/
-/**    - Fixed PROGMEM compilation errors do to new compiler in Arduino 1.6  **/
-/**    - Embedded the revision in to the compiled code.                      **/
-/**    - Revision is now displayed in greeting at start up.                  **/
-/**    - the interpreter not clears the word flags before it starts.         **/
-/**    - Updated TICK, WORD, and FIND to make use of primitive calls for to  **/
-/**      reduce code size.                                                   **/
-/**    - Added word flag checks in dot_quote() and _s_quote().               **/
-/**                                                                          **/
-/**  NOTES:                                                                  **/
-/**                                                                          **/
-/**    - Compiler now gives "Low memory available, stability problems may    **/
-/**      occur." warning. This is expected since most memory is reserved for **/
-/**      the FORTH environment. Excessive recursive calls may overrun the C  **/
-/**      stack.                                                              **/
-/**                                                                          **/
-/**  THINGS TO DO:                                                           **/
-/**                                                                          **/
-/**  CORE WORDS TO ADD:                                                      **/
-/**      >NUMBER                                                             **/
-/**                                                                          **/
-/**  THINGS TO FIX:                                                          **/
-/**                                                                          **/
-/**    Fix the outer interpreter to use FIND instead of isWord               **/
-/**    Fix Serial.Print(w, HEX) from displaying negative numbers as 32 bits  **/
-/**    Fix ENVIRONMENT? Query to take a string reference from the stack.     **/
 /**                                                                          **/
 /******************************************************************************/

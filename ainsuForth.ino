@@ -1,13 +1,9 @@
-// Tue Jun 20 18:57:54 UTC 2017
-// 4735-a0p-01-
+// Tue Jun 20 21:33:06 UTC 2017
+// 4735-a0p-02-
 
-// future: flashDict.cpp will eventually lose most (or all) definitions.
+// KEPOK  MARVIK
 
-// ++flashDict.cpp  +strings.cpp   +signon.cpp   +entry.cpp
-
-// KEPOK  FILVA
-
-// PRIMITIVE FORTH - working 18 June -  JYBIK  FUFMPOR  KERVOMP  VUSKAR   MELFON
+// PRIMITIVE FORTH - working 18 June -  CHUNZH   MARVIK   JYBIK  FUFMPOR  KERVOMP
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

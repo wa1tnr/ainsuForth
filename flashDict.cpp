@@ -1,5 +1,5 @@
-// Tue Jun 20 18:57:54 UTC 2017
-// 4735-a0p-01-
+// Tue Jun 20 21:33:06 UTC 2017
+// 4735-a0p-02-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -48,11 +48,7 @@ const flashEntry_t flashDict[] = {
   { plus_loop_sys_str,  _plus_loop_sys,   SMUDGE },
   { evaluate_str,       _evaluate,        NORMAL },
   { s_quote_str,        _s_quote,         IMMEDIATE + COMP_ONLY },
-
-// belongs in flashDict.cpp along with the rest of this:
   { dot_quote_str,      _dot_quote,       IMMEDIATE + COMP_ONLY },
-// commented out here to satisfy short-term goal (compiler needs to be kept happy)
-
   { variable_str,       _variable,        NORMAL },
   { over_str,           _over,            NORMAL }, // CAL
   { eq_str,             _eq,              NORMAL }, // CAL
@@ -159,10 +155,6 @@ const flashEntry_t flashDict[] = {
 //   { move_str,           _move,            NORMAL },
    { negate_str,         _negate,          NORMAL },
    { or_str,             _or,              NORMAL },
-
-// duplicated above:
-//   { over_str,           _over,            NORMAL },
-
 //   { postpone_str,       _postpone,        IMMEDIATE + COMP_ONLY },
    { quit_str,           _quit,            NORMAL },
 //   { r_from_str,         _r_from,          NORMAL },
