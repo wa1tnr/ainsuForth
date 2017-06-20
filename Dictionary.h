@@ -5,6 +5,7 @@
 // #include "src/kernel/getline.h"
 // #include "src/kernel/stacks.h"
 
+#include "src/dict/dict_entries.h"
 #include "src/kernel/interpreter.h"
 #include "src/kernel/do_sys.h"
 #include "src/kernel/dot_quote.h"
