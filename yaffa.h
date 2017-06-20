@@ -11,6 +11,10 @@
 #define __YAFFA_H__
 
 
+#define EXT_KERN_STRINGS
+// #define INT_KERN_STRINGS
+
+
 #define EXT_KERN_SIGN_ON
 // #define INT_KERN_SIGN_ON
 

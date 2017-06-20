@@ -26,11 +26,11 @@ const char compile_prompt_str[] = "|  ";
 const char ok_str[] = " OK";
 
 
-const char spS_str[] = " ";  // kludge - renamed to make it unique
+// const char sp_str[] = " ";
 const char tab_str[] = "\t";
-const char hexidecimal_str[] = "$";
-const char octal_str[] = "0";
-const char binary_str[] = "%";
+// const char hexidecimal_str[] = "$";
+// const char octal_str[] = "0";
+// const char binary_str[] = "%";
 const char zero_str[] = "0";
 
 /******************************************************************************/
@@ -170,6 +170,7 @@ static unsigned int freeMem(void) {
 #endif
 
 
+#ifdef INT_KERN_STRINGS
 /******************************************************************************/
 /** String and Serial Functions                                              **/
 /******************************************************************************/
@@ -179,20 +180,21 @@ void displayValue(void) {
       Serial.print(w, DEC);
       break;
     case HEXIDECIMAL:
-      Serial.print(hexidecimal_str); 
+      // Serial.print(hexidecimal_str); 
       Serial.print(w, HEX);
       break;
     case OCTAL:
-      Serial.print(octal_str); 
+      // Serial.print(octal_str); 
       Serial.print(w, OCT);
       break;
     case BINARY:  
-      Serial.print(binary_str); 
+      // Serial.print(binary_str); 
       Serial.print(w, BIN);
       break;
   }
-  Serial.print(spS_str); // kludge - renamed to make it unique
+  // Serial.print(sp_str);
 }
+#endif
 
 /******************************************************************************/
 /** Functions for decompiling words                                          **/
