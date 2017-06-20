@@ -1,11 +1,11 @@
-// Tue Jun 20 03:39:44 UTC 2017
-// 4735-a0m-02
+// Tue Jun 20 18:57:54 UTC 2017
+// 4735-a0p-00-
 
-// +strings.cpp   +signon.cpp   +entry.cpp
+// ++flashDict.cpp  +strings.cpp   +signon.cpp   +entry.cpp
 
 // KEPOK  FILVA
 
-// PRIMITIVE FORTH - working 18 June -  KERVOMP  VUSKAR   MELFON  TRAKTOR  CUFAX
+// PRIMITIVE FORTH - working 18 June -  JYBIK  FUFMPOR  KERVOMP  VUSKAR   MELFON
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
