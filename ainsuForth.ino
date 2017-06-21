@@ -1,6 +1,8 @@
 // Wed Jun 21 20:55:05 UTC 2017
 // 4735-a0p-03-
 
+// +colon_semi.cpp
+
 // KEPOK  PEBRELLE
 
 // PRIMITIVE FORTH - working 18 June -  PEBRELLE   CHUNZH   MARVIK   JYBIK

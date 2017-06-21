@@ -1,5 +1,5 @@
-// Tue Jun 20 21:33:06 UTC 2017
-// 4735-a0p-02-
+// Wed Jun 21 20:55:05 UTC 2017
+// 4735-a0p-03-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -89,8 +89,8 @@ const flashEntry_t flashDict[] = {
 //   { two_dup_str,        _two_dup,         NORMAL },
 //   { two_over_str,       _two_over,        NORMAL },
 //   { two_swap_str,       _two_swap,        NORMAL },
-//   { colon_str,          _colon,           NORMAL },
-//   { semicolon_str,      _semicolon,       IMMEDIATE },
+     { colon_str,          _colon,           NORMAL },
+     { semicolon_str,      _semicolon,       IMMEDIATE },
 //   { lt_str,             _lt,              NORMAL },
 //   { lt_number_sign_str, _lt_number_sign,  NORMAL },
 //   { eq_str,             _eq,              NORMAL },
