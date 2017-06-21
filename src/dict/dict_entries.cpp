@@ -5,36 +5,322 @@
 #include "../../yaffa.h"
 #include "../../flashDict.h"
 #include "../../Dictionary.h"
-#include "../../Error_Codes.h"
+// #include "../../Error_Codes.h"
 
 const char not_done_str[] = " NOT Implemented Yet \n\r";
 
 const char sp_str[] = " "; // does not belong here
-stack_t dStack; // no idea where this should go
-stack_t rStack; // no idea where this should go
+stack_t dStack;
+stack_t rStack;
 
+// const char comma_str[] = ",";
+// static void _comma(void) {
+//   *pHere++ = dStack_pop();
+// }
 
-const char comma_str[] = ",";
-static void _comma(void) {
-  *pHere++ = dStack_pop();
-}
+// const char two_drop_str[] = "2drop"; // ( x1 x2 -- )
+// static void _two_drop(void) {
+//   dStack_pop();
+//   dStack_pop();
+// }
 
-
-const char two_drop_str[] = "2drop"; // ( x1 x2 -- )
-static void _two_drop(void) {
-  dStack_pop();
-  dStack_pop();
-}
-
-
-
-/******************************************************************************/
-/**                       Primitives for Control Flow                        **/
-/******************************************************************************/
 
 /*******************************************************************************/
 /**                          Core Forth Words                                 **/
 /*******************************************************************************/
+
+#ifdef STACK_OPS_NOT
+// const char dupe_str[] = "dup";
+// ( x -- x x )
+// Duplicate x
+// void _dupe(void) {
+  // dStack_push(dStack_peek(0));
+// }
+
+
+// const char swap_str[] = "swap";
+// void _swap(void) { // x y -- y x
+  // cell_t x, y;
+// 
+  // y = dStack_pop();
+  // x = dStack_pop();
+  // dStack_push(y);
+  // dStack_push(x);
+// }
+
+
+// const char rot_str[] = "rot";
+// ( x1 x2 x3 -- x2 x3 x1)
+// void _rot(void) {
+//   cell_t x3 = dStack_pop();
+//   cell_t x2 = dStack_pop();
+//   cell_t x1 = dStack_pop();
+//   dStack_push(x2);
+//   dStack_push(x3);
+//   dStack_push(x1);
+// }
+
+
+// const char and_str[] = "and";
+// ( x1 x2 -- x3 )
+// x3 is the bit by bit logical and of x1 with x2
+// void _and(void) {
+//   dStack_push(dStack_pop() & dStack_pop());
+// }
+
+
+// const char or_str[] = "or";
+// ( x1 x2 -- x3 )
+// x3 is the bit by bit logical or of x1 with x2
+// void _or(void) {
+//   dStack_push(dStack_pop() |  dStack_pop());
+// }
+
+
+// const char xor_str[] = "xor";
+// ( x1 x2 -- x3 )
+// x3 is the bit by bit exclusive or of x1 with x2
+// void _xor(void) {
+//   dStack_push(dStack_pop() ^  dStack_pop());
+// }
+
+
+// dot here
+
+
+// const char u_dot_str[] = "u.";
+// ( u -- )
+// Displau u in free field format
+// tested and fixed by Alex Moskovskij
+// void _u_dot(void) {
+//   Serial.print((ucell_t) dStack_pop());
+//   Serial.print(F(" "));
+// }
+
+
+// const char dot_s_str[] = ".s";
+// void _dot_s(void) {
+//    char i;
+//    char depth = dStack_size();
+//    if (depth > 0) {
+//      for (i = 0; i < depth ; i++) {
+//        w = dStack_peek(i);
+//        displayValue();
+//      }
+//    }
+// }
+
+
+// const char emit_str[] = "emit";
+// ( x -- )
+// display x as a character
+// void _emit(void) {
+//   Serial.print((char) dStack_pop());
+// }
+
+
+// const char dot_paren_str[] = ".(";
+// ( "ccc<paren>" -- )
+// Parse and display ccc delimitied by ) (right parenthesis). ,( is an imedeate
+// word
+// void _dot_paren(void) { 
+//   dStack_push(')');
+//   _word();
+//   _count();
+//   _type();
+// }
+
+
+// const char cr_str[] = "cr"; // ( -- ) Carriage Return
+// void _cr(void) {
+//   Serial.println();
+// }
+
+
+// const char space_str[] = "space";
+// ( -- )
+// Display one space
+// void _space(void) {
+//   Serial.print(sp_str);
+// }
+
+
+// const char spaces_str[] = "spaces";
+// ( n -- )
+// if n is greater than zero, display n space
+// void _spaces(void) {
+//   char n = (char) dStack_pop();
+//   while (n > 0) {
+//     Serial.print(sp_str);
+//     n--;
+//   }
+// }
+
+
+// const char hex_str[] = "hex";
+// ( -- )
+// Set BASE to 16
+// void _hex(void) { // value --
+//   base = HEX;
+// }
+
+
+// const char decimal_str[] = "decimal";
+// ( -- )
+// Set BASE to 10
+// void _decimal(void) { // value --
+//   base = DECIMAL;
+// }
+
+
+// const char words_str[] = "words";
+// void _words(void) { // --
+//   uint8_t count = 0;
+//   uint8_t index = 0;
+//   uint8_t length = 0;
+//   char* pChar;
+
+//    while (flashDict[index].name) {
+//      if (count > 70) {
+//       Serial.println();
+//       count = 0;
+//      }
+//      if (!(flashDict[index].flags & SMUDGE)) {
+//       count += Serial.print(flashDict[index].name);
+//       count += Serial.print(sp_str);
+//      }
+//     index++;
+//    }
+
+//   pUserEntry = pLastUserEntry;
+//    while (pUserEntry) {
+//      if (count > 70) {
+//       Serial.println();
+//       count = 0;
+//      }
+//      if (!(pUserEntry->flags & SMUDGE)) {
+//       count += Serial.print(pUserEntry->name);
+//       count += Serial.print(sp_str);
+//      }
+//     pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
+//    }
+//   Serial.println();
+// }
+
+
+// const char zero_equal_str[] = "0=";
+// ( n -- flag )
+// flag is true if and only if n is equal to zero.
+// void _zero_equal(void) {
+//   if (dStack_pop() == 0) dStack_push(TRUE);
+//   else dStack_push(FALSE);
+// }
+
+
+// const char delay_str[] = "delay";
+// void _delay(void) {
+//   delay(dStack_pop());
+// }
+
+#endif
+
+
+
+
+
+
+
+const char count_str[] = "count";
+// ( c-addr1 -- c-addr2 u )
+// Return the character string specification for the counted string stored a
+// c-addr1. c-addr2 is the address of the first character after c-addr1. u is the 
+// contents of the charater at c-addr1, which is the length in characters of the
+// string at c-addr2.
+void _count(void) {
+  uint8_t* addr = (uint8_t*)dStack_pop();
+  cell_t value = *addr++;
+  dStack_push((size_t)addr);
+  dStack_push(value);
+}
+
+
+
+const char evaluate_str[] = "evaluate";
+// ( i*x c-addr u  -- j*x )
+// Save the current input source specification. Store minus-one (-1) in SOURCE-ID
+// if it is present. Make the string described by c-addr and u both the input
+// source and input buffer, set >IN to zero, and interpret. When the parse area
+// is empty, restore the prior source specification. Other stack effects are due
+// to the words EVALUATEd.
+void _evaluate(void) {
+  char* tempSource = cpSource;
+  char* tempSourceEnd = cpSourceEnd;
+  char* tempToIn = cpToIn;
+
+  uint8_t length = dStack_pop();
+  cpSource = (char*)dStack_pop();
+  cpSourceEnd = cpSource + length;
+  cpToIn = cpSource;
+  interpreter();
+  cpSource = tempSource;
+  cpSourceEnd = tempSourceEnd;
+  cpToIn = tempToIn;
+}
+
+// const char execute_str[] = "execute";
+// ( i*x xt -- j*x )
+// Remove xt from the stack and preform the semantics identified by it. Other
+// stack effects are due to the word EXECUTEd
+void _execute(void) {
+  func function;
+  w = dStack_pop();
+  if (w > 255) {
+    // comment: see original source for extra commented-out 1 line of code here
+    rStack_push((cell_t) ip);        // CAL - Push our return address
+    ip = (cell_t *)w;          // set the ip to the XT (memory location)
+    executeWord();
+  } else {
+    function = flashDict[w - 1].function;
+    function();
+    if (errorCode) return;
+  }
+}
+
+
+const char word_str[] = "word";
+// ( char "<chars>ccc<chars>" -- c-addr )
+// Skip leading delimiters. Parse characters ccc delimited by char. An ambiguous
+// condition exists if the length of the parsed string is greater than the
+// implementation-defined length of a counted string.
+//
+// c-addr is the address of a transient region containing the parsed word as a
+// counted string. If the parse area was empty or contained no characters other than
+// the delimiter, the resulting string has a zero length. A space, not included in
+// the length, follows the string. A program may replace characters within the
+// string.
+//
+// NOTE: The requirement to follow the string with a space is obsolescent and is
+// included as a concession to existing programs that use CONVERT. A program shall
+// not depend on the existence of the space.
+void _word(void) {
+  uint8_t *start, *ptr;
+
+  cDelimiter = (char)dStack_pop();
+  start = (uint8_t *)pHere++;
+  ptr = (uint8_t *)pHere;
+  while (cpToIn <= cpSourceEnd) {
+    if (*cpToIn == cDelimiter || *cpToIn == 0) {
+      *((cell_t *)start) = (ptr - start) - sizeof(cell_t); // write the length byte
+      pHere = (cell_t *)start;                     // reset pHere (transient memory)
+      dStack_push((size_t)start);                // push the c-addr onto the stack
+      cpToIn++;
+      break;
+    } else *ptr++ = *cpToIn++;
+  }
+  cDelimiter = ' ';
+}
+
+
 // const char store_str[] = "!";
 // ( x a-addr --)
 // Store x at a-addr
@@ -113,13 +399,6 @@ static void _two_drop(void) {
 //   _drop();
 // }
 
-const char star_str[] = "*";
-// ( n1|u1 n2|u2 -- n3|u3 )
-// multiply n1|u1 by n2|u2 giving the product n3|u3
-void _star(void) {
-  dStack_push(dStack_pop() * dStack_pop());
-}
-
 // const char star_slash_str[] = "*/";
 // ( n1 n2 n3 -- n4 )
 // multiply n1 by n2 producing the double cell result d. Divide d by n3
@@ -144,15 +423,6 @@ void _star(void) {
 //   dStack_push((cell_t)(d % n3));
 //   dStack_push((cell_t)(d / n3));
 // }
-
-const char plus_str[] = "+";
-// ( n1|u1 n2|u2 -- n3|u3 )
-// add n2|u2 to n1|u1, giving the sum n3|u3
-void _plus(void) {
-  cell_t x = dStack_pop();
-  cell_t y = dStack_pop();
-  dStack_push(x +  y);
-}
 
 // const char plus_store_str[] = "+!";
 // ( n|u a-addr -- )
@@ -210,35 +480,6 @@ void _plus(void) {
 //   *pHere++ = dStack_pop();
 // }
 
-const char minus_str[] = "-";
-// ( n1|u1 n2|u2 -- n3|u3 )
-void _minus(void) {
-  cell_t temp = dStack_pop();
-  dStack_push(dStack_pop() -  temp);
-}
-
-const char dot_str[] = ".";
-// ( n -- )
-// display n in free field format
-void _dot(void) {
-  w = dStack_pop();
-  displayValue();
-}
-
-
-const char slash_str[] = "/";
-// ( n1 n2 -- n3 )
-// divide n1 by n2 giving a single cell quotient n3
-void _slash(void) {
-  cell_t temp = dStack_pop();
-  if (temp)
-    dStack_push(dStack_pop() /  temp);
-  else {
-    dStack_push(-10);
-    _throw();
-  }
-}
-
 // const char slash_mod_str[] = "/mod";
 // ( n1 n2 -- n3 n4)
 // divide n1 by n2 giving a single cell remainder n3 and quotient n4
@@ -262,13 +503,7 @@ void _slash(void) {
 //   else dStack_push(FALSE);
 // }
 
-const char zero_equal_str[] = "0=";
-// ( n -- flag )
-// flag is true if and only if n is equal to zero.
-void _zero_equal(void) {
-  if (dStack_pop() == 0) dStack_push(TRUE);
-  else dStack_push(FALSE);
-}
+
 
 // const char one_plus_str[] = "1+";
 // ( n1|u1 -- n2|u2 )
@@ -547,14 +782,6 @@ void _zero_equal(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-const char abs_str[] = "abs";
-// ( n -- u)
-// u is the absolute value of n 
-void _abs(void) {
-  cell_t n = dStack_pop();
-  dStack_push(n < 0 ? 0 - n : n);
-}
-
 // const char accept_str[] = "accept";
 // ( c-addr +n1 -- +n2 )
 // void _accept(void) {
@@ -597,13 +824,6 @@ void _abs(void) {
 //     _throw();
 //   }
 // }
-
-const char and_str[] = "and";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit logical and of x1 with x2
-void _and(void) {
-  dStack_push(dStack_pop() & dStack_pop());
-}
 
 // const char base_str[] = "base";
 // ( -- a-addr)
@@ -697,25 +917,6 @@ void _and(void) {
 //   closeEntry();
 // }
 
-const char count_str[] = "count";
-// ( c-addr1 -- c-addr2 u )
-// Return the character string specification for the counted string stored a
-// c-addr1. c-addr2 is the address of the first character after c-addr1. u is the 
-// contents of the charater at c-addr1, which is the length in characters of the
-// string at c-addr2.
-void _count(void) {
-  uint8_t* addr = (uint8_t*)dStack_pop();
-  cell_t value = *addr++;
-  dStack_push((size_t)addr);
-  dStack_push(value);
-}
-
-
-const char cr_str[] = "cr"; // ( -- ) Carriage Return
-void _cr(void) {
-  Serial.println();
-}
-
 // const char create_str[] = "create";
 // ( "<spaces>name" -- )
 // Skip leading space delimiters. Parse name delimited by a space. Create a
@@ -738,13 +939,6 @@ void _cr(void) {
 //   pHere += 1;
 //   if (!state) closeEntry();           // Close the entry if interpreting
 // }
-
-const char decimal_str[] = "decimal";
-// ( -- )
-// Set BASE to 10
-void _decimal(void) { // value --
-  base = DECIMAL;
-}
 
 // const char depth_str[] = "depth";
 // ( -- +n )
@@ -781,12 +975,12 @@ void _decimal(void) { // value --
 //   dStack_pop();
 // }
 
-const char dupe_str[] = "dup";
-// ( x -- x x )
-// Duplicate x
-void _dupe(void) {
-  dStack_push(dStack_peek(0));
-}
+
+
+
+
+
+
 
 // const char else_str[] = "else";
 // Interpretation: Undefine
@@ -799,13 +993,6 @@ void _dupe(void) {
 //   dStack_push((size_t)pHere++);
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
-
-const char emit_str[] = "emit";
-// ( x -- )
-// display x as a character
-void _emit(void) {
-  Serial.print((char) dStack_pop());
-}
 
 // const char environment_str[] = "environment?";
 // ( c-addr u  -- false|i*x true )
@@ -883,46 +1070,6 @@ void _emit(void) {
 //   _throw();
 // }
 
-const char evaluate_str[] = "evaluate";
-// ( i*x c-addr u  -- j*x )
-// Save the current input source specification. Store minus-one (-1) in SOURCE-ID
-// if it is present. Make the string described by c-addr and u both the input
-// source and input buffer, set >IN to zero, and interpret. When the parse area
-// is empty, restore the prior source specification. Other stack effects are due
-// to the words EVALUATEd.
-void _evaluate(void) {
-  char* tempSource = cpSource;
-  char* tempSourceEnd = cpSourceEnd;
-  char* tempToIn = cpToIn;
-
-  uint8_t length = dStack_pop();
-  cpSource = (char*)dStack_pop();
-  cpSourceEnd = cpSource + length;
-  cpToIn = cpSource;
-  interpreter();
-  cpSource = tempSource;
-  cpSourceEnd = tempSourceEnd;
-  cpToIn = tempToIn;
-}
-
-// const char execute_str[] = "execute";
-// ( i*x xt -- j*x )
-// Remove xt from the stack and preform the semantics identified by it. Other
-// stack effects are due to the word EXECUTEd
-void _execute(void) {
-  func function;
-  w = dStack_pop();
-  if (w > 255) {
-    // comment: see original source for extra commented-out 1 line of code here
-    rStack_push((cell_t) ip);        // CAL - Push our return address
-    ip = (cell_t *)w;          // set the ip to the XT (memory location)
-    executeWord();
-  } else {
-    function = flashDict[w - 1].function;
-    function();
-    if (errorCode) return;
-  }
-}
 
 #ifdef INT_KERN_EXIT
 #endif
@@ -1167,20 +1314,6 @@ void _execute(void) {
 //   }
 // }
 
-const char negate_str[] = "negate";
-// ( n1 -- n2 )
-// Negate n1, giving its arithmetic inverse n2.
-void _negate(void) {
-  dStack_push(-dStack_pop());
-}
-
-const char or_str[] = "or";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit logical or of x1 with x2
-void _or(void) {
-  dStack_push(dStack_pop() |  dStack_pop());
-}
-
 // const char over_str[] = "over";
 // ( x1 x2 -- x1 x2 x1 )
 // void _over(void) {
@@ -1269,17 +1402,6 @@ void _or(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
-const char rot_str[] = "rot";
-// ( x1 x2 x3 -- x2 x3 x1)
-void _rot(void) {
-  cell_t x3 = dStack_pop();
-  cell_t x2 = dStack_pop();
-  cell_t x1 = dStack_pop();
-  dStack_push(x2);
-  dStack_push(x3);
-  dStack_push(x1);
-}
-
 // const char rshift_str[] = "rshift";
 // ( x1 u -- x2 )
 // x2 is x1 shifted to right by u positions.
@@ -1329,23 +1451,11 @@ void _rot(void) {
 // }
 
 
-const char space_str[] = "space";
-// ( -- )
-// Display one space
-void _space(void) {
-  Serial.print(sp_str);
-}
 
-const char spaces_str[] = "spaces";
-// ( n -- )
-// if n is greater than zero, display n space
-void _spaces(void) {
-  char n = (char) dStack_pop();
-  while (n > 0) {
-    Serial.print(sp_str);
-    n--;
-  }
-}
+
+
+
+
 
 // const char state_str[] = "state";
 // ( -- a-addr )
@@ -1354,15 +1464,6 @@ void _spaces(void) {
 //   dStack_push((size_t)&state);
 // }
 
-const char swap_str[] = "swap";
-void _swap(void) { // x y -- y x
-  cell_t x, y;
-
-  y = dStack_pop();
-  x = dStack_pop();
-  dStack_push(y);
-  dStack_push(x);
-}
 
 // const char then_str[] = "then";
 // Interpretation: Undefine
@@ -1372,15 +1473,6 @@ void _swap(void) { // x y -- y x
 //   cell_t* orig = (cell_t*)dStack_pop();
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
-
-const char u_dot_str[] = "u.";
-// ( u -- )
-// Displau u in free field format
-// tested and fixed by Alex Moskovskij
-void _u_dot(void) {
-  Serial.print((ucell_t) dStack_pop());
-  Serial.print(F(" "));
-}
 
 // const char u_lt_str[] = "u<";
 // ( u1 u2 -- flag )
@@ -1472,46 +1564,6 @@ void _u_dot(void) {
 //   dStack_push(dest);
 // }
 
-const char word_str[] = "word";
-// ( char "<chars>ccc<chars>" -- c-addr )
-// Skip leading delimiters. Parse characters ccc delimited by char. An ambiguous
-// condition exists if the length of the parsed string is greater than the
-// implementation-defined length of a counted string.
-//
-// c-addr is the address of a transient region containing the parsed word as a
-// counted string. If the parse area was empty or contained no characters other than
-// the delimiter, the resulting string has a zero length. A space, not included in
-// the length, follows the string. A program may replace characters within the
-// string.
-//
-// NOTE: The requirement to follow the string with a space is obsolescent and is
-// included as a concession to existing programs that use CONVERT. A program shall
-// not depend on the existence of the space.
-void _word(void) {
-  uint8_t *start, *ptr;
-
-  cDelimiter = (char)dStack_pop();
-  start = (uint8_t *)pHere++;
-  ptr = (uint8_t *)pHere;
-  while (cpToIn <= cpSourceEnd) {
-    if (*cpToIn == cDelimiter || *cpToIn == 0) {
-      *((cell_t *)start) = (ptr - start) - sizeof(cell_t); // write the length byte
-      pHere = (cell_t *)start;                     // reset pHere (transient memory)
-      dStack_push((size_t)start);                // push the c-addr onto the stack
-      cpToIn++;
-      break;
-    } else *ptr++ = *cpToIn++;
-  }
-  cDelimiter = ' ';
-}
-
-const char xor_str[] = "xor";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit exclusive or of x1 with x2
-void _xor(void) {
-  dStack_push(dStack_pop() ^  dStack_pop());
-}
-
 // const char left_bracket_str[] = "[";
 // Interpretation: undefined
 // Compilation: Preform the execution semantics given below
@@ -1570,20 +1622,18 @@ void _xor(void) {
 //   state = TRUE;
 // }
 
+
+
+
+
+
 /*******************************************************************************/
 /**                          Core Extension Set                               **/
 /*******************************************************************************/
 #ifdef CORE_EXT_SET
-const char dot_paren_str[] = ".(";
-// ( "ccc<paren>" -- )
-// Parse and display ccc delimitied by ) (right parenthesis). ,( is an imedeate
-// word
-void _dot_paren(void) { 
-  dStack_push(')');
-  _word();
-  _count();
-  _type();
-}
+
+
+
 
 // const char zero_not_equal_str[] = "0<>";
 // ( x -- flag)
@@ -1673,12 +1723,6 @@ void _dot_paren(void) {
 //   else dStack_push(FALSE); 
 // }
 
-const char hex_str[] = "hex";
-// ( -- )
-// Set BASE to 16
-void _hex(void) { // value --
-  base = HEX;
-}
 
 // const char case_str[] = "case";
 // Contributed by Craig Lindley
@@ -1829,17 +1873,10 @@ void _key_question(void) {
 /*******************************************************************************/
 #ifdef TOOLS_SET
 
-const char dot_s_str[] = ".s";
-void _dot_s(void) {
-   char i;
-   char depth = dStack_size();
-   if (depth > 0) {
-     for (i = 0; i < depth ; i++) {
-       w = dStack_peek(i);
-       displayValue();
-     }
-   }
-}
+
+
+
+
 
 const char dump_str[] = "dump";
 // ( addr u -- )
@@ -1937,40 +1974,6 @@ void _see(void) {
 //   Serial.println();
 }
 
-const char words_str[] = "words";
-void _words(void) { // --
-  uint8_t count = 0;
-  uint8_t index = 0;
-  uint8_t length = 0;
-  char* pChar;
-
-   while (flashDict[index].name) {
-     if (count > 70) {
-      Serial.println();
-      count = 0;
-     }
-     if (!(flashDict[index].flags & SMUDGE)) {
-      count += Serial.print(flashDict[index].name);
-      count += Serial.print(sp_str);
-     }
-    index++;
-   }
-
-  pUserEntry = pLastUserEntry;
-   while (pUserEntry) {
-     if (count > 70) {
-      Serial.println();
-      count = 0;
-     }
-     if (!(pUserEntry->flags & SMUDGE)) {
-      count += Serial.print(pUserEntry->name);
-      count += Serial.print(sp_str);
-     }
-    pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-   }
-  Serial.println();
-}
-
 #endif
 
 /*******************************************************************************/
@@ -2011,11 +2014,6 @@ void _words(void) { // --
 const char freeMem_str[] = "freeMem";
 void _freeMem(void) { 
 //   dStack_push(freeMem());
-}
-
-const char delay_str[] = "delay";
-void _delay(void) {
-  delay(dStack_pop());
 }
 
 const char pinWrite_str[] = "pinWrite";

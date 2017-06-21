@@ -19,18 +19,6 @@ extern void _word(void);
 extern const char xor_str[]; // = "xor";
 extern void _xor(void);
 
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-// - - - - -
-
-
-
 // extern cell_t dStack_pop(void);
 // extern const flashEntry_t* pFlashEntry; // = flashDict;
 // extern cell_t* pHere;
