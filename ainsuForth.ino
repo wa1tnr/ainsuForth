@@ -1,9 +1,9 @@
-// Tue Jun 20 21:33:06 UTC 2017
-// 4735-a0p-02-
+// Wed Jun 21 20:55:05 UTC 2017
+// 4735-a0p-03-
 
-// KEPOK  MARVIK
+// KEPOK  PEBRELLE
 
-// PRIMITIVE FORTH - working 18 June -  CHUNZH   MARVIK   JYBIK  FUFMPOR  KERVOMP
+// PRIMITIVE FORTH - working 18 June -  PEBRELLE   CHUNZH   MARVIK   JYBIK
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

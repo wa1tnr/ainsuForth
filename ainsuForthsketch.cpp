@@ -1,5 +1,5 @@
-// Tue Jun 20 21:33:06 UTC 2017
-// 4735-a0p-02-
+// Wed Jun 21 20:55:05 UTC 2017
+// 4735-a0p-03-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -118,7 +118,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  MARVIK--CHUNZH"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  PEBRELLE--CHUNZH"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload
@@ -165,34 +165,9 @@ static unsigned int freeMem(void) {
 //   return (pHere - forthSpace);
 }
 
-#ifdef INT_KERN_ENTRY
-#endif
-
-#ifdef INT_KERN_STRINGS
-#endif
-
-/******************************************************************************/
-/** Functions for decompiling words                                          **/
-/**   Used by _see and _toName                                               **/
-/******************************************************************************/
-char* xtToName(cell_t xt) {
-//   pUserEntry = pLastUserEntry;
-
-  // Second Search through the flash Dictionary
-//   if (xt < 256) {
-//     Serial.print(flashDict[xt-1].name);
-//   } else {
-//     while (pUserEntry) {
-//       if (pUserEntry->cfa == (cell_t*)xt) {
-//         Serial.print(pUserEntry->name);
-//         break;
-//       }
-//       pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-//     }
-//   }
-//   return 0;
-}
-
+// #ifdef INT_KERN_XTTONAME
+// char* xtToName(cell_t xt) { } #endif
+// #endif
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
