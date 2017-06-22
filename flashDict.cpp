@@ -1,5 +1,5 @@
-// Wed Jun 21 20:55:05 UTC 2017
-// 4735-a0p-03-
+// Thu Jun 22 20:49:39 UTC 2017
+// 4735-a0p-04-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -65,7 +65,7 @@ const flashEntry_t flashDict[] = {
    { star_str,           _star,            NORMAL },
    { zero_equal_str,     _zero_equal,      NORMAL },
 //   { abort_str,          _abort,           NORMAL },
-//   { store_str,          _store,           NORMAL },
+   { store_str,          _store,           NORMAL },
 //   { number_sign_str,    _number_sign,     NORMAL },
 //   { number_sign_gt_str, _number_sign_gt,  NORMAL },
 //   { number_sign_s_str,  _number_sign_s,   NORMAL },
@@ -100,7 +100,7 @@ const flashEntry_t flashDict[] = {
 //   { to_number_str,      _to_number,       NORMAL },
 //   { to_r_str,           _to_r,            NORMAL },
 //   { question_dup_str,   _question_dup,    NORMAL },
-//   { fetch_str,          _fetch,           NORMAL },
+   { fetch_str,          _fetch,           NORMAL },
 //   { abort_quote_str,    _abort_quote,     IMMEDIATE + COMP_ONLY },
    { abs_str,            _abs,             NORMAL },
 //   { accept_str,         _accept,          NORMAL },
@@ -137,7 +137,7 @@ const flashEntry_t flashDict[] = {
 //   { fill_str,           _fill,            NORMAL },
 //   { find_str,           _find,            NORMAL },
 //   { fm_slash_mod_str,   _fm_slash_mod,    NORMAL },
-//   { here_str,           _here,            NORMAL },
+   { here_str,           _here,            NORMAL },
 //   { hold_str,           _hold,            NORMAL },
 //   { i_str,              _i,               NORMAL },
 //   { if_str,             _if,              IMMEDIATE + COMP_ONLY },

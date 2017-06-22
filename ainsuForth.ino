@@ -1,7 +1,7 @@
 // Thu Jun 22 20:49:39 UTC 2017
 // 4735-a0p-04-
 
-// +store_fetch.cpp_NOT_YET  +colon_semi.cpp
+// +store_fetch.cpp  +colon_semi.cpp
 
 // KEPOK  PEBRELLE
 

@@ -97,6 +97,28 @@ stack_t rStack;
 #endif
 
 
+// also marked for deletion: _store() and  _fetch()
+
+// const char store_str[] = "!"; // see: store_fetch.cpp
+// void _store(void) { }
+
+// const char fetch_str[] = "@"; // see: store_fetch.cpp
+// void _fetch(void) { }
+
+
+
+// 22 June: moved to bring attention to it temporarily: void _here(void):
+
+const char here_str[] = "here";
+// ( -- addr )
+// addr is the data-space pointer.
+void _here(void) {
+  dStack_push((size_t)pHere);
+}
+
+
+
+
 const char count_str[] = "count";
 // ( c-addr1 -- c-addr2 u )
 // Return the character string specification for the counted string stored a
@@ -186,15 +208,6 @@ void _word(void) {
   }
   cDelimiter = ' ';
 }
-
-
-// const char store_str[] = "!";
-// ( x a-addr --)
-// Store x at a-addr
-// void _store(void) { 
-//   cell_t* address = (cell_t*)dStack_pop();
-//   *address = dStack_pop();
-// }
 
 // const char number_sign_str[] = "#";
 // ( ud1 -- ud2)
@@ -622,14 +635,6 @@ void _word(void) {
 //   }
 // }
 
-// const char fetch_str[] = "@";
-// ( a-addr -- x1 )
-// Fetch cell x1 at a-addr.
-// void _fetch(void) {
-//   cell_t* address = (cell_t*)dStack_pop();
-//   dStack_push(*address);
-// }
-
 // const char abort_str[] = "abort";
 // (i*x -- ) (R: j*x -- )
 // Empty the data stack and preform the function of QUIT, which includes emptying
@@ -1024,13 +1029,6 @@ void _word(void) {
 //   cell_t d1 = dStack_pop();
 //   dStack_push(d1 /  n1);
 //   dStack_push(d1 %  n1);
-// }
-
-// const char here_str[] = "here";
-// ( -- addr )
-// addr is the data-space pointer.
-// void _here(void) {
-//   dStack_push((size_t)pHere);
 // }
 
 // const char hold_str[] = "hold";
