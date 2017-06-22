@@ -1,5 +1,5 @@
-// Tue Jun 20 21:33:06 UTC 2017
-// 4735-a0p-02-
+// Thu Jun 22 20:49:39 UTC 2017
+// 4735-a0p-04-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -13,221 +13,88 @@ const char sp_str[] = " "; // does not belong here
 stack_t dStack;
 stack_t rStack;
 
-// const char comma_str[] = ",";
+// const char comma_str[] = ","; // status of the comma word?
 // static void _comma(void) {
 //   *pHere++ = dStack_pop();
 // }
 
-// const char two_drop_str[] = "2drop"; // ( x1 x2 -- )
+// const char two_drop_str[] = "2drop"; // ( x1 x2 -- ) // status?
 // static void _two_drop(void) {
 //   dStack_pop();
 //   dStack_pop();
 // }
+
+// Forth words currently present (22 Jun 2017):
+// 
+//   exit literal type throw evaluate s" ." variable over = drop warm . - + 
+//   * 0= / : ; abs and count cr decimal dup emit negate or quit rot space spaces 
+//   swap u. word xor .( hex .s words delay 
 
 
 /*******************************************************************************/
 /**                          Core Forth Words                                 **/
 /*******************************************************************************/
 
-#ifdef STACK_OPS_NOT
-// const char dupe_str[] = "dup";
-// ( x -- x x )
-// Duplicate x
-// void _dupe(void) {
-  // dStack_push(dStack_peek(0));
-// }
+#ifdef STACK_OPS_NOT    //   marked for deletion
+                        //   see: stack_ops.cpp  for (identical) replacement code
 
+// const char dupe_str[] = "dup"; // see: stack_ops.cpp
+// void _dupe(void) { }
 
-// const char swap_str[] = "swap";
-// void _swap(void) { // x y -- y x
-  // cell_t x, y;
-// 
-  // y = dStack_pop();
-  // x = dStack_pop();
-  // dStack_push(y);
-  // dStack_push(x);
-// }
+// const char swap_str[] = "swap"; // see: stack_ops.cpp
+// void _swap(void) { }
 
+// const char rot_str[] = "rot"; // see: stack_ops.cpp
+// void _rot(void) { }
 
-// const char rot_str[] = "rot";
-// ( x1 x2 x3 -- x2 x3 x1)
-// void _rot(void) {
-//   cell_t x3 = dStack_pop();
-//   cell_t x2 = dStack_pop();
-//   cell_t x1 = dStack_pop();
-//   dStack_push(x2);
-//   dStack_push(x3);
-//   dStack_push(x1);
-// }
+// const char and_str[] = "and"; // see: stack_ops.cpp
+// void _and(void) { }
 
+// const char or_str[] = "or"; // see: stack_ops.cpp
+// void _or(void) { }
 
-// const char and_str[] = "and";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit logical and of x1 with x2
-// void _and(void) {
-//   dStack_push(dStack_pop() & dStack_pop());
-// }
-
-
-// const char or_str[] = "or";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit logical or of x1 with x2
-// void _or(void) {
-//   dStack_push(dStack_pop() |  dStack_pop());
-// }
-
-
-// const char xor_str[] = "xor";
-// ( x1 x2 -- x3 )
-// x3 is the bit by bit exclusive or of x1 with x2
-// void _xor(void) {
-//   dStack_push(dStack_pop() ^  dStack_pop());
-// }
-
+// const char xor_str[] = "xor"; // see: stack_ops.cpp
+// void _xor(void) { }
 
 // dot here
 
+// const char u_dot_str[] = "u."; // see: stack_ops.cpp
+// void _u_dot(void) { }
 
-// const char u_dot_str[] = "u.";
-// ( u -- )
-// Displau u in free field format
-// tested and fixed by Alex Moskovskij
-// void _u_dot(void) {
-//   Serial.print((ucell_t) dStack_pop());
-//   Serial.print(F(" "));
-// }
+// const char dot_s_str[] = ".s"; // see: stack_ops.cpp
+// void _dot_s(void) { }
 
+// const char emit_str[] = "emit"; // see: stack_ops.cpp
+// void _emit(void) { }
 
-// const char dot_s_str[] = ".s";
-// void _dot_s(void) {
-//    char i;
-//    char depth = dStack_size();
-//    if (depth > 0) {
-//      for (i = 0; i < depth ; i++) {
-//        w = dStack_peek(i);
-//        displayValue();
-//      }
-//    }
-// }
+// const char dot_paren_str[] = ".("; // see: stack_ops.cpp
+// void _dot_paren(void) { }
 
+// const char cr_str[] = "cr"; // ( -- ) Carriage Return // see: stack_ops.cpp
+// void _cr(void) { }
 
-// const char emit_str[] = "emit";
-// ( x -- )
-// display x as a character
-// void _emit(void) {
-//   Serial.print((char) dStack_pop());
-// }
+// const char space_str[] = "space"; // see: stack_ops.cpp
+// void _space(void) { }
 
+// const char spaces_str[] = "spaces"; // see: stack_ops.cpp
+// void _spaces(void) { }
 
-// const char dot_paren_str[] = ".(";
-// ( "ccc<paren>" -- )
-// Parse and display ccc delimitied by ) (right parenthesis). ,( is an imedeate
-// word
-// void _dot_paren(void) { 
-//   dStack_push(')');
-//   _word();
-//   _count();
-//   _type();
-// }
+// const char hex_str[] = "hex"; // see: stack_ops.cpp
+// void _hex(void) { }
 
+// const char decimal_str[] = "decimal"; // see: stack_ops.cpp
+// void _decimal(void) { }
 
-// const char cr_str[] = "cr"; // ( -- ) Carriage Return
-// void _cr(void) {
-//   Serial.println();
-// }
+// const char words_str[] = "words"; // see: stack_ops.cpp
+// void _words(void) { } // NOT PROOFREAD
 
+// const char zero_equal_str[] = "0="; // see: stack_ops.cpp
+// void _zero_equal(void) { }
 
-// const char space_str[] = "space";
-// ( -- )
-// Display one space
-// void _space(void) {
-//   Serial.print(sp_str);
-// }
-
-
-// const char spaces_str[] = "spaces";
-// ( n -- )
-// if n is greater than zero, display n space
-// void _spaces(void) {
-//   char n = (char) dStack_pop();
-//   while (n > 0) {
-//     Serial.print(sp_str);
-//     n--;
-//   }
-// }
-
-
-// const char hex_str[] = "hex";
-// ( -- )
-// Set BASE to 16
-// void _hex(void) { // value --
-//   base = HEX;
-// }
-
-
-// const char decimal_str[] = "decimal";
-// ( -- )
-// Set BASE to 10
-// void _decimal(void) { // value --
-//   base = DECIMAL;
-// }
-
-
-// const char words_str[] = "words";
-// void _words(void) { // --
-//   uint8_t count = 0;
-//   uint8_t index = 0;
-//   uint8_t length = 0;
-//   char* pChar;
-
-//    while (flashDict[index].name) {
-//      if (count > 70) {
-//       Serial.println();
-//       count = 0;
-//      }
-//      if (!(flashDict[index].flags & SMUDGE)) {
-//       count += Serial.print(flashDict[index].name);
-//       count += Serial.print(sp_str);
-//      }
-//     index++;
-//    }
-
-//   pUserEntry = pLastUserEntry;
-//    while (pUserEntry) {
-//      if (count > 70) {
-//       Serial.println();
-//       count = 0;
-//      }
-//      if (!(pUserEntry->flags & SMUDGE)) {
-//       count += Serial.print(pUserEntry->name);
-//       count += Serial.print(sp_str);
-//      }
-//     pUserEntry = (userEntry_t*)pUserEntry->prevEntry;
-//    }
-//   Serial.println();
-// }
-
-
-// const char zero_equal_str[] = "0=";
-// ( n -- flag )
-// flag is true if and only if n is equal to zero.
-// void _zero_equal(void) {
-//   if (dStack_pop() == 0) dStack_push(TRUE);
-//   else dStack_push(FALSE);
-// }
-
-
-// const char delay_str[] = "delay";
-// void _delay(void) {
-//   delay(dStack_pop());
-// }
+// const char delay_str[] = "delay"; // see: stack_ops.cpp
+// void _delay(void) { }
 
 #endif
-
-
-
-
-
 
 
 const char count_str[] = "count";
@@ -594,6 +461,13 @@ void _word(void) {
 //   dStack_push(x2);
 // }
 
+
+
+
+#ifndef MARKED_FOR_DELETE
+
+//   see: colon_semi.cpp for new location of this code.
+
 // const char colon_str[] = ":";
 // (C: "<space>name" -- colon-sys )
 // Skip leading space delimiters. Parse name delimited by a space. Create a
@@ -620,6 +494,10 @@ void _word(void) {
 //   closeEntry();
 //   state = FALSE;
 // }
+#endif // marked for deletion.
+
+
+
 
 // const char lt_str[] = "<";
 // ( n1 n2 -- flag )

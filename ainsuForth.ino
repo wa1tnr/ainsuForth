@@ -1,11 +1,11 @@
-// Wed Jun 21 20:55:05 UTC 2017
-// 4735-a0p-03-
+// Thu Jun 22 20:49:39 UTC 2017
+// 4735-a0p-04-
 
-// +colon_semi.cpp
+// +c_store_fetch.cpp  +colon_semi.cpp
 
 // KEPOK  PEBRELLE
 
-// PRIMITIVE FORTH - working 18 June -  PEBRELLE   CHUNZH   MARVIK   JYBIK
+// PRIMITIVE FORTH - working 18 June -  PEBRELLE   VUPODE   CHUNZH   MARVIK   JYBIK
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
