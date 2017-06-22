@@ -219,7 +219,7 @@ const flashEntry_t flashDict[] = {
 
 #ifdef TOOLS_SET
    { dot_s_str,          _dot_s,           NORMAL },
-//   { dump_str,           _dump,            NORMAL },
+   { dump_str,           _dump,            NORMAL },
 //   { see_str,            _see,             NORMAL },
    { words_str,          _words,           NORMAL },
 #endif

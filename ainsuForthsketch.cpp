@@ -27,11 +27,11 @@ const char ok_str[] = " OK";
 
 
 // const char sp_str[] = " ";
-const char tab_str[] = "\t";
+// const char tab_str[] = "\t";
 // const char hexidecimal_str[] = "$";
 // const char octal_str[] = "0";
 // const char binary_str[] = "%";
-const char zero_str[] = "0";
+// const char zero_str[] = "0";
 
 /******************************************************************************/
 /** Global Variables                                                         **/

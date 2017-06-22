@@ -5,6 +5,7 @@
 // #include "src/kernel/getline.h"
 // #include "src/kernel/stacks.h"
 
+// #include "src/dict/dump.h"
 // #include "src/dict/store_fetch.h"
 // #include "src/dict/xttoname.h"
 // #include "src/dict/colon_semi.h"
