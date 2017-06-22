@@ -18,16 +18,19 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
   char inChar;
   uint8_t count = 0;
   do {
-    inChar = getKey();
-    if (inChar == ASCII_BS) {
-      if (count) {
-        *--ptr = 0;
+    inChar = getKey(); 
+    if (inChar == ASCII_BS) { 
+       if (count) {
+         *--ptr = 0;
+         count--; // ainsuForth improvement -- backspace behavior
         if (flags & ECHO_ON) Serial.print("\b \b");
       }
-    } else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
-      if (flags & ECHO_ON) Serial.print("\a"); // Beep
-    } else if (inChar == ASCII_CR) {
-      if (flags & ECHO_ON) Serial.println();
+    }
+    else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
+      if (flags & ECHO_ON) Serial.print("\a");
+    }
+    else if (inChar == ASCII_CR || inChar == ASCII_NL) {
+      if (flags & ECHO_ON) Serial.print(" ");
       break;
     } else {
       if (flags & ECHO_ON) Serial.print(inChar);

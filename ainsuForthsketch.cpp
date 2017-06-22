@@ -118,7 +118,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  PEBRELLE--VUPODE"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  PEBRELLE--MIXFULPO"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload
