@@ -114,12 +114,6 @@ void _dot_s(void) {
 }
 
 
-#ifdef YAFFA-ARM_LEGACY_DOT_S
-const char dot_s_str[] = ".s";
-void _dot_s(void) { }
-#endif
-
-
 const char emit_str[] = "emit";
 // ( x -- )
 // display x as a character
