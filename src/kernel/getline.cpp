@@ -29,7 +29,20 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
     else if (inChar == ASCII_TAB || inChar == ASCII_ESC) {
       if (flags & ECHO_ON) Serial.print("\a");
     }
-    else if (inChar == ASCII_CR || inChar == ASCII_NL) {
+    else if (inChar == ASCII_CR || inChar == ASCII_NL) { // ainsuForth improvement
+
+                          // iirc, this was for use during colon definition upload,
+                          // using copy and paste into the serial terminal.
+
+                          // Basis: lack of newline sensitivity; added some.
+
+                          // Test: revert, attempt a multi-line code paste.  If
+                          // it fails or behaves poorly, reenable this code.
+                          // Compare the two behaviors.
+
+                          // iirc, interactive typing to the interpreter masks
+                          // this behavior, whereas a paste-in unmasks it.
+
       if (flags & ECHO_ON) Serial.print(" ");
       break;
     } else {
