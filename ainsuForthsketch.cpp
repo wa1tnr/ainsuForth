@@ -21,9 +21,9 @@ asm(" .section .version\n"
 /******************************************************************************/
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
-const char prompt_str[] = ">> ";
+const char prompt_str[] = ""; // const char prompt_str[] = ">> ";
 const char compile_prompt_str[] = "|  ";
-const char ok_str[] = " OK";
+const char ok_str[] = " ok";
 
 
 // const char sp_str[] = " ";
