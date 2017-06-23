@@ -1,5 +1,5 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Fri Jun 23 20:27:20 UTC 2017
+// 4735-a0r-00-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -118,7 +118,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  PEBRELLE--MIXFULPO"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  FEVORE--PARKEFF"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

@@ -1,5 +1,5 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Fri Jun 23 20:27:20 UTC 2017
+// 4735-a0r-00-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -8,11 +8,33 @@
 #include "Dictionary.h"
 #include "Error_Codes.h"
 
+// June 23 22:04z:  Three new words:   ,  2drop  c!
+
 // const char not_done_str[] = " NOT Implemented Yet \n\r";
 
 // const char sp_str[] = " "; // does not belong here
 // stack_t dStack; // no idea where this should go
 // stack_t rStack; // no idea where this should go
+
+/*********************************************************************************/
+/**   'static void _foo(void)'  -- conflicts with 'extern void'                 **/
+/*********************************************************************************/
+const char comma_str[] = ",";
+// ( x --  )
+// Reserve one cell of data space and store x in the cell. If the data-space
+// pointer is aligned when , begins execution, it will remain aligned when ,
+// finishes execution. An ambiguous condition exists if the data-space pointer
+// is not aligned prior to execution of ,.
+static void _comma(void) {
+  *pHere++ = dStack_pop();
+}
+
+const char two_drop_str[] = "2drop";
+// ( x1 x2 -- )
+static void _two_drop(void) {
+  dStack_pop();
+  dStack_pop();
+}
 
 
 /*********************************************************************************/
@@ -75,7 +97,7 @@ const flashEntry_t flashDict[] = {
 //   { star_slash_mod_str, _star_slash_mod,  NORMAL },
 //   { plus_store_str,     _plus_store,      NORMAL },
 //   { plus_loop_str,      _plus_loop,       IMMEDIATE + COMP_ONLY },
-//   { comma_str,          _comma,           NORMAL },
+   { comma_str,          _comma,           NORMAL },
    { slash_str,          _slash,           NORMAL },
 //   { slash_mod_str,      _slash_mod,       NORMAL },
 //   { zero_less_str,      _zero_less,       NORMAL },
@@ -85,7 +107,7 @@ const flashEntry_t flashDict[] = {
 //   { two_star_str,       _two_star,        NORMAL },
 //   { two_slash_str,      _two_slash,       NORMAL },
 //   { two_fetch_str,      _two_fetch,       NORMAL },
-//   { two_drop_str,       _two_drop,        NORMAL },
+   { two_drop_str,       _two_drop,        NORMAL },
 //   { two_dup_str,        _two_dup,         NORMAL },
 //   { two_over_str,       _two_over,        NORMAL },
 //   { two_swap_str,       _two_swap,        NORMAL },
@@ -111,7 +133,7 @@ const flashEntry_t flashDict[] = {
 //   { base_str,           _base,            NORMAL },
 //   { begin_str,          _begin,           IMMEDIATE + COMP_ONLY },
 //   { bl_str,             _bl,              NORMAL },
-//   { c_store_str,        _c_store,         NORMAL },
+   { c_store_str,        _c_store,         NORMAL },
 //   { c_comma_str,        _c_comma,         NORMAL },
 //   { c_fetch_str,        _c_fetch,         NORMAL },
 //   { cell_plus_str,      _cell_plus,       NORMAL },

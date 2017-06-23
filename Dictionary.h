@@ -1,12 +1,13 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Fri Jun 23 20:27:20 UTC 2017
+// 4735-a0r-00-
 
 // #include "src/kernel/getkey.h"
 // #include "src/kernel/getline.h"
 // #include "src/kernel/stacks.h"
 
+// #include "src/dict/commas.cpp"
 // #include "src/dict/dump.h"
-// #include "src/dict/store_fetch.h"
+#include "src/dict/store_fetch.h"
 // #include "src/dict/xttoname.h"
 // #include "src/dict/colon_semi.h"
 #include "src/dict/stack_ops.h"
@@ -51,3 +52,4 @@ extern void dStack_clear(void);
 extern void displayValue(void);
 
 extern uint8_t base;  // stores the number conversion radix
+

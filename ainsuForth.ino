@@ -1,11 +1,13 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Fri Jun 23 20:27:20 UTC 2017
+// 4735-a0r-00-
 
-// +getline.cpp_improved  +dump.cpp  +store_fetch.cpp  +colon_semi.cpp
+// , 2drop c! - three words added to dictionary.
 
-// KEPOK  PEBRELLE
+// ++store_fetch.cpp  ++getline.cpp  +dump.cpp  +store_fetch.cpp
 
-// PRIMITIVE FORTH - working 18 June  -  PEBRELLE   MIXFULPO   CHUNZH   MARVIK   JYBIK
+// KEPOK  FEVORE
+
+// PRIMITIVE FORTH - working 18 June  -  FEVORE   PARKEFF   MIXFULPO   CHUNZH
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

@@ -1,5 +1,5 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Fri Jun 23 20:27:20 UTC 2017
+// 4735-a0r-00-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -13,10 +13,26 @@ const char sp_str[] = " "; // does not belong here
 stack_t dStack;
 stack_t rStack;
 
-// const char comma_str[] = ","; // status of the comma word?
+
+// marked for deletion: comma_str and _comma() in dict_entries.cpp (thisfile)
+// const char comma_str[] = ","; // now in flashDict.cpp 23 June 2017
+// ( x --  )
+// Reserve one cell of data space and store x in the cell. If the data-space
+// pointer is aligned when , begins execution, it will remain aligned when ,
+// finishes execution. An ambiguous condition exists if the data-space pointer
+// is not aligned prior to execution of ,.
 // static void _comma(void) {
 //   *pHere++ = dStack_pop();
 // }
+
+// const char comma_str[] = ","; // status of the comma word? // see immediately above.
+// static void _comma(void) {
+//   *pHere++ = dStack_pop();
+// }
+
+
+// aha.
+// this also must live in flashDict.cpp because of 'static void':
 
 // const char two_drop_str[] = "2drop"; // ( x1 x2 -- ) // status?
 // static void _two_drop(void) {
@@ -105,6 +121,8 @@ stack_t rStack;
 // const char fetch_str[] = "@"; // see: store_fetch.cpp
 // void _fetch(void) { }
 
+// const char c_store_str[] = "c!";        // marked for deletion.  see: store_fetch.cpp
+// void _c_store(void) { }                 // marked for deletion.  see: store_fetch.cpp
 
 
 // 22 June: moved to bring attention to it temporarily: void _here(void):
@@ -348,16 +366,6 @@ void _word(void) {
 //     dStack_push(-22);
 //     _throw();
 //   }
-// }
-
-// const char comma_str[] = ",";
-// ( x --  )
-// Reserve one cell of data space and store x in the cell. If the data-space
-// pointer is aligned when , begins execution, it will remain aligned when ,
-// finishes execution. An ambiguous condition exists if the data-space pointer
-// is not aligned prior to execution of ,.
-// static void _comma(void) {
-//   *pHere++ = dStack_pop();
 // }
 
 // const char slash_mod_str[] = "/mod";
@@ -731,13 +739,6 @@ void _word(void) {
 // char is the character value for a space.
 // void _bl(void) {
 //   dStack_push(' ');
-// }
-
-// const char c_store_str[] = "c!";
-// ( char c-addr -- )
-// void _c_store(void) {
-//   uint8_t *addr = (uint8_t*) dStack_pop();
-//   *addr = (uint8_t)dStack_pop();
 // }
 
 // const char c_comma_str[] = "c,";
