@@ -92,6 +92,33 @@ void _u_dot(void) {
 }
 
 
+
+
+/**                          Programming Tools Set                            **/
+// #ifdef TOOLS_SET  // YAFFA-ARM organization: TOOLS_SET
+
+#ifndef YAFFA-ARM_LEGACY_DOT_S
+const char dot_s_str[] = ".s";
+void _dot_s(void) {
+  char i = 0;
+  char j = 0;
+  char depth = dStack_size();
+  j = depth;
+  Serial.print("<"); // gforthism 
+  Serial.print(j+0); // comment was here
+  Serial.print("> ");
+  if (depth > 0) {
+    for (i = depth; i > 0; i--) { // walk backwards
+      j = i - 1; // normalize
+      w = dStack_peek(j);
+      displayValue();
+    }
+  }
+}
+#endif
+
+#ifdef YAFFA-ARM_LEGACY_DOT_S
+
 const char dot_s_str[] = ".s";
 void _dot_s(void) {
    char i;
@@ -103,6 +130,7 @@ void _dot_s(void) {
      }
    }
 }
+#endif
 
 
 const char emit_str[] = "emit";

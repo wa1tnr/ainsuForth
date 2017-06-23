@@ -1,6 +1,8 @@
 // Fri Jun 23 20:27:20 UTC 2017
 // 4735-a0r-00-
 
+// .s word -- reverse collated; gforth style delimiter
+
 // , 2drop c! - three words added to dictionary.
 
 // ++store_fetch.cpp  ++getline.cpp  +dump.cpp  +store_fetch.cpp
