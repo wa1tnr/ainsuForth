@@ -92,12 +92,9 @@ void _u_dot(void) {
 }
 
 
-
-
 /**                          Programming Tools Set                            **/
 // #ifdef TOOLS_SET  // YAFFA-ARM organization: TOOLS_SET
 
-#ifndef YAFFA-ARM_LEGACY_DOT_S
 const char dot_s_str[] = ".s";
 void _dot_s(void) {
   char i = 0;
@@ -115,21 +112,11 @@ void _dot_s(void) {
     }
   }
 }
-#endif
+
 
 #ifdef YAFFA-ARM_LEGACY_DOT_S
-
 const char dot_s_str[] = ".s";
-void _dot_s(void) {
-   char i;
-   char depth = dStack_size();
-   if (depth > 0) {
-     for (i = 0; i < depth ; i++) {
-       w = dStack_peek(i);
-       displayValue();
-     }
-   }
-}
+void _dot_s(void) { }
 #endif
 
 
