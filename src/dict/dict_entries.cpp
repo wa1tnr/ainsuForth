@@ -16,29 +16,30 @@ stack_t rStack;
 
 // marked for deletion: comma_str and _comma() in dict_entries.cpp (thisfile)
 // const char comma_str[] = ","; // now in flashDict.cpp 23 June 2017
-// ( x --  )
-// Reserve one cell of data space and store x in the cell. If the data-space
-// pointer is aligned when , begins execution, it will remain aligned when ,
-// finishes execution. An ambiguous condition exists if the data-space pointer
-// is not aligned prior to execution of ,.
-// static void _comma(void) {
-//   *pHere++ = dStack_pop();
-// }
+// static void _comma(void) { }
 
 // const char comma_str[] = ","; // status of the comma word? // see immediately above.
-// static void _comma(void) {
-//   *pHere++ = dStack_pop();
-// }
+// static void _comma(void) { }
 
 
 // aha.
 // this also must live in flashDict.cpp because of 'static void':
 
-// const char two_drop_str[] = "2drop"; // ( x1 x2 -- ) // status?
+// const char two_drop_str[] = "2drop"; // ( x1 x2 -- ) // status? moved to flashDict.cpp.  marked for deletion.
+// static void _two_drop(void) { }
+
+
+
+// 23 June: moved to bring attention to it temporarily: static void _two_drop(void);
+
+// const char two_drop_str[] = "2drop";
+// ( x1 x2 -- )
 // static void _two_drop(void) {
 //   dStack_pop();
 //   dStack_pop();
 // }
+
+
 
 // Forth words currently present (22 Jun 2017):
 // 
@@ -54,75 +55,68 @@ stack_t rStack;
 #ifdef STACK_OPS_NOT    //   marked for deletion
                         //   see: stack_ops.cpp  for (identical) replacement code
 
-// const char dupe_str[] = "dup"; // see: stack_ops.cpp
-// void _dupe(void) { }
-
-// const char swap_str[] = "swap"; // see: stack_ops.cpp
-// void _swap(void) { }
-
-// const char rot_str[] = "rot"; // see: stack_ops.cpp
-// void _rot(void) { }
-
-// const char and_str[] = "and"; // see: stack_ops.cpp
-// void _and(void) { }
-
-// const char or_str[] = "or"; // see: stack_ops.cpp
-// void _or(void) { }
-
-// const char xor_str[] = "xor"; // see: stack_ops.cpp
-// void _xor(void) { }
-
-// dot here
-
-// const char u_dot_str[] = "u."; // see: stack_ops.cpp
-// void _u_dot(void) { }
-
-// const char dot_s_str[] = ".s"; // see: stack_ops.cpp
-// void _dot_s(void) { }
-
-// const char emit_str[] = "emit"; // see: stack_ops.cpp
-// void _emit(void) { }
-
-// const char dot_paren_str[] = ".("; // see: stack_ops.cpp
-// void _dot_paren(void) { }
-
-// const char cr_str[] = "cr"; // ( -- ) Carriage Return // see: stack_ops.cpp
-// void _cr(void) { }
-
-// const char space_str[] = "space"; // see: stack_ops.cpp
-// void _space(void) { }
-
-// const char spaces_str[] = "spaces"; // see: stack_ops.cpp
-// void _spaces(void) { }
-
-// const char hex_str[] = "hex"; // see: stack_ops.cpp
-// void _hex(void) { }
-
-// const char decimal_str[] = "decimal"; // see: stack_ops.cpp
-// void _decimal(void) { }
-
 // const char words_str[] = "words"; // see: stack_ops.cpp
 // void _words(void) { } // NOT PROOFREAD
-
-// const char zero_equal_str[] = "0="; // see: stack_ops.cpp
-// void _zero_equal(void) { }
-
-// const char delay_str[] = "delay"; // see: stack_ops.cpp
-// void _delay(void) { }
 
 #endif
 
 
 // also marked for deletion: _store() and  _fetch()
 
-// const char store_str[] = "!"; // see: store_fetch.cpp
-// void _store(void) { }
-
-// const char fetch_str[] = "@"; // see: store_fetch.cpp
-// void _fetch(void) { }
-
 // const char c_store_str[] = "c!";        // marked for deletion.  see: store_fetch.cpp
 // void _c_store(void) { }                 // marked for deletion.  see: store_fetch.cpp
+
+
+// 23 June: moved to bring attention to it temporarily: void _two_fetch(void);
+
+// const char two_fetch_str[] = "2@";  // \x40 == '@'
+// ( a-addr -- x1 x2 )
+// Fetch cell pair x1 x2 at a-addr. x2 is at a-addr, and x1 is at a-addr+1
+// void _two_fetch(void) {
+//   cell_t* address = (cell_t*)dStack_pop();
+//   cell_t value = *address++;
+//   dStack_push(value);
+//   value = *address;
+//   dStack_push(value);
+// }
+
+
+// 23 June: moved to bring attention to it temporarily: void _plus_store(void):
+
+// const char plus_store_str[] = "+!";
+// ( n|u a-addr -- )
+// add n|u to the single cell number at a-addr
+// void _plus_store(void) {
+//   cell_t* address = (cell_t*)dStack_pop();
+//   if (address >= &forthSpace[0] &&
+//       address < &forthSpace[FORTH_SIZE])
+//     *address += dStack_pop();
+//   else {
+//     dStack_push(-9);
+//     _throw();
+//   }
+// }
+
+
+// 23 June: moved to bring attention to it temporarily: void _two_store(void):
+
+// const char two_store_str[] = "2!";
+// ( x1 x2 a-addr --)
+// Store the cell pair x1 x2 at a-addr, with x2 at a-addr and x1 at a-addr+1
+// void _two_store(void) {
+//   cell_t* address = (cell_t*)dStack_pop();
+//   if (address >= &forthSpace[0] &&
+//       address < &forthSpace[FORTH_SIZE - 4]) {
+//     *address++ = dStack_pop();
+//     *address = dStack_pop();
+//   } else {
+//     dStack_push(-9);
+//     _throw();
+//   }
+// }
+
+
+
 
 
 // 22 June: moved to bring attention to it temporarily: void _here(void):
@@ -133,9 +127,6 @@ const char here_str[] = "here";
 void _here(void) {
   dStack_push((size_t)pHere);
 }
-
-
-
 
 const char count_str[] = "count";
 // ( c-addr1 -- c-addr2 u )
@@ -149,7 +140,6 @@ void _count(void) {
   dStack_push((size_t)addr);
   dStack_push(value);
 }
-
 
 
 const char evaluate_str[] = "evaluate";
@@ -288,6 +278,7 @@ void _word(void) {
 //   _throw();
 // }
 
+
 // const char paren_str[] = "(";
 // ( "ccc<paren>" -- )
 // imedeate
@@ -296,6 +287,7 @@ void _word(void) {
 //   _word();
 //   _drop();
 // }
+
 
 // const char star_slash_str[] = "*/";
 // ( n1 n2 n3 -- n4 )
@@ -308,6 +300,7 @@ void _word(void) {
 //   dcell_t d = (dcell_t)n1 * (dcell_t)n2;
 //   dStack_push((cell_t)(d / n3));
 // }
+
 
 // const char star_slash_mod_str[] = "*/mod";
 // ( n1 n2 n3 -- n4 n5)
@@ -322,19 +315,6 @@ void _word(void) {
 //   dStack_push((cell_t)(d / n3));
 // }
 
-// const char plus_store_str[] = "+!";
-// ( n|u a-addr -- )
-// add n|u to the single cell number at a-addr
-// void _plus_store(void) {
-//   cell_t* address = (cell_t*)dStack_pop();
-//   if (address >= &forthSpace[0] &&
-//       address < &forthSpace[FORTH_SIZE])
-//     *address += dStack_pop();
-//   else {
-//     dStack_push(-9);
-//     _throw();
-//   }
-// }
 
 // const char plus_loop_str[] = "+loop";
 // Interpretation: Interpretation semantics for this word are undefined.
@@ -368,6 +348,7 @@ void _word(void) {
 //   }
 // }
 
+
 // const char slash_mod_str[] = "/mod";
 // ( n1 n2 -- n3 n4)
 // divide n1 by n2 giving a single cell remainder n3 and quotient n4
@@ -383,6 +364,7 @@ void _word(void) {
 //   }
 // }
 
+
 // const char zero_less_str[] = "0<";
 // ( n -- flag )
 // flag is true if and only if n is less than zero.
@@ -392,13 +374,13 @@ void _word(void) {
 // }
 
 
-
 // const char one_plus_str[] = "1+";
 // ( n1|u1 -- n2|u2 )
 // add one to n1|u1 giving sum n2|u2.
 // void _one_plus(void) {
 //   dStack_push(dStack_pop() + 1);
 // }
+
 
 // const char one_minus_str[] = "1-";
 // ( n1|u1 -- n2|u2 )
@@ -407,20 +389,6 @@ void _word(void) {
 //   dStack_push(dStack_pop() - 1);
 // }
 
-// const char two_store_str[] = "2!";
-// ( x1 x2 a-addr --)
-// Store the cell pair x1 x2 at a-addr, with x2 at a-addr and x1 at a-addr+1
-// void _two_store(void) {
-//   cell_t* address = (cell_t*)dStack_pop();
-//   if (address >= &forthSpace[0] &&
-//       address < &forthSpace[FORTH_SIZE - 4]) {
-//     *address++ = dStack_pop();
-//     *address = dStack_pop();
-//   } else {
-//     dStack_push(-9);
-//     _throw();
-//   }
-// }
 
 // const char two_star_str[] = "2*";
 // ( x1 -- x2 )
@@ -429,6 +397,7 @@ void _word(void) {
 //   dStack_push(dStack_pop() << 1);
 // }
 
+
 // const char two_slash_str[] = "2/";
 // ( x1 -- x2 )
 // x2 is the result of shifting x1 one bit to toward the LSB
@@ -436,23 +405,7 @@ void _word(void) {
 //   dStack_push(dStack_pop() >> 1);
 // }
 
-// const char two_fetch_str[] = "2@";  // \x40 == '@'
-// ( a-addr -- x1 x2 )
-// Fetch cell pair x1 x2 at a-addr. x2 is at a-addr, and x1 is at a-addr+1
-// void _two_fetch(void) {
-//   cell_t* address = (cell_t*)dStack_pop();
-//   cell_t value = *address++;
-//   dStack_push(value);
-//   value = *address;
-//   dStack_push(value);
-// }
-
-// const char two_drop_str[] = "2drop";
-// ( x1 x2 -- )
-// static void _two_drop(void) {
-//   dStack_pop();
-//   dStack_pop();
-// }
+// ###bookmark 23 Jun 22:29z
 
 // const char two_dup_str[] = "2dup";
 // ( x1 x2 -- x1 x2 x1 x2 )
