@@ -1,7 +1,7 @@
 // Sat Jun 24 17:00:15 UTC 2017
 // 4735-a0r-01-
 
-// instance - 17:00:15z
+// ASCII_NL (see getkey.cpp)
 
 // .s word -- reverse collated; gforth style delimiter
 

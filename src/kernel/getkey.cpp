@@ -1,8 +1,6 @@
 // Sat Jun 24 17:00:15 UTC 2017
 // 4735-a0r-01-
 
-// modified getKey() Sat Jun 24, for suppression of ASCII_NL echo to console.
-
 #include <Arduino.h>
 #include "../../yaffa.h"
 // #include "../../Error_Codes.h"

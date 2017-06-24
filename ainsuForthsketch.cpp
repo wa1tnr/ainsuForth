@@ -156,7 +156,7 @@ void loop(void) {
     } else {
       if (!state) {
         Serial.print(ok_str);
-//        // This shows a DOT for each item on the data stack
+        // This shows a DOT for each item on the data stack
         char i = dStack_size();
         while(i--) {
             Serial.print(".");
@@ -179,10 +179,6 @@ void loop(void) {
 static unsigned int freeMem(void) {
 //   return (pHere - forthSpace);
 }
-
-// #ifdef INT_KERN_XTTONAME
-// char* xtToName(cell_t xt) { } #endif
-// #endif
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
