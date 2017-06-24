@@ -25,19 +25,10 @@ asm(" .section .version\n"
 /******************************************************************************/
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
-const char prompt_str[] = ""; // const char prompt_str[] = ">> ";
-const char compile_prompt_str[] = "\r\n>  "; // ainsu: since ASCII_NL printing
-                                             //        is not echoed
+const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
 
-                                             // compile_prompt_str[] = "|  ";
-
-
- // This justification comment is very temporary.  Will disappear.  Soon:
-
- // 18 char getKey(void) {
- // 24       if (.. inChar == ASCII_NL  ||   // new - ainsuForth
-
- // but it's in the .diff.
+const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+                                             // const char compile_prompt_str[] = "|  ";
 
 const char ok_str[] = " ok"; //  = " OK";
 

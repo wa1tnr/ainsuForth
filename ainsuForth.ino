@@ -1,7 +1,7 @@
 // Sat Jun 24 17:00:15 UTC 2017
 // 4735-a0r-01-
 
-// ASCII_NL (see getkey.cpp)
+// ASCII_NL will echo. (see getkey.cpp)
 
 // .s word -- reverse collated; gforth style delimiter
 

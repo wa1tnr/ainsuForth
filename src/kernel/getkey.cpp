@@ -10,38 +10,24 @@
 /******************************************************************************/
 /** getKey                                                                   **/
 /**   waits for the next valid key to be entered and return its value        **/
-/**   Valid characters are:  Backspace, Carriage Return, Escape, Tab, and    **/
-/**   standard printable characters                                          **/
+/**   Valid characters are:  Backspace, Carriage Return (0x0d), Escape,      **/
+/**   Tab, Newline (0x0a) and standard (printable) characters                **/
 /******************************************************************************/
 char getKey(void) {
   char inChar;
   while (1) {
     if (Serial.available()) {
       inChar = Serial.read();
-      if (inChar == ASCII_BS || inChar == ASCII_TAB || inChar == ASCII_CR || 
-          inChar == ASCII_NL  ||   // new - ainsuForth
-          inChar == ASCII_ESC || isprint(inChar)) {
-        return inChar; 
-      }
-    }
-  }
-}
-
-#endif
-
-#ifdef IMPROVED_FCN_ZZED
-
-// code will be formatted like this, next iteration:
-
-char getKey_SNIPPET(void) {
       if (inChar == ASCII_BS  ||
           inChar == ASCII_TAB ||
           inChar == ASCII_CR  ||  
           inChar == ASCII_NL  ||   // new
           inChar == ASCII_ESC ||
           isprint(inChar)) {
-        return inChar; 
+        return inChar;
+      }
+    }
+  }
 }
 
 #endif
-
