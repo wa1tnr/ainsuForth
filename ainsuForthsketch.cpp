@@ -135,7 +135,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  FEVORE--PARKEFF"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  STELDONE--PARKEFF"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload
@@ -144,6 +144,18 @@ void setup(void) {
       Serial.print(prompt_str);
 }
 
+
+
+/**                                                 **/
+/** void compilePrompt(void);                       **/
+/**                                                 **/
+/** loop helper function                            **/
+/**    -- when to print the compiler prompt         **/
+/**       and what form it should take, depending   **/
+/**       on how free the serial buffer is, to      **/
+/**       print non-critical status info to the     **/
+/**       terminal.                                 **/
+/**                                                 **/
 
 void compilePrompt(void) {
     int waiting = 0;
@@ -154,9 +166,9 @@ void compilePrompt(void) {
         if (waiting < 20) { // moderate traffic
 	    Serial.print("ul \r\n"); // let user know that player-piano code upload speeds were noticed
         } else {
-          if (waiting < 50) { // heavy traffic
+          if (waiting < 50) { // heavy traffic -- just the line endings are echo'd back to the user
             Serial.print("\r\n");
-          }
+          } // else: inbound is just too fast -- print nothing extra
         } 
     }
 }

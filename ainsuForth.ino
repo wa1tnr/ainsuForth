@@ -1,24 +1,15 @@
 // Sat Jun 24 20:27:02 UTC 2017
 // 4735-a0r-03-
 
-// BUG: code paste fails.  Same code typed by hand
-// much more likely to succeed.  Short paste-ins do not fail.
-
-// It is as though the system tries to keep up with the
-// speed of the uploaded paste-in, and does well for a
-// while, but gets overrun.
-
-// ASCII_NL will echo. (see getkey.cpp)
-
 // .s word -- reverse collated; gforth style delimiter
 
 // , 2drop c! - three words added to dictionary.
 
 // ++store_fetch.cpp  ++getline.cpp  +dump.cpp  +store_fetch.cpp
 
-// KEPOK  FEVORE
+// KEPOK  STELDONE
 
-// PRIMITIVE FORTH - working 18 June  -  FEVORE   PARKEFF   MIXFULPO   CHUNZH
+// PRIMITIVE FORTH - working 18 June  -  STELDONE   PARKEFF   MIXFULPO   CHUNZH
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
