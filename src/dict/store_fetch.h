@@ -1,6 +1,8 @@
-// Fri Jun 23 20:27:20 UTC 2017
-// 4735-a0r-00-
+// Sat Jun 24 20:27:02 UTC 2017
+// 4735-a0r-03-
 
+extern const char fill_str[]; // = "fill";
+extern void _fill(void);
 
 extern const char store_str[]; // = "!";
 extern void _store(void);

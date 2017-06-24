@@ -1,5 +1,5 @@
-// Fri Jun 23 20:27:20 UTC 2017
-// 4735-a0r-00-
+// Sat Jun 24 20:27:02 UTC 2017
+// 4735-a0r-03-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -67,6 +67,7 @@ void _two_store(void) {
   }
 }
 
+#endif
 
 const char fill_str[] = "fill";
 // ( c-addr u char -- )
@@ -76,11 +77,10 @@ void _fill(void) {
   char ch = (char)dStack_pop();
   cell_t limit = dStack_pop();
   char* addr = (char*)dStack_pop();
-  for (int i = 1; i < limit; i++) {
+  for (int i = 1; i < limit + 1; i++) { // BUGFIX: ainsuForth: s/limit/limit + 1/
     *addr++ = ch;
   }
 }
-#endif
 
 
 

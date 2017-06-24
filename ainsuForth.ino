@@ -1,6 +1,10 @@
 // Sat Jun 24 20:27:02 UTC 2017
 // 4735-a0r-03-
 
+// fill word
+
+// BUGFIX: fill fell short by one byte of fill.  Now it fills as requested.
+
 // .s word -- reverse collated; gforth style delimiter
 
 // , 2drop c! - three words added to dictionary.
