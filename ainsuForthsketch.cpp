@@ -1,11 +1,15 @@
-// Fri Jun 23 20:27:20 UTC 2017
-// 4735-a0r-00-
+// Sat Jun 24 17:00:15 UTC 2017
+// 4735-a0r-01-
 
 #include <Arduino.h>
 #include "yaffa.h"
 #include "ainsuForthsketch.h"
 // #include "neo_pixel.h"
 #include "Error_Codes.h"
+
+/******************************************************************************/
+/**  The Arduino M0 pro has 0x4000 as bootloader offset                      **/
+/******************************************************************************/
 
 /******************************************************************************/
 /** Major and minor revision numbers                                         **/
@@ -22,9 +26,20 @@ asm(" .section .version\n"
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
 const char prompt_str[] = ""; // const char prompt_str[] = ">> ";
-const char compile_prompt_str[] = "|  ";
-const char ok_str[] = " ok";
+const char compile_prompt_str[] = "\r\n>  "; // ainsu: since ASCII_NL printing
+                                             //        is not echoed
 
+                                             // compile_prompt_str[] = "|  ";
+
+
+ // This justification comment is very temporary.  Will disappear.  Soon:
+
+ // 18 char getKey(void) {
+ // 24       if (.. inChar == ASCII_NL  ||   // new - ainsuForth
+
+ // but it's in the .diff.
+
+const char ok_str[] = " ok"; //  = " OK";
 
 // const char sp_str[] = " ";
 // const char tab_str[] = "\t";

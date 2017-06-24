@@ -1,5 +1,7 @@
-// Fri Jun 23 20:27:20 UTC 2017
-// 4735-a0r-00-
+// Sat Jun 24 17:00:15 UTC 2017
+// 4735-a0r-01-
+
+// instance - 17:00:15z
 
 // .s word -- reverse collated; gforth style delimiter
 

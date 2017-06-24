@@ -1,5 +1,7 @@
-// Sun Jun 18 15:04:16 UTC 2017
-// 4735-a0m
+// Sat Jun 24 17:00:15 UTC 2017
+// 4735-a0r-01-
+
+// modified getKey() Sat Jun 24, for suppression of ASCII_NL echo to console.
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -15,11 +17,11 @@
 /******************************************************************************/
 char getKey(void) {
   char inChar;
-
   while (1) {
     if (Serial.available()) {
       inChar = Serial.read();
       if (inChar == ASCII_BS || inChar == ASCII_TAB || inChar == ASCII_CR || 
+          inChar == ASCII_NL  ||   // new - ainsuForth
           inChar == ASCII_ESC || isprint(inChar)) {
         return inChar; 
       }
@@ -28,3 +30,20 @@ char getKey(void) {
 }
 
 #endif
+
+#ifdef IMPROVED_FCN_ZZED
+
+// code will be formatted like this, next iteration:
+
+char getKey_SNIPPET(void) {
+      if (inChar == ASCII_BS  ||
+          inChar == ASCII_TAB ||
+          inChar == ASCII_CR  ||  
+          inChar == ASCII_NL  ||   // new
+          inChar == ASCII_ESC ||
+          isprint(inChar)) {
+        return inChar; 
+}
+
+#endif
+
