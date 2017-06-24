@@ -1,5 +1,5 @@
-// Sat Jun 24 17:00:15 UTC 2017
-// 4735-a0r-01-
+// Sat Jun 24 18:33:10 UTC 2017
+// 4735-a0r-02-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -27,7 +27,10 @@ asm(" .section .version\n"
 /******************************************************************************/
 const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
 
-const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+// holicau: declaring this volatile produces interesting compiler errors:
+volatile char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+// static const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+// static const char compile_prompt_str[] = "\r\n>  "; // ainsu: gforthism?
                                              // const char compile_prompt_str[] = "|  ";
 
 const char ok_str[] = " ok"; //  = " OK";
@@ -116,7 +119,11 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 void setup(void) {                
   uint16_t mem;
-  Serial.begin(19200);     // Open serial communications:
+  Serial.begin(19200);        // Open serial communications:
+  // Serial.begin(57600);     // Open serial communications:
+  // Serial.begin(115200);    // Open serial communications:
+
+  // 24 June: upload during compile crashes even with higher baud rates.
 
   flags = ECHO_ON;
   base = DECIMAL;
