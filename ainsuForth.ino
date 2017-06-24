@@ -1,15 +1,12 @@
-// Sat Jun 24 18:33:10 UTC 2017
-// 4735-a0r-02-
+// Sat Jun 24 20:27:02 UTC 2017
+// 4735-a0r-03-
 
 // BUG: code paste fails.  Same code typed by hand
-// more likely to succeed.  Short paste-ins do not fail.
+// much more likely to succeed.  Short paste-ins do not fail.
 
 // It is as though the system tries to keep up with the
 // speed of the uploaded paste-in, and does well for a
-// while, but gets overrrun.
-
-// ATTEMPT: sprinkle 'static' or 'volatile' like paprika on the code.
-
+// while, but gets overrun.
 
 // ASCII_NL will echo. (see getkey.cpp)
 

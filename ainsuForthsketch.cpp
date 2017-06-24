@@ -1,5 +1,5 @@
-// Sat Jun 24 18:33:10 UTC 2017
-// 4735-a0r-02-
+// Sat Jun 24 20:27:02 UTC 2017
+// 4735-a0r-03-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -27,8 +27,12 @@ asm(" .section .version\n"
 /******************************************************************************/
 const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
 
+// buffer[1] = '\0';
 // holicau: declaring this volatile produces interesting compiler errors:
-volatile char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
+
+// compile_prompt_str[12] = '\0';
+
 // static const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
 // static const char compile_prompt_str[] = "\r\n>  "; // ainsu: gforthism?
                                              // const char compile_prompt_str[] = "|  ";
@@ -137,9 +141,25 @@ void setup(void) {
                   // to give the operator time to task switch from upload
                   // to first signon.
   signOn();
-  Serial.print(prompt_str);
+      Serial.print(prompt_str);
 }
 
+
+void compilePrompt(void) {
+    int waiting = 0;
+    waiting = Serial.available();
+    if (waiting < 3) { // light traffic - there is slack enough to allow verbose output
+	Serial.print(compile_prompt_str);
+    } else {
+        if (waiting < 20) { // moderate traffic
+	    Serial.print("ul \r\n"); // let user know that player-piano code upload speeds were noticed
+        } else {
+          if (waiting < 50) { // heavy traffic
+            Serial.print("\r\n");
+          }
+        } 
+    }
+}
 
 /******************************************************************************/
 /** Outer interpreter                                                        **/
@@ -164,9 +184,9 @@ void loop(void) {
     }
   }
   if (state) {
-	Serial.print(compile_prompt_str);
+      compilePrompt();
   } else {
-	Serial.print(prompt_str);
+      Serial.print(prompt_str);
   }
 }
 
