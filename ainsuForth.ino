@@ -1,7 +1,9 @@
-// Sat Jun 24 20:27:02 UTC 2017
-// 4735-a0r-03-
+// Sun Jun 25 03:24:01 UTC 2017
+// 4735-a0r-04-
 
-// fill word
+// TODO: test c! and 2drop
+// +the constant word
+// +the fill word
 
 // BUGFIX: fill fell short by one byte of fill.  Now it fills as requested.
 

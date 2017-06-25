@@ -1,5 +1,5 @@
-// Fri Jun 23 20:27:20 UTC 2017
-// 4735-a0r-00-
+// Sun Jun 25 03:24:01 UTC 2017
+// 4735-a0r-04-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -745,14 +745,14 @@ void _word(void) {
 // void _chars(void) {
 // }
 
-// const char constant_str[] = "constant";
-// ( x"<spaces>name" --  )
-// void _constant(void) {
-//   openEntry();
-//   *pHere++ = LITERAL_IDX;
-//   *pHere++ = dStack_pop();
-//   closeEntry();
-// }
+
+
+
+// const char constant_str[] = "constant"; // marked for deletion
+// void _constant(void) { }
+
+
+
 
 // const char create_str[] = "create";
 // ( "<spaces>name" -- )
