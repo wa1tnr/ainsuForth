@@ -26,4 +26,13 @@ void _variable(void) {
   }
 }
 
+// cr variable helka .s cr helka .s cr drop .s cr 4377 helka ! .s cr helka @ .s cr cr
+// <0>
+// <1> 536871708
+// <0>
+// <0>
+// <1> 4377
+// 
+//  ok..
+
 #endif
