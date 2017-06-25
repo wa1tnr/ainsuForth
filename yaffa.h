@@ -171,6 +171,7 @@ static const unsigned long FORTH_SIZE    ((SRAM_SIZE*1024*2)/(sizeof(cell_t)*3))
 #define ASCII_NL    10
 #define ASCII_ESC   27
 #define ASCII_CR    13
+#define ASCII_DEL   127 // 0x7f
 
 /******************************************************************************/
 /**  Forth True and False                                                    **/

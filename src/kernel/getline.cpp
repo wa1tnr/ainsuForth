@@ -19,7 +19,7 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
   uint8_t count = 0;
   do {
     inChar = getKey(); 
-    if (inChar == ASCII_BS) { 
+    if (inChar == ASCII_BS || inChar == ASCII_DEL) {  // new: was only ASCII_BS
        if (count) {
          *--ptr = 0;
          count--; // ainsuForth improvement -- backspace behavior

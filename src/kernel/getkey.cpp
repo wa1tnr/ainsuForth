@@ -22,6 +22,7 @@ char getKey(void) {
           inChar == ASCII_TAB ||
           inChar == ASCII_CR  ||  
           inChar == ASCII_NL  ||   // new
+          inChar == ASCII_DEL ||   // new
           inChar == ASCII_ESC ||
           isprint(inChar)) {
         return inChar;

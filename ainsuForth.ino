@@ -2,6 +2,9 @@
 // 4735-a0r-04-
 
 // TODO: test c! and 2drop
+
+// +ASCII_DEL support 0x7f (mapped to BackSpace key)
+
 // +the constant word
 // +the fill word
 
