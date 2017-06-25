@@ -221,6 +221,7 @@ const flashEntry_t flashDict[] = {
 //   { of_str,             _of,              IMMEDIATE + COMP_ONLY },    // CAL
 //   { endof_str,          _endof,           IMMEDIATE + COMP_ONLY },    // CAL
 //   { endcase_str,        _endcase,         IMMEDIATE + COMP_ONLY },    // CAL
+   { help_str,           _help,            NORMAL },
 #endif
 
 #ifdef DOUBLE_SET

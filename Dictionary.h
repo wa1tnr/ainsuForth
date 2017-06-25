@@ -7,6 +7,7 @@
 
 // #include "src/dict/commas.cpp"
 // #include "src/dict/dump.h"
+#include "src/dict/help.h"
 #include "src/dict/constant.h"
 #include "src/dict/store_fetch.h"
 // #include "src/dict/xttoname.h"
