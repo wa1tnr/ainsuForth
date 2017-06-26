@@ -1,7 +1,9 @@
-// Sun Jun 25 03:24:01 UTC 2017
-// 4735-a0r-04-
+// Mon Jun 26 00:56:18 UTC 2017
+// 4735-a0r-05-
 
-// TODO: test c! and 2drop
+// TODO: test c! and 2drop as well as allot and variable
+
+// +allot.cpp
 
 // +ASCII_DEL support 0x7f (mapped to BackSpace key)
 

@@ -1,5 +1,5 @@
-// Sun Jun 25 03:24:01 UTC 2017
-// 4735-a0r-04-
+// Mon Jun 26 00:56:18 UTC 2017
+// 4735-a0r-05-
 
 // #include "src/kernel/getkey.h"
 // #include "src/kernel/getline.h"
@@ -8,6 +8,7 @@
 // #include "src/dict/commas.cpp"
 // #include "src/dict/dump.h"
 #include "src/dict/help.h"
+#include "src/dict/allot.h"
 #include "src/dict/constant.h"
 #include "src/dict/store_fetch.h"
 // #include "src/dict/xttoname.h"
