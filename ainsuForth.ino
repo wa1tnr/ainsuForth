@@ -1,7 +1,9 @@
-// Mon Jun 26 00:56:18 UTC 2017
-// 4735-a0r-05-
+// Tue Jun 27 01:07:58 UTC 2017
+// 4735-a0r-06-
 
 // TODO: test c! and 2drop as well as allot and variable
+
+// BUGFIX: there was no 'ok' prompt for an empty command line.  Fixed.
 
 // +allot.cpp
 

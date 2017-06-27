@@ -1,5 +1,5 @@
-// Sat Jun 24 20:27:02 UTC 2017
-// 4735-a0r-03-
+// Tue Jun 27 01:07:58 UTC 2017
+// 4735-a0r-06-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -26,6 +26,7 @@ asm(" .section .version\n"
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
 const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
+const char E_prompt_str[] = "~EIGENSTATE~";  //
 
 // buffer[1] = '\0';
 // holicau: declaring this volatile produces interesting compiler errors:
@@ -194,7 +195,14 @@ void loop(void) {
         Serial.println();
       }
     }
-  }
+
+
+  } else { // test failed; do not run interpreter().
+    Serial.println(ok_str); // Leo Brodie 'Starting Forth' expects an ok here
+  } // replace these four lines with a single closing curly brace
+    // to restore YAFFA behavior.
+
+
   if (state) {
       compilePrompt();
   } else {

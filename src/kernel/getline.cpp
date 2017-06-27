@@ -1,5 +1,5 @@
-// Sun Jun 18 15:04:16 UTC 2017
-// 4735-a0m
+// Tue Jun 27 01:07:58 UTC 2017
+// 4735-a0r-06-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -43,7 +43,7 @@ uint8_t getLine(char* ptr, uint8_t buffSize) {
                           // iirc, interactive typing to the interpreter masks
                           // this behavior, whereas a paste-in unmasks it.
 
-      if (flags & ECHO_ON) Serial.print(" ");
+      if (flags & ECHO_ON) Serial.print(" "); // seems to want a space after 'dot' for example.
       break;
     } else {
       if (flags & ECHO_ON) Serial.print(inChar);
