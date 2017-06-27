@@ -26,7 +26,6 @@ asm(" .section .version\n"
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
 const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
-const char E_prompt_str[] = "~EIGENSTATE~";  //
 
 // buffer[1] = '\0';
 // holicau: declaring this volatile produces interesting compiler errors:
