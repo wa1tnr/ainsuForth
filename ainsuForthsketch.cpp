@@ -26,17 +26,8 @@ asm(" .section .version\n"
 /** Common Strings & Terminal Constants                                      **/
 /******************************************************************************/
 const char prompt_str[] = "";                // const char prompt_str[] = ">> ";
-
-// buffer[1] = '\0';
-// holicau: declaring this volatile produces interesting compiler errors:
-const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
-
-// compile_prompt_str[12] = '\0';
-
-// static const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism?
-// static const char compile_prompt_str[] = "\r\n>  "; // ainsu: gforthism?
+const char compile_prompt_str[] = " compiled\r\n"; // ainsu: gforthism.
                                              // const char compile_prompt_str[] = "|  ";
-
 const char ok_str[] = " ok"; //  = " OK";
 
 // const char sp_str[] = " ";
