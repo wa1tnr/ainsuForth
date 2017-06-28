@@ -1,5 +1,5 @@
-// Tue Jun 27 01:07:58 UTC 2017
-// 4735-a0r-06-
+// Wed Jun 28 17:53:29 UTC 2017
+// 4735-a0s-01-
 
 // ------------------------------------------------------------------------
 // Wed 28th 01:55z:
@@ -11,6 +11,7 @@
 
 // Meanwhile:
 
+// +char.cpp  char  [char]
 // +do_loop.cpp
 // +src/periph/neo_pixel.cpp
 // +cblink.cpp

@@ -1,5 +1,5 @@
-// Tue Jun 27 21:19:58 UTC 2017
-// 4735-a0s-00-
+// Wed Jun 28 17:53:29 UTC 2017
+// 4735-a0s-01-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -138,7 +138,7 @@ const flashEntry_t flashDict[] = {
 //   { c_fetch_str,        _c_fetch,         NORMAL },
 //   { cell_plus_str,      _cell_plus,       NORMAL },
 //   { cells_str,          _cells,           NORMAL },
-//   { char_str,           _char,            NORMAL },
+  { char_str,           _char,            NORMAL },
 //   { char_plus_str,      _char_plus,       NORMAL },
 
 //   { chars_str,          _chars,           NORMAL },
@@ -205,7 +205,7 @@ const flashEntry_t flashDict[] = {
   { xor_str,            _xor,             NORMAL },
 //   { left_bracket_str,   _left_bracket,    IMMEDIATE },
 //   { bracket_tick_str,   _bracket_tick,    IMMEDIATE },
-//   { bracket_char_str,   _bracket_char,    IMMEDIATE },
+  { bracket_char_str,   _bracket_char,    IMMEDIATE },
 //   { right_bracket_str,  _right_bracket,   NORMAL },
 
 #ifdef CORE_EXT_SET
