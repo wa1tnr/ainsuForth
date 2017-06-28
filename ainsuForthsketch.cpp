@@ -1,10 +1,11 @@
-// Tue Jun 27 01:07:58 UTC 2017
-// 4735-a0r-06-
+// Tue Jun 27 21:19:58 UTC 2017
+// 4735-a0s-00-
 
 #include <Arduino.h>
 #include "yaffa.h"
 #include "ainsuForthsketch.h"
-// #include "neo_pixel.h"
+#include "src/periph/neo_pixel.h"
+#include "src/dict/cblink.h"
 #include "Error_Codes.h"
 
 /******************************************************************************/
@@ -114,7 +115,11 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 void setup(void) {                
   uint16_t mem;
+  setup_neoPixel();
   Serial.begin(19200);        // Open serial communications:
+  delay(9 * 100); // 900 ms
+  _cblink();
+  delay(9 * 100); // 900 ms
   // Serial.begin(57600);     // Open serial communications:
   // Serial.begin(115200);    // Open serial communications:
 
@@ -126,7 +131,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  STELDONE--PARKEFF"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  CHOGUFE--STELDONE"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

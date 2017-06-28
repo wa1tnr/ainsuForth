@@ -1,5 +1,5 @@
-// Mon Jun 26 00:56:18 UTC 2017
-// 4735-a0r-05-
+// Tue Jun 27 21:19:58 UTC 2017
+// 4735-a0s-00-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -80,14 +80,14 @@ const flashEntry_t flashDict[] = {
   /* Order does not matter after here                  */
   /* Core Words                                        */
   /*****************************************************/
-   { warm_str,           _warm,            NORMAL },
-   { dot_str,            _dot,             NORMAL },
-   { minus_str,          _minus,           NORMAL },
-   { plus_str,           _plus,            NORMAL },
-   { star_str,           _star,            NORMAL },
-   { zero_equal_str,     _zero_equal,      NORMAL },
+  { warm_str,           _warm,            NORMAL },
+  { dot_str,            _dot,             NORMAL },
+  { minus_str,          _minus,           NORMAL },
+  { plus_str,           _plus,            NORMAL },
+  { star_str,           _star,            NORMAL },
+  { zero_equal_str,     _zero_equal,      NORMAL },
 //   { abort_str,          _abort,           NORMAL },
-   { store_str,          _store,           NORMAL },
+  { store_str,          _store,           NORMAL },
 //   { number_sign_str,    _number_sign,     NORMAL },
 //   { number_sign_gt_str, _number_sign_gt,  NORMAL },
 //   { number_sign_s_str,  _number_sign_s,   NORMAL },
@@ -97,8 +97,8 @@ const flashEntry_t flashDict[] = {
 //   { star_slash_mod_str, _star_slash_mod,  NORMAL },
 //   { plus_store_str,     _plus_store,      NORMAL },
 //   { plus_loop_str,      _plus_loop,       IMMEDIATE + COMP_ONLY },
-   { comma_str,          _comma,           NORMAL },
-   { slash_str,          _slash,           NORMAL },
+  { comma_str,          _comma,           NORMAL },
+  { slash_str,          _slash,           NORMAL },
 //   { slash_mod_str,      _slash_mod,       NORMAL },
 //   { zero_less_str,      _zero_less,       NORMAL },
 //   { one_plus_str,       _one_plus,        NORMAL },
@@ -107,12 +107,12 @@ const flashEntry_t flashDict[] = {
 //   { two_star_str,       _two_star,        NORMAL },
 //   { two_slash_str,      _two_slash,       NORMAL },
 //   { two_fetch_str,      _two_fetch,       NORMAL },
-   { two_drop_str,       _two_drop,        NORMAL },
+  { two_drop_str,       _two_drop,        NORMAL },
 //   { two_dup_str,        _two_dup,         NORMAL },
 //   { two_over_str,       _two_over,        NORMAL },
 //   { two_swap_str,       _two_swap,        NORMAL },
-     { colon_str,          _colon,           NORMAL },
-     { semicolon_str,      _semicolon,       IMMEDIATE },
+  { colon_str,          _colon,           NORMAL },
+  { semicolon_str,      _semicolon,       IMMEDIATE },
 //   { lt_str,             _lt,              NORMAL },
 //   { lt_number_sign_str, _lt_number_sign,  NORMAL },
 //   { eq_str,             _eq,              NORMAL },
@@ -122,18 +122,18 @@ const flashEntry_t flashDict[] = {
 //   { to_number_str,      _to_number,       NORMAL },
 //   { to_r_str,           _to_r,            NORMAL },
 //   { question_dup_str,   _question_dup,    NORMAL },
-   { fetch_str,          _fetch,           NORMAL },
+  { fetch_str,          _fetch,           NORMAL },
 //   { abort_quote_str,    _abort_quote,     IMMEDIATE + COMP_ONLY },
-   { abs_str,            _abs,             NORMAL },
+  { abs_str,            _abs,             NORMAL },
 //   { accept_str,         _accept,          NORMAL },
 //   { align_str,          _align,           NORMAL },
 //   { aligned_str,        _aligned,         NORMAL },
-   { allot_str,          _allot,           NORMAL },
-   { and_str,            _and,             NORMAL },
+  { allot_str,          _allot,           NORMAL },
+  { and_str,            _and,             NORMAL },
 //   { base_str,           _base,            NORMAL },
 //   { begin_str,          _begin,           IMMEDIATE + COMP_ONLY },
 //   { bl_str,             _bl,              NORMAL },
-   { c_store_str,        _c_store,         NORMAL },
+  { c_store_str,        _c_store,         NORMAL },
 //   { c_comma_str,        _c_comma,         NORMAL },
 //   { c_fetch_str,        _c_fetch,         NORMAL },
 //   { cell_plus_str,      _cell_plus,       NORMAL },
@@ -142,24 +142,24 @@ const flashEntry_t flashDict[] = {
 //   { char_plus_str,      _char_plus,       NORMAL },
 
 //   { chars_str,          _chars,           NORMAL },
-   { constant_str,       _constant,        NORMAL },
-   { count_str,          _count,           NORMAL },
-   { cr_str,             _cr,              NORMAL },
+  { constant_str,       _constant,        NORMAL },
+  { count_str,          _count,           NORMAL },
+  { cr_str,             _cr,              NORMAL },
 //   { create_str,         _create,          NORMAL },
-   { decimal_str,        _decimal,         NORMAL },
+  { decimal_str,        _decimal,         NORMAL },
 //   { depth_str,          _depth,           NORMAL },
 //   { do_str,             _do,              IMMEDIATE + COMP_ONLY },
 //   { does_str,           _does,            IMMEDIATE + COMP_ONLY },
 //   { drop_str,           _drop,            NORMAL },
-   { dupe_str,           _dupe,            NORMAL },
+  { dupe_str,           _dupe,            NORMAL },
 //   { else_str,           _else,            IMMEDIATE + COMP_ONLY },
-   { emit_str,           _emit,            NORMAL },
+  { emit_str,           _emit,            NORMAL },
 //   { environment_str,    _environment,     NORMAL },
 //   { execute_str,        _execute,         NORMAL },
-   { fill_str,           _fill,            NORMAL },
+  { fill_str,           _fill,            NORMAL },
 //   { find_str,           _find,            NORMAL },
 //   { fm_slash_mod_str,   _fm_slash_mod,    NORMAL },
-   { here_str,           _here,            NORMAL },
+  { here_str,           _here,            NORMAL },
 //   { hold_str,           _hold,            NORMAL },
 //   { i_str,              _i,               NORMAL },
 //   { if_str,             _if,              IMMEDIATE + COMP_ONLY },
@@ -175,53 +175,53 @@ const flashEntry_t flashDict[] = {
 //   { min_str,            _min,             NORMAL },
 //   { mod_str,            _mod,             NORMAL },
 //   { move_str,           _move,            NORMAL },
-   { negate_str,         _negate,          NORMAL },
-   { or_str,             _or,              NORMAL },
+  { negate_str,         _negate,          NORMAL },
+  { or_str,             _or,              NORMAL },
 //   { postpone_str,       _postpone,        IMMEDIATE + COMP_ONLY },
-   { quit_str,           _quit,            NORMAL },
+  { quit_str,           _quit,            NORMAL },
 //   { r_from_str,         _r_from,          NORMAL },
 //   { r_fetch_str,        _r_fetch,         NORMAL },
 //   { recurse_str,        _recurse,         IMMEDIATE + COMP_ONLY },
 //   { repeat_str,         _repeat,          IMMEDIATE + COMP_ONLY },
-   { rot_str,            _rot,             NORMAL },
+  { rot_str,            _rot,             NORMAL },
 //   { rshift_str,         _rshift,          NORMAL },
 //   { s_to_d_str,         _s_to_d,          NORMAL },
 //   { sign_str,           _sign,            NORMAL },
 //   { sm_slash_rem_str,   _sm_slash_rem,    NORMAL },
 //   { source_str,         _source,          NORMAL },
-   { space_str,          _space,           NORMAL },
-   { spaces_str,         _spaces,          NORMAL },
+  { space_str,          _space,           NORMAL },
+  { spaces_str,         _spaces,          NORMAL },
 //   { state_str,          _state,           NORMAL },
-   { swap_str,           _swap,            NORMAL },
+  { swap_str,           _swap,            NORMAL },
 //   { then_str,           _then,            IMMEDIATE + COMP_ONLY },
-   { u_dot_str,          _u_dot,           NORMAL },
+  { u_dot_str,          _u_dot,           NORMAL },
 //   { u_lt_str,           _u_lt,            NORMAL },
 //   { um_star_str,        _um_star,         NORMAL },
 //   { um_slash_mod_str,   _um_slash_mod,    NORMAL },
 //   { unloop_str,         _unloop,          NORMAL + COMP_ONLY },
 //   { until_str,          _until,           IMMEDIATE + COMP_ONLY },
 //   { while_str,          _while,           IMMEDIATE + COMP_ONLY },
-   { word_str,           _word,            NORMAL },
-   { xor_str,            _xor,             NORMAL },
+  { word_str,           _word,            NORMAL },
+  { xor_str,            _xor,             NORMAL },
 //   { left_bracket_str,   _left_bracket,    IMMEDIATE },
 //   { bracket_tick_str,   _bracket_tick,    IMMEDIATE },
 //   { bracket_char_str,   _bracket_char,    IMMEDIATE },
 //   { right_bracket_str,  _right_bracket,   NORMAL },
 
 #ifdef CORE_EXT_SET
-   { dot_paren_str,      _dot_paren,       IMMEDIATE },
+  { dot_paren_str,      _dot_paren,       IMMEDIATE },
 //   { zero_not_equal_str, _zero_not_equal,  NORMAL },
 //   { zero_greater_str,   _zero_greater,    NORMAL },
 //   { two_to_r_str,       _two_to_r,        NORMAL },
 //   { two_r_from_str,     _two_r_from,      NORMAL },
 //   { two_r_fetch_str,    _two_r_fetch,     NORMAL },
 //   { neq_str,            _neq,             NORMAL },
-   { hex_str,            _hex,             NORMAL },
+  { hex_str,            _hex,             NORMAL },
 //   { case_str,           _case,            IMMEDIATE + COMP_ONLY },    // CAL
 //   { of_str,             _of,              IMMEDIATE + COMP_ONLY },    // CAL
 //   { endof_str,          _endof,           IMMEDIATE + COMP_ONLY },    // CAL
 //   { endcase_str,        _endcase,         IMMEDIATE + COMP_ONLY },    // CAL
-   { help_str,           _help,            NORMAL },
+  { help_str,           _help,            NORMAL },
 #endif
 
 #ifdef DOUBLE_SET
@@ -241,10 +241,10 @@ const flashEntry_t flashDict[] = {
 #endif
 
 #ifdef TOOLS_SET
-   { dot_s_str,          _dot_s,           NORMAL },
-   { dump_str,           _dump,            NORMAL },
+  { dot_s_str,          _dot_s,           NORMAL },
+  { dump_str,           _dump,            NORMAL },
 //   { see_str,            _see,             NORMAL },
-   { words_str,          _words,           NORMAL },
+  { words_str,          _words,           NORMAL },
 #endif
 
 #ifdef SEARCH_SET
@@ -255,7 +255,7 @@ const flashEntry_t flashDict[] = {
 
 #ifdef EN_ARDUINO_OPS
 //   { freeMem_str,        _freeMem,         NORMAL },
-   { delay_str,          _delay,           NORMAL },
+  { delay_str,          _delay,           NORMAL },
 //   { pinWrite_str,       _pinWrite,        NORMAL },
 //   { pinMode_str,        _pinMode,         NORMAL },
 //   { pinRead_str,        _pinRead,         NORMAL },
@@ -268,6 +268,15 @@ const flashEntry_t flashDict[] = {
 //   { eeRead_str,         _eeprom_read,     NORMAL },
 //   { eeWrite_str,        _eeprom_write,    NORMAL },
 #endif
+
+
+#ifdef NEO_PIXEL
+
+  { rgb_str,            _rgb,             NORMAL }, // NORMAL
+  { pixel_str,          _pixel,           NORMAL }, // NORMAL
+  { cblink_str,         _cblink,          NORMAL }, // NORMAL
+
+#endif // #ifdef NEO_PIXEL
 
   { NULL,           NULL,    NORMAL }
 };

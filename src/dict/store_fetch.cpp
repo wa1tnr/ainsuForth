@@ -1,5 +1,5 @@
-// Sat Jun 24 20:27:02 UTC 2017
-// 4735-a0r-03-
+// Tue Jun 27 21:19:58 UTC 2017
+// 4735-a0s-00-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -69,6 +69,8 @@ void _two_store(void) {
 
 #endif
 
+
+// Stack Effect Diagram:  ( TOS-2  TOS-1  TOS -- )
 const char fill_str[] = "fill";
 // ( c-addr u char -- )
 // if u is greater than zero, store char in u consecutive characters of memory
@@ -81,7 +83,6 @@ void _fill(void) {
     *addr++ = ch;
   }
 }
-
 
 
 const char fetch_str[] = "@";

@@ -3,8 +3,12 @@
 
 // TODO: test c! and 2drop as well as allot and variable
 
-// BUGFIX: there was no 'ok' prompt for an empty command line.  Fixed.
+// Meanwhile:
 
+// +src/periph/neo_pixel.cpp
+// +cblink.cpp
+
+// BUGFIX: there was no 'ok' prompt for an empty command line.  Fixed.
 // +allot.cpp
 
 // +ASCII_DEL support 0x7f (mapped to BackSpace key)
@@ -20,9 +24,9 @@
 
 // ++store_fetch.cpp  ++getline.cpp  +dump.cpp  +store_fetch.cpp
 
-// KEPOK  STELDONE
+// KEPOK  CHOGUFE
 
-// PRIMITIVE FORTH - working 18 June  -  STELDONE   PARKEFF   MIXFULPO   CHUNZH
+// PRIMITIVE FORTH - working 18 June  -  CHOGUFE   STELDONE   PARKEFF   MIXFULPO
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
