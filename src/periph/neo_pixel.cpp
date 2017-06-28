@@ -9,10 +9,13 @@
 
 #include <Arduino.h>
 #include "../../yaffa.h"
+
+#ifdef HAS_NEO_PIXEL_LIB
 #include "neo_pixel.h"
 // #include "../../Error_Codes.h"
 
-#include <Adafruit_NeoPixel.h>
+#include <Adafruit_NeoPixel.h> // REQUIRED: https://github.com/adafruit/Adafruit_NeoPixel
+
 
 // Which pin on the Arduino is connected to the NeoPixels?
 #define PIN            8
@@ -147,3 +150,4 @@ void _pixel(void) {
     _darkNPX();
 }
 
+#endif

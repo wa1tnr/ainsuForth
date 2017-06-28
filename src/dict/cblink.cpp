@@ -14,9 +14,11 @@ const char cblink_str[] = "cblink";
 // ( -- )
 // Blink the NeoPixel.
 void _cblink(void) {
+#ifdef HAS_NEO_PIXEL_LIB
   _cyan();
   delay(300);
   _darkNPX();
+#endif
 }
 
 /******************************************************************************/

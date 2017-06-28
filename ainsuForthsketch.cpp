@@ -115,7 +115,9 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 void setup(void) {                
   uint16_t mem;
+#ifdef HAS_NEO_PIXEL_LIB
   setup_neoPixel();
+#endif
   Serial.begin(19200);        // Open serial communications:
   delay(9 * 100); // 900 ms
   _cblink();

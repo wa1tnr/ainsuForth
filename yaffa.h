@@ -10,6 +10,9 @@
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
 
+#ifdef HAS_NEO_PIXEL_LIB
+#undef HAS_NEO_PIXEL_LIB
+#endif
 
 #define EXT_KERN_ALLOT
 #define EXT_KERN_CONSTANT

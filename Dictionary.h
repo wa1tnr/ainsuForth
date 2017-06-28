@@ -7,8 +7,10 @@
 
 // #include "src/dict/commas.cpp"
 // #include "src/dict/dump.h"
+
 #include "src/dict/cblink.h"
-#include "src/periph/neo_pixel.h"
+// #include "src/periph/neo_pixel.h"
+
 #include "src/dict/help.h"
 #include "src/dict/allot.h"
 #include "src/dict/constant.h"
