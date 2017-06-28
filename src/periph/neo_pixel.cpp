@@ -1,5 +1,5 @@
-// Tue Jun 27 21:19:58 UTC 2017
-// 4735-a0s-00-
+// Wed Jun 28 17:53:29 UTC 2017
+// 4735-a0s-01-
 
 // Adafruit original header, but this sketch operates only
 // the one neopixel on the Feather M0 Express board:
@@ -113,6 +113,12 @@ void _blue(void) {
     _rgb();
 }
 
+void _dullMagenta(void) {
+    dStack_push(1);   // red
+    dStack_push(0);   // green
+    dStack_push(1);   // blue
+    _rgb();
+}
 
 void neoPixel(void) { // ainsuForth: invoke using the 'pixel' word
   // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.

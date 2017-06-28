@@ -11,6 +11,8 @@
 
 // Meanwhile:
 
+// +subtle_boot_changes (to ensure all serial.print messages are seen)
+
 // +char.cpp  char  [char]
 // +do_loop.cpp
 // +src/periph/neo_pixel.cpp

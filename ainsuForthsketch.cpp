@@ -1,5 +1,5 @@
-// Tue Jun 27 21:19:58 UTC 2017
-// 4735-a0s-00-
+// Wed Jun 28 17:53:29 UTC 2017
+// 4735-a0s-01-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -110,6 +110,16 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 
 
+void blink_m(void) {
+#ifdef HAS_NEO_PIXEL_LIB
+    delay(1200);
+    _mblink(); // magenta 100 ms blip on neoPixel
+    delay(1100);
+#endif
+    delay(100);
+    // 2500 ms is 24 pulses per minute
+}
+
 /******************************************************************************/
 /** Initialization                                                           **/
 /******************************************************************************/
@@ -118,10 +128,18 @@ void setup(void) {
 #ifdef HAS_NEO_PIXEL_LIB
   setup_neoPixel();
 #endif
+
+  // magentaDull();
   Serial.begin(19200);        // Open serial communications:
-  delay(9 * 100); // 900 ms
+  while (!Serial) {
+    blink_m();
+  }
+
+
+  delay(3 * 100); // 300 ms
   _cblink();
-  delay(9 * 100); // 900 ms
+  delay(3 * 100); // 300 ms
+
   // Serial.begin(57600);     // Open serial communications:
   // Serial.begin(115200);    // Open serial communications:
 

@@ -1,5 +1,5 @@
-// Tue Jun 27 21:19:58 UTC 2017
-// 4735-a0s-00-
+// Wed Jun 28 17:53:29 UTC 2017
+// 4735-a0s-01-
 
 #ifndef NEO_PIXEL
 #define NEO_PIXEL
@@ -9,6 +9,7 @@ extern void setup_neoPixel(void);
 extern void _cyan(void);
 extern void _orange(void);
 extern void _blue(void);
+extern void _dullMagenta(void);
 // extern void neoPixel(void);
 extern const char rgb_str[]; // = "rgb"; // local idiom yainsu
 extern void _rgb(void);
