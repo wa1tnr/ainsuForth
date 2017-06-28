@@ -4,8 +4,8 @@
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
 // scroll to end of file for intellectual property notices - wa1tnr
 
-// 10 June 2017: testing on Arduino M0 Pro only - not Feather M0 Express.
-//               Should make no difference.
+// 28 June 2017: testing now on Adafruit Feather M0 Express.
+//               Somewhat easily adapted to use with Arduino M0 Pro.
 
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
