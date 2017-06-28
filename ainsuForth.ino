@@ -11,6 +11,7 @@
 
 // Meanwhile:
 
+// +do_loop.cpp
 // +src/periph/neo_pixel.cpp
 // +cblink.cpp
 

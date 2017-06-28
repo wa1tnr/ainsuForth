@@ -15,6 +15,9 @@
 #endif
 
 #include "src/dict/help.h"
+
+#include "src/dict/do_loop.h"
+
 #include "src/dict/allot.h"
 #include "src/dict/constant.h"
 #include "src/dict/store_fetch.h"
