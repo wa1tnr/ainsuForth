@@ -10,8 +10,27 @@
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
 
-#ifdef HAS_NEO_PIXEL_LIB
-#undef HAS_NEO_PIXEL_LIB
+
+
+// -------  use this to switch between them   ---------
+
+#undef NEO_PIXEL_LIB_ENABLED  // swap these two
+#define NEO_PIXEL_LIB_ENABLED // swap these two
+
+// -------  use this to switch between them   ---------
+
+
+
+#ifdef NEO_PIXEL_LIB_ENABLED
+  #ifndef HAS_NEO_PIXEL_LIB
+    #define HAS_NEO_PIXEL_LIB
+  #endif
+#endif
+
+#ifndef NEO_PIXEL_LIB_ENABLED
+  #ifdef HAS_NEO_PIXEL_LIB
+    #undef HAS_NEO_PIXEL_LIB
+  #endif
 #endif
 
 #define EXT_KERN_ALLOT

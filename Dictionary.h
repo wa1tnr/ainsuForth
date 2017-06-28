@@ -9,7 +9,10 @@
 // #include "src/dict/dump.h"
 
 #include "src/dict/cblink.h"
-// #include "src/periph/neo_pixel.h"
+
+#ifdef HAS_NEO_PIXEL_LIB
+#include "src/periph/neo_pixel.h"
+#endif
 
 #include "src/dict/help.h"
 #include "src/dict/allot.h"

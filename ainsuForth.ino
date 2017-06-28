@@ -1,16 +1,11 @@
 // Tue Jun 27 01:07:58 UTC 2017
 // 4735-a0r-06-
 
-// THE INTENT OF this commit (circa 01:21z 28 June 2017) is
-// to allow the program to run on hardware that does not
-// support the Feather M0 onboard NeoPixel.
-
-// To that end, yaffa.h and Dictionary.h have been modified.
-// diff to see the slight changes.
-
-// ---------------------------------------------
-// The very next commit will undo these changes.
-// ---------------------------------------------
+// ------------------------------------------------------------------------
+// Wed 28th 01:55z:
+//  
+// This commit enables the NeoPixel lib.  Select in yaffa.h  for otherwise.
+// ------------------------------------------------------------------------
 
 // TODO: test c! and 2drop as well as allot and variable
 
