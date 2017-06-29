@@ -45,6 +45,32 @@ stack_t rStack;
 /**                          Core Forth Words                                 **/
 /*******************************************************************************/
 
+
+// hard to believe these haven't been instantiated yet:
+
+// const char c_comma_str[] = "c,";
+// ( char -- )
+// void _c_comma(void) {
+//   *(char*)pHere++ = (char)dStack_pop();
+// }
+
+
+
+// const char c_fetch_str[] = "c@";
+// ( c-addr -- char )
+// void _c_fetch(void) {
+//   uint8_t *addr = (uint8_t *) dStack_pop();
+//   dStack_push(*addr);
+// }
+
+
+// end: hard to believe these haven't been instantiated yet:
+
+
+
+
+
+
 #ifdef STACK_OPS_NOT    //   marked for deletion
                         //   see: stack_ops.cpp  for (identical) replacement code
 
@@ -428,35 +454,11 @@ void _word(void) {
 
 
 #ifndef MARKED_FOR_DELETE
-
 //   see: colon_semi.cpp for new location of this code.
-
 // const char colon_str[] = ":";
-// (C: "<space>name" -- colon-sys )
-// Skip leading space delimiters. Parse name delimited by a space. Create a
-// definition for name, called a "colon definition" Enter compilation state
-// and start the current definition, producing a colon-sys. Append the
-// initiation semantics given below to the current definition....
-// void _colon(void) {
-//   state = TRUE;
-//   dStack_push(COLON_SYS);
-//   openEntry();
-// }
-
+// void _colon(void) { }
 // const char semicolon_str[] = ";";
-// IMMEDIATE
-// Interpretation: undefined
-// Compilation: (C: colon-sys -- )
-// Run-time: ( -- ) (R: nest-sys -- )
-// void _semicolon(void) {
-//   if (dStack_pop() != COLON_SYS) {
-//     dStack_push(-22);
-//     _throw();
-//     return;
-//   }
-//   closeEntry();
-//   state = FALSE;
-// }
+// void _semicolon(void) { }
 #endif // marked for deletion.
 
 
@@ -478,13 +480,20 @@ void _word(void) {
 //   flags |= NUM_PROC;
 // }
 
-// const char eq_str[] = "=";
-// ( x1 x2 -- flag )
-// flag is true if and only if x1 is bit for bit the same as x2
-// void _eq(void) {
-//   if (dStack_pop() == dStack_pop()) dStack_push(TRUE);
-//   else dStack_push(FALSE);
-// }
+
+
+
+
+#ifndef MARKED_FOR_DELETE
+// const char eq_str[] = "="; // moved  to ../kernel/eq.cpp
+// void _eq(void) { }
+#endif
+
+
+
+
+
+
 
 // const char gt_str[] = ">";
 // ( n1 n2 -- flag )
@@ -493,6 +502,8 @@ void _word(void) {
 //   if (dStack_pop() < dStack_pop()) dStack_push(TRUE);
 //   else dStack_push(FALSE);
 // }
+
+
 
 // const char to_body_str[] = ">body";
 // ( xt -- a-addr )
@@ -510,11 +521,16 @@ void _word(void) {
 //   _throw();
 // }
 
+
+
 // const char to_in_str[] = ">in";
 // ( -- a-addr )
 // void _to_in(void) {
 //   dStack_push((size_t)&cpToIn);
 // }
+
+
+
 
 // const char to_number_str[] = ">number";
 // ( ud1 c-addr1 u1 -- ud2 c-addr u2 )
@@ -568,11 +584,18 @@ void _word(void) {
 //   dStack_push(len); // push the remading length of unresolved charaters
 // }
 
+
+
+
+
 // const char to_r_str[] = ">r";
 // ( x -- ) (R: -- x )
 // void _to_r(void) {
 //   rStack_push(dStack_pop());
 // }
+
+
+
 
 // const char question_dup_str[] = "?dup";
 // ( x -- 0 | x x )
@@ -585,6 +608,8 @@ void _word(void) {
 //   }
 // }
 
+
+
 // const char abort_str[] = "abort";
 // (i*x -- ) (R: j*x -- )
 // Empty the data stack and preform the function of QUIT, which includes emptying
@@ -593,6 +618,8 @@ void _word(void) {
 //   dStack_push(-1);
 //   _throw();
 // }
+
+
 
 // const char abort_quote_str[] = "abort\x22";
 // Interpretation: Interpretation semantics for this word are undefined.
@@ -615,6 +642,8 @@ void _word(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
+
+
 // const char accept_str[] = "accept";
 // ( c-addr +n1 -- +n2 )
 // void _accept(void) {
@@ -623,6 +652,8 @@ void _word(void) {
 //   length = getLine(addr, length);
 //   dStack_push(length);
 // }
+
+
 
 // const char align_str[] = "align";
 // ( -- )
@@ -640,29 +671,24 @@ void _word(void) {
 //   dStack_push(addr);
 // }
 
-// const char allot_str[] = "allot";
-// ( n -- )
-// if n is greater than zero, reserve n address units of data space. if n is less
-// than zero, release |n| address units of data space. If n is zero, leave the
-// data-space pointer unchanged.
-// void _allot(void) {
-//   cell_t* pNewHere = pHere + dStack_pop();
 
-  // Check that the new pHere is not outside of the forth space
-//   if (pNewHere >= &forthSpace[0] &&
-//       pNewHere < &forthSpace[FORTH_SIZE]) {
-//     pHere = pNewHere;      // Save the valid address
-//   } else {                 // Throw an exception
-//     dStack_push(-9);
-//     _throw();
-//   }
-// }
+
+
+#ifndef MARKED_FOR_DELETE
+// const char allot_str[] = "allot";
+// void _allot(void) { }
+#endif
+
+
+
 
 // const char base_str[] = "base";
 // ( -- a-addr)
 // void _base(void) {
 //   dStack_push((size_t)&base);
 // }
+
+
 
 // const char begin_str[] = "begin";
 // Interpretation: Interpretation semantics for this word are undefined.
@@ -676,6 +702,8 @@ void _word(void) {
 //   *pHere = 0;
 // }
 
+
+
 // const char bl_str[] = "bl";
 // ( -- char )
 // char is the character value for a space.
@@ -683,24 +711,15 @@ void _word(void) {
 //   dStack_push(' ');
 // }
 
-// const char c_comma_str[] = "c,";
-// ( char -- )
-// void _c_comma(void) {
-//   *(char*)pHere++ = (char)dStack_pop();
-// }
 
-// const char c_fetch_str[] = "c@";
-// ( c-addr -- char )
-// void _c_fetch(void) {
-//   uint8_t *addr = (uint8_t *) dStack_pop();
-//   dStack_push(*addr);
-// }
 
 // const char cell_plus_str[] = "cell+";
 // ( a-addr1 -- a-addr2 )
 // void _cell_plus(void) {
 //   dStack_push((size_t)(dStack_pop() + sizeof(cell_t)));
 // }
+
+
 
 // const char cells_str[] = "cells";
 // ( n1 -- n2 )
@@ -709,6 +728,9 @@ void _word(void) {
 //   dStack_push(dStack_pop()*sizeof(cell_t));
 // }
 
+
+
+#ifndef MARKED_FOR_DELETE
 // const char char_str[] = "char";
 // ( "<spaces>name" -- char )
 // Skip leading space delimiters. Parse name delimited by a space. Put the value
@@ -721,6 +743,9 @@ void _word(void) {
 //     _throw();
 //   }
 // }
+#endif
+
+
 
 // const char char_plus_str[] = "char+";
 // ( c-addr1 -- c-addr2 )
@@ -773,6 +798,7 @@ void _word(void) {
 //   dStack_push(dStack_size());
 // }
 
+#ifndef MARKED_FOR_DELETE
 // const char do_str[] = "do";
 // Compilation: (C: -- do-sys)
 // Run-Time: ( n1|u1 n2|u2 -- ) (R: -- loop-sys )
@@ -781,6 +807,7 @@ void _word(void) {
 //   *pHere++ = DO_SYS_IDX;
 //   dStack_push((size_t)pHere); // store the origin address of the do loop
 // }
+#endif
 
 // const char does_str[] = "does>";
 // Compilation: (C: colon-sys1 -- colon-sys2)
@@ -794,12 +821,14 @@ void _word(void) {
   // Start Subroutine coding
 // }
 
+#ifndef MARKED_FOR_DELETE
 // const char drop_str[] = "drop";
 // ( x -- )
 // Remove x from stack
 // void _drop(void) {
 //   dStack_pop();
 // }
+#endif
 
 
 
@@ -900,6 +929,7 @@ void _word(void) {
 #ifdef INT_KERN_EXIT
 #endif
 
+#ifndef MARKED_FOR_DELETE
 // const char fill_str[] = "fill";
 // ( c-addr u char -- )
 // if u is greater than zero, store char in u consecutive characters of memory
@@ -912,6 +942,7 @@ void _word(void) {
 //     *addr++ = ch;
 //   }
 // }
+#endif
 
 // const char find_str[] = "find";
 // ( c-addr -- c-addr 0 | xt 1 | xt -1)
@@ -1039,6 +1070,7 @@ void _word(void) {
 //   *pHere++ = 0;
 // }
 
+#ifndef MARKED_FOR_DELETE
 // const char literal_str[] = "literal";
 // Interpretation: undefined
 // Compilation: ( x -- )
@@ -1052,7 +1084,9 @@ void _word(void) {
 //     dStack_push(*ip++);
 //   }
 // }
+#endif
 
+#ifndef MARKED_FOR_DELETE
 // const char loop_str[] = "loop";
 // Interpretation: undefined
 // Compilation: (C: do-sys -- )
@@ -1075,6 +1109,9 @@ void _word(void) {
 //     _throw();
 //   }
 // }
+#endif
+
+
 
 // const char lshift_str[] = "lshift";
 // ( x1 u -- x2 )
@@ -1349,6 +1386,9 @@ void _word(void) {
 //   pHere += 1;
 // }
 
+
+
+#ifndef MARKED_FOR_DELETE
 // const char variable_str[] = "variable";
 // ( "<spaces>name" -- )
 // Parse name delimited by a space. Create a definition for name with the
@@ -1367,6 +1407,8 @@ void _word(void) {
 //     closeEntry();
 //   }
 // }
+#endif
+
 
 // const char while_str[] = "while";
 // Interpretation: Undefine
@@ -1417,6 +1459,8 @@ void _word(void) {
 //   }
 // }
 
+
+#ifndef MARKED_FOR_DELETE
 // const char bracket_char_str[] = "[char]";
 // Interpretation: Interpretation semantics for this word are undefined.
 // Compilation: ( "<space>name" -- )
@@ -1433,6 +1477,8 @@ void _word(void) {
 //     _throw();
 //   }
 // }
+#endif
+
 
 // const char right_bracket_str[] = "]";
 // ( -- )
