@@ -420,7 +420,6 @@ void _word(void) {
 //   dStack_push(dStack_pop() >> 1);
 // }
 
-// ###bookmark 23 Jun 22:29z
 
 // const char two_dup_str[] = "2dup";
 // ( x1 x2 -- x1 x2 x1 x2 )
@@ -452,18 +451,6 @@ void _word(void) {
 
 
 
-
-#ifndef MARKED_FOR_DELETE
-//   see: colon_semi.cpp for new location of this code.
-// const char colon_str[] = ":";
-// void _colon(void) { }
-// const char semicolon_str[] = ";";
-// void _semicolon(void) { }
-#endif // marked for deletion.
-
-
-
-
 // const char lt_str[] = "<";
 // ( n1 n2 -- flag )
 // void _lt(void) {
@@ -479,20 +466,6 @@ void _word(void) {
 //   *pPNO = '\0';
 //   flags |= NUM_PROC;
 // }
-
-
-
-
-
-#ifndef MARKED_FOR_DELETE
-// const char eq_str[] = "="; // moved  to ../kernel/eq.cpp
-// void _eq(void) { }
-#endif
-
-
-
-
-
 
 
 // const char gt_str[] = ">";
@@ -672,22 +645,11 @@ void _word(void) {
 // }
 
 
-
-
-#ifndef MARKED_FOR_DELETE
-// const char allot_str[] = "allot";
-// void _allot(void) { }
-#endif
-
-
-
-
 // const char base_str[] = "base";
 // ( -- a-addr)
 // void _base(void) {
 //   dStack_push((size_t)&base);
 // }
-
 
 
 // const char begin_str[] = "begin";
@@ -729,24 +691,6 @@ void _word(void) {
 // }
 
 
-
-#ifndef MARKED_FOR_DELETE
-// const char char_str[] = "char";
-// ( "<spaces>name" -- char )
-// Skip leading space delimiters. Parse name delimited by a space. Put the value
-// of its first character onto the stack.
-// void _char(void) {
-//   if(getToken()) {
-//     dStack_push(cTokenBuffer[0]);
-//   } else {
-//     dStack_push(-16);
-//     _throw();
-//   }
-// }
-#endif
-
-
-
 // const char char_plus_str[] = "char+";
 // ( c-addr1 -- c-addr2 )
 // void _char_plus(void) {
@@ -758,14 +702,6 @@ void _word(void) {
 // n2 is the size in address units of n1 characters.
 // void _chars(void) {
 // }
-
-
-
-
-// const char constant_str[] = "constant"; // marked for deletion
-// void _constant(void) { }
-
-
 
 
 // const char create_str[] = "create";
@@ -798,16 +734,6 @@ void _word(void) {
 //   dStack_push(dStack_size());
 // }
 
-#ifndef MARKED_FOR_DELETE
-// const char do_str[] = "do";
-// Compilation: (C: -- do-sys)
-// Run-Time: ( n1|u1 n2|u2 -- ) (R: -- loop-sys )
-// void _do(void) {
-//   dStack_push(DO_SYS);
-//   *pHere++ = DO_SYS_IDX;
-//   dStack_push((size_t)pHere); // store the origin address of the do loop
-// }
-#endif
 
 // const char does_str[] = "does>";
 // Compilation: (C: colon-sys1 -- colon-sys2)
@@ -821,18 +747,19 @@ void _word(void) {
   // Start Subroutine coding
 // }
 
+
+
+
+
 #ifndef MARKED_FOR_DELETE
-// const char drop_str[] = "drop";
-// ( x -- )
-// Remove x from stack
-// void _drop(void) {
-//   dStack_pop();
-// }
+// const char drop_str[] = "drop";   // moved to ../kernel/drop.cpp
+// void _drop(void) { }
 #endif
 
 
 
 
+// ###bookmark  Thu Jun 29 17:58:14 UTC 2017
 
 
 
