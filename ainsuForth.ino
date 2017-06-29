@@ -1,10 +1,8 @@
-// Wed Jun 28 17:53:29 UTC 2017
-// 4735-a0s-01-
+// Thu Jun 29 17:03:12 UTC 2017
+// 4735-b0a-00-
 
 // ------------------------------------------------------------------------
-// Wed 28th 01:55z:
-//  
-// This commit enables the NeoPixel lib.  Select in yaffa.h  for otherwise.
+//   reserved.  messages go here.
 // ------------------------------------------------------------------------
 
 // TODO: test c! and 2drop as well as allot and variable
@@ -18,25 +16,11 @@
 // +src/periph/neo_pixel.cpp
 // +cblink.cpp
 
-// BUGFIX: there was no 'ok' prompt for an empty command line.  Fixed.
-// +allot.cpp
-
-// +ASCII_DEL support 0x7f (mapped to BackSpace key)
-
-// +the constant word
-// +the fill word
-
-// BUGFIX: fill fell short by one byte of fill.  Now it fills as requested.
-
-// .s word -- reverse collated; gforth style delimiter
-
 // , 2drop c! - three words added to dictionary.
 
-// ++store_fetch.cpp  ++getline.cpp  +dump.cpp  +store_fetch.cpp
+// KEPOK  HABILLEAUX
 
-// KEPOK  CHOGUFE
-
-// PRIMITIVE FORTH - working 18 June  -  CHOGUFE   STELDONE   PARKEFF   MIXFULPO
+// PRIMITIVE FORTH - working 18 June  -  HABILLEAUX   CHOGUFE   STELDONE   PARKEFF
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

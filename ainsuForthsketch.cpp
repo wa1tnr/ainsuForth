@@ -1,4 +1,5 @@
-// Wed Jun 28 17:53:29 UTC 2017
+// Thu Jun 29 17:03:12 UTC 2017
+// 4735-b0a-00-
 // 4735-a0s-01-
 
 #include <Arduino.h>
@@ -151,7 +152,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  CHOGUFE--STELDONE"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  HABILLEAUX--CHOGUFE"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

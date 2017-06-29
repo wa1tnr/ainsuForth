@@ -1,5 +1,5 @@
-// Sun Jun 25 03:24:01 UTC 2017
-// 4735-a0r-04-
+// Thu Jun 29 17:03:12 UTC 2017
+// 4735-b0a-00-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -15,31 +15,24 @@ stack_t rStack;
 
 
 // marked for deletion: comma_str and _comma() in dict_entries.cpp (thisfile)
-// const char comma_str[] = ","; // now in flashDict.cpp 23 June 2017
-// static void _comma(void) { }
 
-// const char comma_str[] = ","; // status of the comma word? // see immediately above.
-// static void _comma(void) { }
+// aha. this also must live in flashDict.cpp because of 'static void':
+// static void _two_drop(void) { }
 
-
-// aha.
-// this also must live in flashDict.cpp because of 'static void':
-
-// const char two_drop_str[] = "2drop"; // ( x1 x2 -- ) // status? moved to flashDict.cpp.  marked for deletion.
+// 23 June: moved to bring attention to it temporarily: static void _two_drop(void);
+// const char two_drop_str[] = "2drop";
 // static void _two_drop(void) { }
 
 
-
-// 23 June: moved to bring attention to it temporarily: static void _two_drop(void);
-
-// const char two_drop_str[] = "2drop";
-// ( x1 x2 -- )
-// static void _two_drop(void) {
-//   dStack_pop();
-//   dStack_pop();
-// }
-
-
+// Forth words currently present (29 Jun 2017):
+// 
+//   exit literal type throw evaluate s" ." variable over =
+//   drop warm . - + * 0= ! , / 2drop : ; @ abs allot and c!
+//   char constant count cr decimal do dup emit fill here
+//   loop negate or quit rot space spaces swap u. word xor
+//   [char] .( hex help .s dump words delay
+// 
+//   neo_pixel: rgb pixel cblink 
 
 // Forth words currently present (22 Jun 2017):
 // 
@@ -62,10 +55,6 @@ stack_t rStack;
 
 
 // also marked for deletion: _store() and  _fetch()
-
-// const char c_store_str[] = "c!";        // marked for deletion.  see: store_fetch.cpp
-// void _c_store(void) { }                 // marked for deletion.  see: store_fetch.cpp
-
 
 // 23 June: moved to bring attention to it temporarily: void _two_fetch(void);
 
