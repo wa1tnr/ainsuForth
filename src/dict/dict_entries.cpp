@@ -14,15 +14,8 @@ stack_t dStack;
 stack_t rStack;
 
 
-// marked for deletion: comma_str and _comma() in dict_entries.cpp (thisfile)
-
 // aha. this also must live in flashDict.cpp because of 'static void':
 // static void _two_drop(void) { }
-
-// 23 June: moved to bring attention to it temporarily: static void _two_drop(void);
-// const char two_drop_str[] = "2drop";
-// static void _two_drop(void) { }
-
 
 // Forth words currently present (29 Jun 2017):
 // 
@@ -34,23 +27,19 @@ stack_t rStack;
 // 
 //   neo_pixel: rgb pixel cblink 
 
-// Forth words currently present (22 Jun 2017):
-// 
-//   exit literal type throw evaluate s" ." variable over = drop warm . - + 
-//   * 0= / : ; abs and count cr decimal dup emit negate or quit rot space spaces 
-//   swap u. word xor .( hex .s words delay 
-
 
 /*******************************************************************************/
 /**                          Core Forth Words                                 **/
 /*******************************************************************************/
 
 
-// hard to believe these haven't been instantiated yet:
+// ==>> hard to believe these haven't been instantiated yet:
 
 // When fill_str was being pruned, it turned up: c@ and company
 // were transferred to store_fetch.cpp  but are commented out
 // with cpp directives.
+
+
 
 // const char c_comma_str[] = "c,";
 // ( char -- )
@@ -68,7 +57,7 @@ stack_t rStack;
 // }
 
 
-// end: hard to believe these haven't been instantiated yet:
+// <<== end: hard to believe these haven't been instantiated yet.
 
 
 
@@ -79,8 +68,8 @@ stack_t rStack;
                         //   see: stack_ops.cpp  for (identical) replacement code
 
 // const char words_str[] = "words"; // see: stack_ops.cpp
-// void _words(void) { } // NOT PROOFREAD
-
+// void _words(void) { } //  PROOFREAD NOW the words word.
+//                           DIFF  ALSO  REQUIRED HERE --  UNDONE.
 #endif
 
 
