@@ -48,6 +48,10 @@ stack_t rStack;
 
 // hard to believe these haven't been instantiated yet:
 
+// When fill_str was being pruned, it turned up: c@ and company
+// were transferred to store_fetch.cpp  but are commented out
+// with cpp directives.
+
 // const char c_comma_str[] = "c,";
 // ( char -- )
 // void _c_comma(void) {
@@ -759,7 +763,6 @@ void _word(void) {
 
 
 
-// ###bookmark  Thu Jun 29 17:58:14 UTC 2017
 
 
 
@@ -853,22 +856,10 @@ void _word(void) {
 // }
 
 
-#ifdef INT_KERN_EXIT
-#endif
-
 #ifndef MARKED_FOR_DELETE
-// const char fill_str[] = "fill";
-// ( c-addr u char -- )
-// if u is greater than zero, store char in u consecutive characters of memory
-// beginning with c-addr.
-// void _fill(void) {
-//   char ch = (char)dStack_pop();
-//   cell_t limit = dStack_pop();
-//   char* addr = (char*)dStack_pop();
-//   for (int i = 1; i < limit; i++) {
-//     *addr++ = ch;
-//   }
-// }
+// ###bookmark  Thu Jun 29 17:58:14 UTC 2017
+// const char fill_str[] = "fill"; // moved to: store_fetch.cpp
+// void _fill(void) { }
 #endif
 
 // const char find_str[] = "find";
@@ -941,12 +932,16 @@ void _word(void) {
 //   }
 // }
 
+
+
 // const char i_str[] = "i";
 // Interpretation: undefined
 // Execution: ( -- n|u ) (R: loop-sys -- loop-sys )
 // void _i(void) {
 //   dStack_push(rStack_peek(1));
 // }
+
+
 
 // const char if_str[] = "if";
 // Compilation: (C: -- orig )
@@ -957,6 +952,7 @@ void _word(void) {
 //   dStack_push((size_t)pHere++);
 // }
 
+
 // const char immediate_str[] = "immediate";
 // ( -- )
 // make the most recent definition an immediate word.
@@ -966,12 +962,15 @@ void _word(void) {
 //   }
 // }
 
+
 // const char invert_str[] = "invert";
 // ( x1 -- x2 )
 // invert all bits in x1, giving its logical inverse x2
 // void _invert(void)   {
 //   dStack_push(~dStack_pop());
 // }
+
+
 
 // const char j_str[] = "j";
 // Interpretation: undefined
@@ -983,11 +982,15 @@ void _word(void) {
 //   dStack_push(rStack_peek(4));
 // }
 
+
+
 // const char key_str[] = "key";
 // ( -- char )
 // void _key(void) {
 //   dStack_push(getKey());
 // }
+
+
 
 // const char leave_str[] = "leave";
 // Interpretation: undefined
@@ -997,45 +1000,17 @@ void _word(void) {
 //   *pHere++ = 0;
 // }
 
-#ifndef MARKED_FOR_DELETE
-// const char literal_str[] = "literal";
-// Interpretation: undefined
-// Compilation: ( x -- )
-// Run-Time: ( -- x )
-// Place x on the stack
-// void _literal(void) {
-//   if (state) {
-//        *pHere++ = LITERAL_IDX;
-//     *pHere++ = dStack_pop();
-//   } else {
-//     dStack_push(*ip++);
-//   }
-// }
-#endif
+
 
 #ifndef MARKED_FOR_DELETE
-// const char loop_str[] = "loop";
-// Interpretation: undefined
-// Compilation: (C: do-sys -- )
-// Run-Time: ( -- ) (R: loop-sys1 -- loop-sys2 )
-// void _loop(void) {
-//   *pHere++ = LOOP_SYS_IDX;
-//   cell_t start_addr = dStack_pop();
-//   *pHere++ = start_addr;
-//   cell_t stop_addr = (cell_t)pHere;
-//   cell_t* ptr = (cell_t*)start_addr;
-//   do {
-//     if (*ptr++ == LEAVE_SYS_IDX) {
-//       if (*ptr == 0) {
-//         *ptr = stop_addr;
-//       }
-//     }
-//   } while (ptr != (cell_t*)stop_addr);
-//   if ( dStack_pop() != DO_SYS) {
-//     dStack_push(-22);
-//     _throw();
-//   }
-// }
+// const char literal_str[] = "literal";   // moved to: ../kernel/literal.cpp
+// void _literal(void) { }
+#endif
+
+
+#ifndef MARKED_FOR_DELETE
+// const char loop_str[] = "loop";   // moved to: do_loop.cpp
+// void _loop(void) { }
 #endif
 
 
@@ -1135,6 +1110,8 @@ void _word(void) {
 //   }
 // }
 
+
+
 // const char quit_str[] = "quit";
 // ( -- ) (R: i*x -- )
 // Empty the return stack, store zero in SOURCE-ID if it is present,
@@ -1145,6 +1122,8 @@ void _word(void) {
 //   Serial.flush();
 // }
 
+
+
 // const char r_from_str[] = "r>";
 // Interpretation: undefined
 // Execution: ( -- x ) (R: x -- )
@@ -1153,6 +1132,8 @@ void _word(void) {
 //   dStack_push(rStack_pop());
 // }
 
+
+
 // const char r_fetch_str[] = "r@";
 // Interpretation: undefined
 // Execution: ( -- x ) (R: x -- x)
@@ -1160,6 +1141,8 @@ void _word(void) {
 // void _r_fetch(void) {
 //   dStack_push(rStack_peek(0));
 // }
+
+
 
 // const char recurse_str[] = "recurse";
 // Interpretation: Interpretation semantics for this word are undefined
@@ -1170,6 +1153,8 @@ void _word(void) {
 // void _recurse(void) {
 //   *pHere++ = (size_t)pCodeStart;
 // }
+
+
 
 // const char repeat_str[] = "repeat";
 // Interpretation: undefined
@@ -1184,6 +1169,8 @@ void _word(void) {
 //   orig = (cell_t*)dStack_pop();
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
+
+
 
 // const char rshift_str[] = "rshift";
 // ( x1 u -- x2 )
@@ -1215,6 +1202,8 @@ void _word(void) {
 //   }
 // }
 
+
+
 // const char sm_slash_rem_str[] = "sm/rem";
 // ( d1 n1 -- n2 n3 )
 // Divide d1 by n1, giving the symmetric quotient n3 and remainder n2.
@@ -1224,6 +1213,8 @@ void _word(void) {
 //   dStack_push(d1 /  n1);
 //   dStack_push(d1 %  n1);
 // }
+
+
 
 // const char source_str[] = "source";
 // ( -- c-addr u )
@@ -1235,17 +1226,13 @@ void _word(void) {
 
 
 
-
-
-
-
-
 // const char state_str[] = "state";
 // ( -- a-addr )
 // a-addr is the address of the cell containing compilation state flag.
 // void _state(void) {
 //   dStack_push((size_t)&state);
 // }
+
 
 
 // const char then_str[] = "then";
@@ -1257,6 +1244,8 @@ void _word(void) {
 //   *orig = (size_t)pHere - (size_t)orig;
 // }
 
+
+
 // const char u_lt_str[] = "u<";
 // ( u1 u2 -- flag )
 // flag is true if and only if u1 is less than u2.
@@ -1264,6 +1253,8 @@ void _word(void) {
 //   if ((ucell_t)dStack_pop() > ucell_t(dStack_pop())) dStack_push(TRUE);
 //   else dStack_push(FALSE);
 // }
+
+
 
 // const char um_star_str[] = "um*";
 // ( u1 u2 -- ud )
@@ -1278,6 +1269,8 @@ void _word(void) {
 //   dStack_push(msb);
 // }
 
+
+
 // const char um_slash_mod_str[] = "um/mod";
 // ( ud u1 -- u2 u3 )
 // Divide ud by u1 giving quotient u3 and remainder u2.
@@ -1289,6 +1282,8 @@ void _word(void) {
 //   dStack_push(ud % u1);
 //   dStack_push(ud / u1);
 // }
+
+
 
 // const char unloop_str[] = "unloop";
 // Interpretation: Undefine
@@ -1303,6 +1298,8 @@ void _word(void) {
 //   }
 // }
 
+
+
 // const char until_str[] = "until";
 // Interpretation: Undefine
 // Compilation: (C: dest -- )
@@ -1314,7 +1311,7 @@ void _word(void) {
 // }
 
 
-
+// ###bookmark four   Thu Jun 29 18:37:12 UTC 2017
 #ifndef MARKED_FOR_DELETE
 // const char variable_str[] = "variable";
 // ( "<spaces>name" -- )
