@@ -2,6 +2,8 @@
 // 4735-b0a-00-
 // 4735-a0s-01-
 
+// WHELBUP
+
 #include <Arduino.h>
 #include "yaffa.h"
 #include "ainsuForthsketch.h"
@@ -152,7 +154,7 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  HABILLEAUX--CHOGUFE"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  KEPOK  WHELBUP--HABILLEAUX"); // instant confirmation
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

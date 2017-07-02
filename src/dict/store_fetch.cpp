@@ -1,10 +1,10 @@
-// Tue Jun 27 21:19:58 UTC 2017
-// 4735-a0s-00-
+// Sun Jul  2 20:55:24 UTC 2017
+// 4735-b0a-07-
 
+// r_fetch r_from to_r
 #include <Arduino.h>
 #include "../../yaffa.h"
-#include "../../flashDict.h"  // required?
-#include "../../Dictionary.h" // provides: #include "iasmd.h"
+#include "../../Dictionary.h"
 // #include "../../Error_Codes.h"
 
 /*******************************************************************************/
@@ -29,7 +29,6 @@ void _c_store(void) {
 // comma_str -- see flashDict.cpp
 
 
-#ifdef NEVER_DEFINED_ANYWHERE
 const char c_comma_str[] = "c,";
 // ( char -- )
 void _c_comma(void) {
@@ -67,8 +66,6 @@ void _two_store(void) {
   }
 }
 
-#endif
-
 
 // Stack Effect Diagram:  ( TOS-2  TOS-1  TOS -- )
 const char fill_str[] = "fill";
@@ -94,8 +91,6 @@ void _fetch(void) {
 }
 
 
-
-#ifdef NEVER_DEFINED_ANYWHERE
 const char two_fetch_str[] = "2@";  // \x40 == '@'
 // ( a-addr -- x1 x2 )
 // Fetch cell pair x1 x2 at a-addr. x2 is at a-addr, and x1 is at a-addr+1
@@ -140,7 +135,6 @@ void _to_r(void) {
   rStack_push(dStack_pop());
 }
 
-#endif
 
 /******************************************************************************/
 /**  YAFFA - Yet Another Forth for Arduino                                   **/

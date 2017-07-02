@@ -1,5 +1,5 @@
-// Tue Jun 20 21:33:06 UTC 2017
-// 4735-a0p-02-
+// Sun Jul  2 20:55:24 UTC 2017
+// 4735-b0a-07-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -8,7 +8,7 @@
 #ifdef EXT_KERN_STRINGS
 #include "strings.h"
 
-const char sp_str[] = " ";
+// const char sp_str[] = " ";
 const char hexidecimal_str[] = "$";
 const char octal_str[] = "0";
 const char binary_str[] = "%";

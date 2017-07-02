@@ -1,12 +1,12 @@
-// Sun Jul  2 03:11:48 UTC 2017
-// 4735-b0a-05-
+// Sun Jul  2 20:55:24 UTC 2017
+// 4735-b0a-07-
 
 // #include "src/kernel/getkey.h"
 // #include "src/kernel/getline.h"
 // #include "src/kernel/stacks.h"
 
 // #include "src/dict/commas.cpp"
-// #include "src/dict/dump.h"
+#include "src/dict/dump.h"
 
 #include "src/dict/cblink.h"
 
@@ -25,7 +25,7 @@
 #include "src/dict/allot.h"
 #include "src/dict/constant.h"
 #include "src/dict/store_fetch.h"
-// #include "src/dict/xttoname.h"
+#include "src/dict/xttoname.h"
 // #include "src/dict/colon_semi.h"
 #include "src/dict/stack_ops.h"
 #include "src/dict/iasmd.h"

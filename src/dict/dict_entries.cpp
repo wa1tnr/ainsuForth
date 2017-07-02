@@ -10,6 +10,7 @@
 const char not_done_str[] = " NOT Implemented Yet \n\r";
 
 const char sp_str[] = " "; // does not belong here
+const char tab_str[] = "\t"; // does not belong here
 stack_t dStack;
 stack_t rStack;
 
@@ -266,25 +267,21 @@ void _word(void) {
 //   dStack_push((ucell_t)(ud >> sizeof(ucell_t) * 8));
 // }
 
-// const char tick_str[] = "'";
+const char tick_str[] = "'";
 // ( "<space>name" -- xt)
 // Skip leading space delimiters. Parse name delimited by a space. Find name and
 // return xt, the execution token for name. An ambiguous condition exists if 
 // name is not found. When interpreting "' xyz EXECUTE" is equivalent to xyz.
-// void _tick(void) {
-//    push(' ');
-//    _word();
-//    _find();
-//    pop();
-//   if (getToken()) {
-//     if (isWord(cTokenBuffer)) {
-//       dStack_push(w);
-//       return; 
-//     }
-//   }
-//   dStack_push(-13);
-//   _throw();
-// }
+void _tick(void) {
+  if (getToken()) {
+    if (isWord(cTokenBuffer)) {
+      dStack_push(w);
+      return; 
+    }
+  }
+  dStack_push(-13);
+  _throw();
+}
 
 
 // const char paren_str[] = "(";
@@ -1661,55 +1658,55 @@ const char see_str[] = "see";
 // source of the representation (object-code decompilation, source block, etc.)
 // and the particular form of the display in implementation defined.
 void _see(void) {
-//   bool isLiteral, done;
+  bool isLiteral, done;
 
-//   _tick();
-//   if (errorCode) return;
-//   char flags = wordFlags;
-//   if (flags && IMMEDIATE)
-//     Serial.print("Immediate ");
-//   cell_t xt = dStack_pop();
-//   if (xt < 255) {
-//     Serial.print("Primitive Word");
-//   } else {
-//     cell_t* addr = (cell_t*)xt;
-//     Serial.print("\r\nCode Field Address: ");
-//     Serial.print((size_t)addr, HEX);
-//     Serial.print("\r\nAddr\tXT\tName");
-//     do {
-//       isLiteral = done = false;
-//       Serial.print("\r\n$");
-//       Serial.print((size_t)addr, HEX);
-//       Serial.print(tab_str);
-//       Serial.print(*addr, HEX);
-//       Serial.print(tab_str);
-//       xtToName(*addr);
-//       switch (*addr) {
-//         case 2:
-//           isLiteral = true;
-//         case 4:
-//         case 5:
-//           Serial.print("(");
-//           Serial.print(*++addr);
-//           Serial.print(")");
-//           break;
-//         case 13:
-//         case 14:
-//           Serial.print(sp_str);
-//           char *ptr = (char*)++addr;
-//           do {
-//             Serial.print(*ptr++);
-//           } while (*ptr != 0);
-//           Serial.print("\x22");
-//           addr = (cell_t *)ptr;
-//           ALIGN_P(addr);
-//           break;
-//       }
+  _tick();
+  if (errorCode) return;
+  char flags = wordFlags;
+  if (flags && IMMEDIATE)
+    Serial.print("Immediate ");
+  cell_t xt = dStack_pop();
+  if (xt < 255) {
+    Serial.print("Primitive Word");
+  } else {
+    cell_t* addr = (cell_t*)xt;
+    Serial.print("\r\nCode Field Address: ");
+    Serial.print((size_t)addr, HEX);
+    Serial.print("\r\nAddr\tXT\tName");
+    do {
+      isLiteral = done = false;
+      Serial.print("\r\n$");
+      Serial.print((size_t)addr, HEX);
+      Serial.print(tab_str);
+      Serial.print(*addr, HEX);
+      Serial.print(tab_str);
+      xtToName(*addr);
+      switch (*addr) {
+        case 2:
+          isLiteral = true;
+        case 4:
+        case 5:
+          Serial.print("(");
+          Serial.print(*++addr);
+          Serial.print(")");
+          break;
+        case 13:
+        case 14:
+          Serial.print(sp_str);
+          char *ptr = (char*)++addr;
+          do {
+            Serial.print(*ptr++);
+          } while (*ptr != 0);
+          Serial.print("\x22");
+          addr = (cell_t *)ptr;
+          ALIGN_P(addr);
+          break;
+      }
       // We're done if exit code but not a literal with value of one
-//       done = ((*addr++ == 1) && (! isLiteral));
-//     } while (! done);
-//   }
-//   Serial.println();
+      done = ((*addr++ == 1) && (! isLiteral));
+    } while (! done);
+  }
+  Serial.println();
 }
 
 #endif

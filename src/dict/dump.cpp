@@ -1,5 +1,5 @@
-// Thu Jun 22 20:49:39 UTC 2017
-// 4735-a0p-04-
+// Sun Jul  2 20:55:24 UTC 2017
+// 4735-b0a-07-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -12,7 +12,7 @@
 /*******************************************************************************/
 #ifdef TOOLS_SET
 const char zero_str[] = "0"; // was in: ainsuForthsketch.cpp
-const char sp_str[] = " ";
+// const char sp_str[] = " ";
 const char tab_str[] = "\t";
 
 const char dump_str[] = "dump";

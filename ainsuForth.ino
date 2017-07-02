@@ -1,5 +1,17 @@
-// Sun Jul  2 03:11:48 UTC 2017
-// 4735-b0a-05-
+// Sun Jul  2 20:55:24 UTC 2017
+// 4735-b0a-07-
+
+// KEPOK  WHELBUP
+
+// the 'see' word was reinstated.  Appears to function well.  2 July 22:44z
+
+// several words are now untested. 2 July 22:45z
+
+// ++store_fetch.cpp
+// ++dict_entries.cpp
+// major housekeeping: dict_entries.h
+
+// quite a bit of juggling.  Mistakes made?
 
 // ------------------------------------------------------------------------
 //   reserved.  messages go here.
@@ -16,8 +28,6 @@
 // +cblink.cpp
 
 // , 2drop c! - three words added to dictionary.
-
-// KEPOK  HABILLEAUX
 
 // PRIMITIVE FORTH - working 18 June  -  HABILLEAUX   CHOGUFE   STELDONE   PARKEFF
 

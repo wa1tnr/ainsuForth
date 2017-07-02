@@ -2,7 +2,7 @@
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
 /**  Version 0.7.0                                                           **/
 /**                                                                          **/
-/**  File: YAFFA-ARM.ino  the ONLY changed line in this file, 06 JUNE 2017.  **/
+/**  File: YAFFA.ino                                                         **/
 /**  Copyright (C) 2012 Stuart Wood (swood@rochester.rr.com)                 **/
 /**                                                                          **/
 /**  This file is part of YAFFA.                                             **/
