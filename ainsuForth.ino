@@ -1,5 +1,5 @@
-// Thu Jun 29 17:03:12 UTC 2017
-// 4735-b0a-00-
+// Sun Jul  2 03:11:48 UTC 2017
+// 4735-b0a-05-
 
 // ------------------------------------------------------------------------
 //   reserved.  messages go here.
@@ -9,8 +9,7 @@
 
 // Meanwhile:
 
-// +subtle_boot_changes (to ensure all serial.print messages are seen)
-
+// +max_min.cpp   max  min
 // +char.cpp  char  [char]
 // +do_loop.cpp
 // +src/periph/neo_pixel.cpp

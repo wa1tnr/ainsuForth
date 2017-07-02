@@ -1,5 +1,5 @@
-// Wed Jun 28 17:53:29 UTC 2017
-// 4735-a0s-01-
+// Sun Jul  2 03:11:48 UTC 2017
+// 4735-b0a-05-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -171,8 +171,8 @@ const flashEntry_t flashDict[] = {
   { loop_str,           _loop,            IMMEDIATE + COMP_ONLY },
 //   { lshift_str,         _lshift,          NORMAL },
 //   { m_star_str,         _m_star,          NORMAL },
-//   { max_str,            _max,             NORMAL },
-//   { min_str,            _min,             NORMAL },
+  { max_str,            _max,             NORMAL },
+  { min_str,            _min,             NORMAL },
 //   { mod_str,            _mod,             NORMAL },
 //   { move_str,           _move,            NORMAL },
   { negate_str,         _negate,          NORMAL },

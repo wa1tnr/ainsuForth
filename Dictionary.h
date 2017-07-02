@@ -1,5 +1,5 @@
-// Wed Jun 28 17:53:29 UTC 2017
-// 4735-a0s-01-
+// Sun Jul  2 03:11:48 UTC 2017
+// 4735-b0a-05-
 
 // #include "src/kernel/getkey.h"
 // #include "src/kernel/getline.h"
@@ -16,6 +16,8 @@
 
 #include "src/dict/help.h"
 
+
+#include "src/dict/max_min.h"
 
 #include "src/dict/char.h"
 #include "src/dict/do_loop.h"
