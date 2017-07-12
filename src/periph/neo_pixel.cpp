@@ -18,7 +18,8 @@
 
 
 // Which pin on the Arduino is connected to the NeoPixels?
-#define PIN            8
+#define PIN               40 // peculiar to Metro M0 Express.  Feather M0 Express: PIN 8
+// #define PIN             8 // peculiar to Feather M0 Express.  Metro M0 Express: PIN 40
 
 // How many NeoPixels are attached to the Arduino?
 #define NUMPIXELS      1
