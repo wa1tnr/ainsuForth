@@ -1,6 +1,0 @@
-efa7e11a15bebceac659317b70e44ef4  ainsuSPI_all_src_flatfile-part-a.txt
-16469861d0c6bbd92e2f036b016a3b96  ainsuSPI_all_src_flatfile-part-b.txt
-50d7afbe82e0953d2f3646626ab51c38  ainsuSPI_all_src_flatfile.txt
-fd751c9a1e5644164305e057ebcbfcf9  ls-la.txt
-7fc46f3ed3702ebe708a119cf73b414f  md5sum.txt
-6b19abca0f08283a1b8cc25d8c48d48f  TEMPORARY
