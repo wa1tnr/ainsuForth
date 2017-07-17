@@ -1,0 +1,8 @@
+total 53148
+drwxr-xr-x 2 ainsu ainsu     4096 Jul 17 03:03 .
+drwxr-xr-x 3 ainsu ainsu     4096 Jul 17 02:58 ..
+-rw-r--r-- 1 ainsu ainsu 27262976 Jul 17 03:01 ainsuSPI_all_src_flatfile-part-a.txt
+-rw-r--r-- 1 ainsu ainsu 27072473 Jul 17 03:01 ainsuSPI_all_src_flatfile-part-b.txt
+-rw-r--r-- 1 ainsu ainsu       67 Jul 17 01:55 ainsuSPI_all_src_flatfile.txt
+-rw-r--r-- 1 ainsu ainsu       36 Jul 17 03:02 md5sum.txt
+-rw-r--r-- 1 ainsu ainsu      104 Jul 17 01:55 TEMPORARY
