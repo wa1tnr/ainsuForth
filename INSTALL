@@ -14,11 +14,15 @@ Basic Installation
    Briefly, you are looking at a skeleton file acting as a place-
 holder for any installation instructions offered.
 
-  1. Install something.
-  2. Install something else.  Then install a thing.  Continue installing
+  1. July 2017: configured for Circuit Playground Express (#3333).
+
+     src/periph/neo_pixel.cpp is affected (pin 8 vs pin 40 of the Metro)
+
+  2. Install something.
+  3. Install something else.  Then install a thing.  Continue installing
      until installation is complete.
-  3. These three line items are meant as place-holders for instructions,
-     rather than as instructions.
+  4. These last three line items (2, 3 and 4) are meant as place-holders
+     for instructions, rather than as instructions.
 
 
 Compilers and Options
