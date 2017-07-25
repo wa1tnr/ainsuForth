@@ -15,6 +15,11 @@
 // : srgb npx 7 1 1 rgb ;  ok
 // : drgb npx 0 0 0 rgb ;  ok // drgb means dark rgb
 
+// nice blank word:
+// : bl npx 0 0 0 rgb ;  ok
+// ex.
+// 3 bl 4 bl 5 bl ok   blanks neoPixels #3, 4 and 5.
+
 #include <Arduino.h>
 #include "../../yaffa.h"
 
