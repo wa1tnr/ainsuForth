@@ -14,9 +14,36 @@ Basic Installation
    Briefly, you are looking at a skeleton file acting as a place-
 holder for any installation instructions offered.
 
-  1. July 2017: configured for Circuit Playground Express (#3333).
+  1. July 2017: configured for Circuit Playground Express (#3333),
+                which is the current target MCU under development.
+
+                This changes frequently, and may be near the top
+                of the list of gotchas to watch for: a different
+                'Express' series target (Feather M0, Metro M0, et al.)
+                can break compiles -- or can crash the target MCU
+                after an upload (generally easy to resolve).
+
+                Note that this is not an Arduino IDE problem -- it
+                persists even after proper selection of the target
+                MCU in the Arduino IDE interface.
+
+                The problem is that, currently, ainsuForth does not
+                (always) detect (or compensate for) a change in
+                targets.  It is only periodically tested against
+                each of these four SAMD21 design targets:
+
+                       Arduino M0 Pro
+                       Adafruit Feather M0 Express
+                       Adafruit Metro M0 Express
+                       Adafruit Circuit Playground Express (#3333)
+     Currently:
 
      src/periph/neo_pixel.cpp is affected (pin 8 vs pin 40 of the Metro)
+
+     There may be other target-specific issues to resolve, when
+     using another target MCU board in this (Adafruit Express SAMD21) family.
+
+     Eventually, some kind of #define-based configuration may be employed.
 
   2. Install something.
   3. Install something else.  Then install a thing.  Continue installing
