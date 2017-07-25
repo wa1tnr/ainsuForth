@@ -2,12 +2,12 @@
 
 A Forth for ATSAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
 
-Current platform is the Adafruit Feather M0 Express - PRODUCT ID: 3403 
+Current platform is the Adafruit Circuit Playground Express - PRODUCT ID: 3333 
 which is ATSAMD21 Cortex M0+ based.
 
-Tue Jun  6 03:03:57 UTC 2017
+Tue Jul 25 08:06:29 UTC 2017
 
-ce3bc
+df2ed
 
 old:
 
