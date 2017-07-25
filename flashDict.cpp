@@ -1,5 +1,5 @@
-// Sun Jul  2 20:55:24 UTC 2017
-// 4735-b0a-07-
+// Tue Jul 25 07:27:48 UTC 2017
+// 4735-b0a-09-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -272,6 +272,8 @@ const flashEntry_t flashDict[] = {
 
 #ifdef NEO_PIXEL
 
+  { npx_str,            _npx,             NORMAL }, // NORMAL
+  { npx_fetch_str,      _npx_fetch,       NORMAL }, // NORMAL
   { rgb_str,            _rgb,             NORMAL }, // NORMAL
   { pixel_str,          _pixel,           NORMAL }, // NORMAL
   { cblink_str,         _cblink,          NORMAL }, // NORMAL

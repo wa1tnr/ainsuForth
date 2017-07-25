@@ -1,11 +1,19 @@
-// Wed Jun 28 17:53:29 UTC 2017
-// 4735-a0s-01-
+// Tue Jul 25 07:27:48 UTC 2017
+// 4735-b0a-09-
 
 // Adafruit original header, but this sketch operates only
 // the one neopixel on the Feather M0 Express board:
 
 // NeoPixel Ring simple sketch (c) 2013 Shae Erisson
 // released under the GPLv3 license to match the rest of the AdaFruit NeoPixel library
+
+
+// define a series of words ?rgb such as:
+// : rrgb npx 1 1 7 rgb ;  ok
+// ... that point to different colors (replace 1 1 7 with another rgb triple)
+// ex.
+// : srgb npx 7 1 1 rgb ;  ok
+// : drgb npx 0 0 0 rgb ;  ok // drgb means dark rgb
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -18,11 +26,13 @@
 
 
 // Which pin on the Arduino is connected to the NeoPixels?
-#define PIN               40 // peculiar to Metro M0 Express.  Feather M0 Express: PIN 8
+// #define PIN               40 // peculiar to Metro M0 Express.  Feather M0 Express: PIN 8
 // #define PIN             8 // peculiar to Feather M0 Express.  Metro M0 Express: PIN 40
+#define PIN             8 // circuit playground Express
 
 // How many NeoPixels are attached to the Arduino?
-#define NUMPIXELS      1
+#define NUMPIXELS      10 // circuit playground Express
+// #define NUMPIXELS      1 // other Adafruit SAMD21 boards
 
 // When we setup the NeoPixel library, we tell it how many pixels,
 // and which pin to use to send signals.
@@ -32,6 +42,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 int delayval = 300;
 int delaySval = 110;
 
+int neoPixelNumber = 0; // zero is a legal value and names the first pixel in the string
 
 void setup_neoPixel(void) {
   pixels.begin(); // This initializes the NeoPixel library.
@@ -67,6 +78,17 @@ void _rgbp(void) { // ( n3 n2 n1 -- n1 n2 n3 )
     _swap();
 }
 
+const char npx_str[] = "npx"; // local idiom ainsuForth - select which neopixel in a string of them
+void _npx(void) { // ( pixel_number_in_string -- )
+  neoPixelNumber = dStack_pop(); // set a global to TOS, destructively
+}
+
+const char npx_fetch_str[] = "npx@"; // local idiom ainsuForth - fetch the npx number
+void _npx_fetch(void) { // ( -- npx_number )
+  dStack_push(neoPixelNumber);
+}
+
+
 const char rgb_str[] = "rgb"; // local idiom ainsuForth
 
 void _rgb(void) { // ( red green blue -- )
@@ -79,7 +101,9 @@ void _rgb(void) { // ( red green blue -- )
     //   dStack_push(150); // green
     //   dStack_push(0); // red
 
-    pixels.setPixelColor(i, pixels.Color(dStack_pop(), dStack_pop(), dStack_pop()));
+    _npx_fetch();
+
+    pixels.setPixelColor(dStack_pop(), pixels.Color(dStack_pop(), dStack_pop(), dStack_pop()));
     pixels.show();
 }
 
@@ -94,8 +118,8 @@ void _darkNPX(void) { // darken the neoPixel
 
 void _cyan(void) {
     dStack_push(0);   // red
-    dStack_push(19);  // green
-    dStack_push(19);  // blue
+    dStack_push(1);  // green
+    dStack_push(1);  // blue
     _rgb();
 }
 
@@ -124,16 +148,22 @@ void _dullMagenta(void) {
 void neoPixel(void) { // ainsuForth: invoke using the 'pixel' word
   // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.
 
-  for(int i=0;i<NUMPIXELS;i++){
+  for(int i=0;i<NUMPIXELS;i++){ // i=0 originally
 
     // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-    pixels.setPixelColor(i, pixels.Color(150,0,0)); // Red
+    pixels.setPixelColor(i, pixels.Color(1,0,0)); // Red
     pixels.show(); // This sends the updated pixel color to the hardware.
     delay(delayval); // Delay for a period of time (in milliseconds).
 
-    pixels.setPixelColor(i, pixels.Color(0,150,0)); // Green
+    pixels.setPixelColor(i, pixels.Color(0,1,0)); // Green
     pixels.show();
     delay(delayval);
+
+    pixels.setPixelColor(i, pixels.Color(0,0,1)); // Blue
+    pixels.show();
+    delay(delayval);
+
+
 
     _orange();
     delay(delaySval);
@@ -154,7 +184,7 @@ void neoPixel(void) { // ainsuForth: invoke using the 'pixel' word
 const char pixel_str[] = "pixel"; // local idiom ainsuForth
 void _pixel(void) {
     neoPixel();
-    _darkNPX();
+    // _darkNPX();
 }
 
 #endif
