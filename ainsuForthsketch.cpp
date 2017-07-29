@@ -1,5 +1,5 @@
-// Sat Jul 29 18:14:02 UTC 2017
-// 4735-b0b-01-
+// Sat Jul 29 20:58:55 UTC 2017
+// 4735-b0b-02-
 
 // poor practice -- hard coded the answer:
 // #ifdef HAS_DOTSTAR_LIB
@@ -200,7 +200,7 @@ void setup(void) {
   
   Serial.print("\n warm boot message - early bird.  //  Gemma M0 29 Jul 2017\r\n          type 'warm' to reboot"); // instant confirmation
 
-  Serial.println("/home/mylogin/ainsuForth-Gemma_M0-TEST-a SEEN.\r\n");
+  // Serial.println("\r\nainsuForth -- main dev -- SEEN.\r\n    KELEFICOO  21:10z or later.\r\n");
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

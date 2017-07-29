@@ -1,6 +1,6 @@
-# ainsuForth-Gemma_M0
+# ainsuForth
 
-SNAPSHOT - Gemma M0 - 29 July 2017
+Platform: Gemma M0 - 29 July 2017
 
 A Forth for SAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
 
@@ -14,7 +14,7 @@ Current platform is the Adafruit Gemma M0 - PRODUCT ID: 3501
 which is ATSAMD21 Cortex M0+ based.
 ------------------------------------------------------------
 
-This changes frequently -- five different targets are
+Platform will change frequently -- five different targets are
 tested on a (somewhat) rotating basis:
 
   * Arduino M0 Pro
@@ -23,9 +23,9 @@ tested on a (somewhat) rotating basis:
   * Adafruit Circuit Playground Express (which is also an M0 board)
   * Adafruit Gemma M0
 
-Sat Jul 29 18:14:02 UTC 2017
+Sat Jul 29 21:16:27 UTC 2017
 
-ce9ba
+da3fc
 
 old:
 
