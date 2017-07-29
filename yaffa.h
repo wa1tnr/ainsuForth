@@ -1,24 +1,25 @@
-// Mon Jun 26 00:56:18 UTC 2017
-// 4735-a0r-05-
+// Sat Jul 29 08:59:32 UTC 2017
+// 4735-b0b-00-
+
+// 29 July -- not proofread very well.  Needs testing.  See diff.
+
+#define AINSU_ON_ADAFRUIT_GEMMA
 
 /**  YAFFA - Yet Another Forth for Arduino                                   **/
 // scroll to end of file for intellectual property notices - wa1tnr
 
-// 28 June 2017: testing now on Adafruit Feather M0 Express.
+// 29 July 2017: testing now on Adafruit Gemma M0, and Circuit Playround Express.
 //               Somewhat easily adapted to use with Arduino M0 Pro.
 
 #ifndef __YAFFA_H__
 #define __YAFFA_H__
 
-
-
 // -------  use this to switch between them   ---------
 
-#undef NEO_PIXEL_LIB_ENABLED  // swap these two
 #define NEO_PIXEL_LIB_ENABLED // swap these two
+#undef NEO_PIXEL_LIB_ENABLED  // swap these two
 
 // -------  use this to switch between them   ---------
-
 
 
 #ifdef NEO_PIXEL_LIB_ENABLED
@@ -33,10 +34,10 @@
   #endif
 #endif
 
+
 #define EXT_KERN_ALLOT
 #define EXT_KERN_CONSTANT
 #define EXT_KERN_XTTONAME
-// #define INT_KERN_XTTONAME
 #define EXT_KERN_STRINGS
 #define EXT_KERN_SIGN_ON
 #define EXT_KERN_ENTRY
@@ -63,39 +64,9 @@
 #define EXT_KERN_QUIT
 #define EXT_KERN_SUBROUTINE
 #define EXT_KERN_ZJUMP
-
-// -----------------------------------------------------------------------
-// 
-// either/or:
-// 
-// do not define both the INT_ and the EXT_ version of each #define below.
-// 
-// because, that would be bad.
-// 
-// -----------------------------------------------------------------------
-
-// choose one, not both, of the following two lines:
 #define EXT_KERN_TYPE
-// #define INT_KERN_TYPE
-
-// choose one, not both, of the following two lines:
 #define EXT_KERN_DO_SYS
-// #define INT_KERN_DO_SYS
-
-// They mean, roughly, 'use the external code for the definition of type()
-// and of do_sys()' .. or, alternately, use the internal ('orginal') code
-// for those functions.  That's what the EXT_ and INT_ prefixes specify --
-// external or internal versions of the same code.
-
-// One aim of this project is to externalize much of the code, to a separate
-// source file, per function.
-
-// You got this.   10 June 2017  de  wa1tnr
-
 #define EXT_KERN_DOT_QUOTE
-// #define INT_KERN_DOT_QUOTE
-
-
 
 /******************************************************************************/
 /** Memory Alignment Macros                                                  **/
@@ -144,9 +115,18 @@ typedef uint64_t udcell_t;
 /**                 Definitions names shall is TOKEN_SIZE - 1 characters.    **/
 /**   FORTH_SIZE  - Size of Forth Space in bytes                             **/
 /******************************************************************************/
-#if defined(__SAMD21G18A__) // Arduino Zero
-  static const unsigned long SRAM_SIZE = 32;
+#if defined(__SAMD21G18A__) | (__SAMD21E18A__)
+
+static const unsigned long SRAM_SIZE = 32;
+
+#if       defined(__SAMD21G18A__) // Arduino Zero, Adafruit Feather M0, Feather M0 Express, Metro M0 Express, Circuit Playground Express
   #define PROC_STR "SAMD21G18A"
+#endif
+
+#if       defined(__SAMD21E18A__) // Adafruit Gemma M0
+  #define PROC_STR "SAMD21E18A"
+#endif
+
 //  #define STRING_SIZE   31
   #define HOLD_SIZE     64
   #define PAD_SIZE      128
@@ -162,7 +142,6 @@ typedef uint64_t udcell_t;
 
 static const unsigned long FORTH_SIZE    ((SRAM_SIZE*1024*2)/(sizeof(cell_t)*3));
   
-
 
 /*******************************************************************************/
 /**                       Enable Dictionary Word Sets                         **/

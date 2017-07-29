@@ -1,13 +1,15 @@
 # ainsuForth
 
-A Forth for ATSAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
+A Forth for SAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
 
-Current platform is the Adafruit Circuit Playground Express - PRODUCT ID: 3333 
+Has SAMD21E18A support.
+
+Current platform is the Adafruit Gemma M0 - PRODUCT ID: 3501
 which is ATSAMD21 Cortex M0+ based.
 
-Tue Jul 25 08:06:29 UTC 2017
+Sat Jul 29 08:59:32 UTC 2017
 
-df2ed
+ce9ba
 
 old:
 

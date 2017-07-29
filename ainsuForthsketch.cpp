@@ -1,6 +1,5 @@
-// Thu Jun 29 17:03:12 UTC 2017
-// 4735-b0a-00-
-// 4735-a0s-01-
+// Sat Jul 29 08:59:32 UTC 2017
+// 4735-b0b-00-
 
 // WHELBUP
 
@@ -113,15 +112,40 @@ uint8_t base;  // stores the number conversion radix
 /******************************************************************************/
 
 
+void blink(void) {
+  dStack_push(1); dStack_push(13);
+
+  pinMode(     dStack_pop(), dStack_pop());
+
+  dStack_push(1); dStack_push(13);
+
+  digitalWrite(dStack_pop(), dStack_pop());
+
+  delay(100); // bad technique
+
+  dStack_push(0); dStack_push(13);
+  digitalWrite(dStack_pop(), dStack_pop());
+
+  delay(10); // bad technique
+
+}
+
+
+
 void blink_m(void) {
 #ifdef HAS_NEO_PIXEL_LIB
     delay(1200);
     _mblink(); // magenta 100 ms blip on neoPixel
     delay(1100);
+#else
+    delay(1200);
+    blink();
+    delay(1100);
 #endif
     delay(100);
     // 2500 ms is 24 pulses per minute
 }
+
 
 /******************************************************************************/
 /** Initialization                                                           **/

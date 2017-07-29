@@ -1,5 +1,5 @@
-// Sun Jul  2 20:55:24 UTC 2017
-// 4735-b0a-07-
+// Sat Jul 29 08:59:32 UTC 2017
+// 4735-b0b-00-
 
 // count word evaluate : ; c, here 
 
@@ -23,4 +23,14 @@ extern void _here(void);
 
 extern const char see_str[]; // = "see";
 extern void _see(void);
+
+extern const char pinWrite_str[]; // = "pinWrite";
+extern void _pinWrite(void);
+
+extern const char pinMode_str[]; // = "pinMode";
+extern void _pinMode(void);
+
+extern const char pinRead_str[]; // = "pinRead";
+extern void _pinRead(void);
+
 

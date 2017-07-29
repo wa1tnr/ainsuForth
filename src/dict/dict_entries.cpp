@@ -1750,14 +1750,18 @@ const char freeMem_str[] = "freeMem";
 void _freeMem(void) { 
 //   dStack_push(freeMem());
 }
+#endif
 
+#define EN_PIN_WRITE_MODE_READ
+#ifdef  EN_PIN_WRITE_MODE_READ
 const char pinWrite_str[] = "pinWrite";
 // ( u1 u2 -- )
 // Write a high (1) or low (0) value to a digital pin
 // u1 is the pin and u2 is the value ( 1 or 0 ). To turn the LED attached to
 // pin 13 on type "13 1 pinwrite" p.s. First change its pinMode to output
 void _pinWrite(void) {
-//   digitalWrite(dStack_pop(), dStack_pop());
+  digitalWrite(dStack_pop(), dStack_pop());
+  // digitalWrite(13, HIGH);
 }
 
 const char pinMode_str[] = "pinMode";
@@ -1766,14 +1770,18 @@ const char pinMode_str[] = "pinMode";
 // u1 is the pin and u2 is the mode ( 1 or 0 ). To control the LED attached to
 // pin 13 to an output type "13 1 pinmode"
 void _pinMode(void) {
-//   pinMode(dStack_pop(), dStack_pop());
+  pinMode(dStack_pop(), dStack_pop());
+  // pinMode(13, OUTPUT);
 }
 
 const char pinRead_str[] = "pinRead";
 void _pinRead(void) {
-//   dStack_push(digitalRead(dStack_pop()));
+  dStack_push(digitalRead(dStack_pop()));
 }
+#endif
 
+
+#ifdef EN_ARDUINO_OPS
 const char analogRead_str[] = "analogRead";
 void _analogRead(void) {
 //   dStack_push(analogRead(dStack_pop()));

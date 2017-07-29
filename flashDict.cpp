@@ -1,5 +1,5 @@
-// Tue Jul 25 07:27:48 UTC 2017
-// 4735-b0a-09-
+// Sat Jul 29 08:59:32 UTC 2017
+// 4735-b0b-00-
 
 #include <Arduino.h>
 #include "yaffa.h"
@@ -256,9 +256,9 @@ const flashEntry_t flashDict[] = {
 #ifdef EN_ARDUINO_OPS
 //   { freeMem_str,        _freeMem,         NORMAL },
   { delay_str,          _delay,           NORMAL },
-//   { pinWrite_str,       _pinWrite,        NORMAL },
-//   { pinMode_str,        _pinMode,         NORMAL },
-//   { pinRead_str,        _pinRead,         NORMAL },
+  { pinWrite_str,       _pinWrite,        NORMAL },
+  { pinMode_str,        _pinMode,         NORMAL },
+  { pinRead_str,        _pinRead,         NORMAL },
 //   { analogRead_str,     _analogRead,      NORMAL },
 //   { analogWrite_str,    _analogWrite,     NORMAL },
 //   { to_name_str,        _toName,          NORMAL },
