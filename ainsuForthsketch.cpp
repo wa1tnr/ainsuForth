@@ -1,5 +1,15 @@
-// Sat Jul 29 08:59:32 UTC 2017
-// 4735-b0b-00-
+// Sat Jul 29 18:14:02 UTC 2017
+// 4735-b0b-01-
+
+// poor practice -- hard coded the answer:
+// #ifdef HAS_DOTSTAR_LIB
+#ifndef HAS_DOTSTAR_LIB
+#define HAS_DOTSTAR_LIB
+#endif
+
+#ifdef HAS_DOTSTAR_LIB
+#include "src/periph/dotstar.h"
+#endif
 
 // WHELBUP
 
@@ -111,6 +121,8 @@ uint8_t base;  // stores the number conversion radix
 
 /******************************************************************************/
 
+// gemma M0 has dotstar:  D3 is data   D4 is clock
+
 
 void blink(void) {
   dStack_push(1); dStack_push(13);
@@ -133,6 +145,11 @@ void blink(void) {
 
 
 void blink_m(void) {
+#ifdef HAS_DOTSTAR_LIB
+    loop_dotstar();
+#endif
+
+
 #ifdef HAS_NEO_PIXEL_LIB
     delay(1200);
     _mblink(); // magenta 100 ms blip on neoPixel
@@ -156,6 +173,9 @@ void setup(void) {
   setup_neoPixel();
 #endif
 
+#ifdef HAS_DOTSTAR_LIB
+  setup_dotstar();
+#endif
   // magentaDull();
   Serial.begin(19200);        // Open serial communications:
   while (!Serial) {

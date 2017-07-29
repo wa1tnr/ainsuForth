@@ -1,5 +1,5 @@
-// Thu Jun 29 17:03:12 UTC 2017
-// 4735-b0a-00-
+// Sat Jul 29 18:14:02 UTC 2017
+// 4735-b0b-01-
 
 #include <Arduino.h>
 #include "../../yaffa.h"
@@ -1757,8 +1757,10 @@ void _freeMem(void) {
 const char pinWrite_str[] = "pinWrite";
 // ( u1 u2 -- )
 // Write a high (1) or low (0) value to a digital pin
-// u1 is the pin and u2 is the value ( 1 or 0 ). To turn the LED attached to
-// pin 13 on type "13 1 pinwrite" p.s. First change its pinMode to output
+// u1 is the pin and u2 is the value ( 1 or 0 ). To turn on the LED
+// attached to D13, first change its pinMode to OUTPUT.  Then,
+// type "1 13 pinWrite".  "0 13 pinWrite" will (correspondingly) turn off
+// the LED on D13.
 void _pinWrite(void) {
   digitalWrite(dStack_pop(), dStack_pop());
   // digitalWrite(13, HIGH);
@@ -1767,8 +1769,9 @@ void _pinWrite(void) {
 const char pinMode_str[] = "pinMode";
 // ( u1 u2 -- )
 // Set the specified pin behavior to either an input (0) or output (1)
-// u1 is the pin and u2 is the mode ( 1 or 0 ). To control the LED attached to
-// pin 13 to an output type "13 1 pinmode"
+// u1 is the pin and u2 is the mode ( 1 or 0 ).
+// The LED is attached to the GPIO pin assigned to D13, on most Arduino devices.
+// To set this port pin to an OUTPUT, type "1 13 pinMode".
 void _pinMode(void) {
   pinMode(dStack_pop(), dStack_pop());
   // pinMode(13, OUTPUT);
