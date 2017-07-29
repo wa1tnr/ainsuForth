@@ -133,12 +133,12 @@ void blink(void) {
 
   digitalWrite(dStack_pop(), dStack_pop());
 
-  delay(100); // bad technique
+  delay(11); // bad technique
 
   dStack_push(0); dStack_push(13);
   digitalWrite(dStack_pop(), dStack_pop());
 
-  delay(10); // bad technique
+  delay(3); // bad technique
 
 }
 
@@ -198,7 +198,9 @@ void setup(void) {
   pHere = &forthSpace[0];
   pOldHere = pHere;
   
-  Serial.print("\n warm boot message - early bird.  //  KEPOK  WHELBUP--HABILLEAUX"); // instant confirmation
+  Serial.print("\n warm boot message - early bird.  //  Gemma M0 29 Jul 2017\r\n          type 'warm' to reboot"); // instant confirmation
+
+  Serial.println("/home/mylogin/ainsuForth-Gemma_M0-TEST-a SEEN.\r\n");
 
   delay(9 * 100); // 900 ms - optional - useful when coded for a 4+ second delay
                   // to give the operator time to task switch from upload

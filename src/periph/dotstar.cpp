@@ -16,7 +16,7 @@ void setup_dotstar() {
   strip.show();  // Turn all LEDs off ASAP
 }
 
-int      head  = 0, tail = -10; // Index of first 'on' and 'off' pixels
+int      head  = 0, tail = -3;  // Index of first 'on' and 'off' pixels
 uint32_t color = 0x010000;      // 'On' color (starts red)
 
 void loop_dotstar() {
@@ -31,6 +31,9 @@ void loop_dotstar() {
       color = 0x010000;             //   Yes, reset to red
   }
   if(++tail >= NUMPIXELS) tail = 0; // Increment, reset tail index
+
+Serial.println("\r\nWent off tail.  Bye from dotstar.");
+
 }
 
 // END

@@ -1761,6 +1761,24 @@ const char pinWrite_str[] = "pinWrite";
 // attached to D13, first change its pinMode to OUTPUT.  Then,
 // type "1 13 pinWrite".  "0 13 pinWrite" will (correspondingly) turn off
 // the LED on D13.
+
+// Note: if you typed "hex" you must enter everything in hexadecimal
+// (there is no notation, just type the digits with no symbols to
+// mark the number base).
+
+// Thus,
+
+//     hex 1 d pinMode 1 d pinWrite 7d0 delay 0 d pinWrite
+
+// will set the PinMode to OUTPUT, and pulse the LED on for 2 seconds
+// (0x7d0 milliseconds).
+
+// Afterwards, try
+
+//    777 dup 10 dump
+
+// just to demonstrate that data entry is currently in hexadecimal.
+
 void _pinWrite(void) {
   digitalWrite(dStack_pop(), dStack_pop());
   // digitalWrite(13, HIGH);

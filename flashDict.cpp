@@ -222,6 +222,7 @@ const flashEntry_t flashDict[] = {
 //   { endof_str,          _endof,           IMMEDIATE + COMP_ONLY },    // CAL
 //   { endcase_str,        _endcase,         IMMEDIATE + COMP_ONLY },    // CAL
   { help_str,           _help,            NORMAL },
+  { who_str,            _who,             NORMAL }, // who is this target? dump shows it.
 #endif
 
 #ifdef DOUBLE_SET

@@ -1,4 +1,6 @@
-# ainsuForth
+# ainsuForth-Gemma_M0
+
+SNAPSHOT - Gemma M0 - 29 July 2017
 
 A Forth for SAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
 
