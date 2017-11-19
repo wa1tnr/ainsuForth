@@ -1,7 +1,124 @@
-// Fri Jun  9 02:32:35 UTC 2017
+// Sun Nov 19 03:57:49 UTC 2017
+// Sun Nov 19 02:54:46 UTC 2017
+// 4735-b0c-07b-   the -07x- is new Nov 19, 2017.
+
+// old:
 // 4735-a0f
 
+// previous timestamp:
+// Fri Jun  9 02:32:35 UTC 2017
+
 HARDWARE.local.txt
+
+19 Nov 2017 update:
+
+This is a simple commit series (on this calendar date) to
+ensure which platform (apparently, the Gemma M0) is currently
+compiled-for.  There are several.  And it changes rapidly.
+
+The goal is to make ainsuForth compatible with a wider
+variety of Adafruit-vended M0 target boards (Metro M0
+Express, Gemma M0, Arduino M0 Pro, and others).
+
+Flavor of the day happens to be the Gemma M0 (19 Nov 2017).
+
+If memory serves, the Gemma M0 is unique in that it has the
+onboard dotstar (a kind of colour LED) whereas most of the
+other targets (from Adafruit) have the NeoPixel, rather than
+the dotstar.
+
+They use different libraries and are not equivalent, except
+perhaps to the end user, who sees 'a colored LED' on the
+Gemma M0.
+
+Behavior
+
+The Gemma M0 wearable target is somewhere near the size of
+a quarter-dollar coin (USA coinage).  It has the dotstar,
+which is lit (sequentially) through three colours (green,
+red, blue).  Prior to that, there's some colors that flash
+quickly on the dotstar (magenta, then green?) 
+Behavior
+
+The Gemma M0 wearable target is somewhere near the size of
+a quarter-dollar coin (USA coinage).  It has the dotstar,
+which is lit (sequentially) through three colours (green,
+red, blue).  Prior to that, there's some colors that flash
+quickly on the dotstar (magenta, then green?).
+
+The three-color strobe is there just to let the human know
+things are going well inside the SAMD21E18A MCU.
+
+Once the three-color strobe has finished (it iterates just
+once) the fixed-color LED continues to flash, to (again)
+let the human know something is going on.
+
+The design calls for this: that something be flashing,
+continually, once the unit is powered on.  This is provided
+to allow a human to plug it into a power source and know
+that a given status is active.
+
+Specifically, that status is 'waiting for a serial connection
+through the USB port'.  It wants something to talk to.  That
+is why it is blinking.
+
+ONCE CONNECTED TO, using a serial terminal type of program
+(putty, for example) the red fixed-color LED will stop
+blinking.  Instead, an interactive prompt should appear
+in the terminal (the Gemma M0 will emit ANSI escape sequences,
+including some that change the colour of the text being
+sent to the terminal).
+
+To see this in action, connect to the Gemma M0 over the
+USB port.  In the reference host system, microcom was
+used at 115200 bps and the name of the port generated
+by the target SAMD21 stamp is (in Linux) /dev/ttyACM0.
+
+ $ microcom -s 115200 -p /dev/ttyACM0 
+
+On the terminal will be seen:
+
+connected to /dev/ttyACM0
+Escape character: Ctrl-\
+Type the escape character followed by c to get to the menu or q to quit
+
+ warm boot message - early bird.  //  Gemma M0 29 Jul 2017
+          type 'warm' to reboot
+
+     ainsuForth - 2017 - wa1tnr    words: 79  
+         YAFFA - Yet Another Forth For Arduino, 
+         Copyright (C) 2012 Stuart Wood
+
+- - - - - - - -
+
+From there, type 'words' for a current list of defined
+forth words available for use, or 'help' to remind you
+that it's 'words' rather than 'help' -- or 'warm' if
+you wanted to reboot without touching anything but the
+terminal's keyboard.  That gives a warm boot (a software-
+commanded reset).  See the source for how this is
+accomplished:
+
+    from ../src/kernel/warm.cpp
+
+    #include "warm.h"
+    const char warm_str[] = "warm";
+    void _warm(void) {
+        NVIC_SystemReset();      // processor software reset
+    }
+
+That's all non-specific to Gemma M0 so it's a bit redundant
+to discuss it in this HARDWARE.local.txt file.
+
+What is specific to the Gemma M0 is use of the dotstar LED, which
+was described (see above).
+
+---------------- this line ---------
+
+Everything below this line is stale information, in November, 2017.
+Some of it will be accidentally true (will still be current).  Some,
+may not (was not looked at for months, nor recently).
+
 
 
   pin 18 is A4 - the LCD backlight driver is presently
