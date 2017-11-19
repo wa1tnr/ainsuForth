@@ -32,4 +32,13 @@ very short term - rapidly out of date.
      APPEARS TO BE AN ERROR that can be ignored for the moment
      (19 November 2017).
 
+     $ pwd
+       .arduino15/packages/adafruit/hardware/samd/1.0.18/variants/gemma_m0
+
+     $ cat -n variant.h | egrep SPI
+       117   * SPI Interfaces
+       119  #define SPI_INTERFACES_COUNT 0 // :( not enough pins
+
+     Not sure how this (SPI lib) is getting pulled in, at compile time.
+
 END.
