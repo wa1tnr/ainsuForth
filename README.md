@@ -1,10 +1,10 @@
 # ainsuForth
 
-Platform: Gemma M0 - 29 July 2017
+Platform: Gemma M0 - 19 November 2017
 
 A Forth for SAMD21G18A based on YAFFA-ARM Forth - 2012 by Stuart Wood.
 
-Has SAMD21E18A support.
+Has SAMD21E18A support (for Gemma M0)
 
 See compatibility.h for (some) configuration options across
 target board devices.
@@ -17,15 +17,16 @@ which is ATSAMD21 Cortex M0+ based.
 Platform will change frequently -- five different targets are
 tested on a (somewhat) rotating basis:
 
+  * Adafruit Gemma M0
   * Arduino M0 Pro
   * Adafruiit Feather M0 Express
   * Adafruit Metro M0 Express
   * Adafruit Circuit Playground Express (which is also an M0 board)
-  * Adafruit Gemma M0
 
-Sat Jul 29 21:16:27 UTC 2017
+Sun Nov 19 03:57:49 UTC 2017
+   4735-b0c-07e-
 
-da3fc
+02ddc
 
 old:
 
