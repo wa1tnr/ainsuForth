@@ -1,5 +1,5 @@
-// Sun Nov 19 04:34:38 UTC 2017
-// 4735-b0c-07g-   the -07x- is new Nov 19, 2017.
+// Sun Nov 19 04:45:07 UTC 2017
+// 4735-b0c-07h-   the -07x- is new Nov 19, 2017.
 
 // modified: use D13 not D18 for the red LED when target is Gemma M0
 
@@ -37,16 +37,25 @@ Behavior
 
 The Gemma M0 wearable target is somewhere near the size of
 a quarter-dollar coin (USA coinage).  It has the dotstar,
-which is lit (sequentially) through three colours (green,
-red, blue).  Prior to that, there's some colors that flash
-quickly on the dotstar (magenta, then green?).
+which, in this ainsuForth Arduino-based project, is lit
+(sequentially lit) through three colours (first green, then
+red, then blue at the most dim level).  Prior to that, there
+are some colors that flash quickly on the dotstar (magenta,
+then green?)
 
-The three-color strobe is there just to let the human know
-things are going well inside the SAMD21E18A MCU.
+The three-color strobe is there, during the initialization,
+just to let the human know that the code is running according
+to plan, inside the SAMD21E18A MCU.
+
+The three-color strobe is a specific signature, unique to
+this Gemma M0 variant of ainsuForth.
 
 Once the three-color strobe has finished (it iterates just
 once) the fixed-color LED continues to flash, to (again)
 let the human know something is going on.
+
+Later, all flashing stops.  But only when the system is
+fully, interactively connected to a terminal.
 
  . . .
 
@@ -58,6 +67,7 @@ that a given status is active.
 Specifically, that status is 'waiting for a serial connection
 through the USB port'.  It wants something to talk to.  That
 is why it is blinking.
+
 
 ONCE CONNECTED TO, using a serial terminal type of program
 (putty, for example) the red fixed-color LED will stop
