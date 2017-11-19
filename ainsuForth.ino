@@ -1,5 +1,10 @@
+// Sun Nov 19 02:54:46 UTC 2017
+// 4735-b0c-07b-   the -07x- is new Nov 19, 2017.
+
+// previous timestamp:
 // Sat Jul 29 21:25:24 UTC 2017
-// 4735-b0b-03-
+
+// for Gemma M0 19 November 2017 - this can and does change.  Presently, correct, though.
 
 // TENFEET
 // CPHUU   KELEFICOO   MICHANDULO   KANLFEGR
