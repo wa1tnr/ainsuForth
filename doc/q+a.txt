@@ -29,8 +29,16 @@ very short term - rapidly out of date.
   A: Probably for another target.  We are Gemma M0 right now --
      no room for an SPI flash chip on this target.
 
+     No room for a connection to the SPI bus on this tiny target stamp, iirc.
+
+     The chip (of course) can still try to access an SPI device,
+     even when one isn't connected to it.
+
+     Primary difficulty is any flashROM the SPI lib eats, when
+     stored there (but never called by any software routine).
+
      APPEARS TO BE AN ERROR that can be ignored for the moment
-     (19 November 2017).
+     (19 November 2017).  SPI lib eats a bit of storage, is all.
 
      $ pwd
        .arduino15/packages/adafruit/hardware/samd/1.0.18/variants/gemma_m0
