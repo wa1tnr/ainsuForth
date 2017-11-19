@@ -1,0 +1,6 @@
+Sun Nov 19 03:57:49 UTC 2017
+
+On November 19, the *current* target board for ainsuForth was
+confirmed to be the Gemma M0.  This can (and does) change, all
+the time, as the goal is to support many SAMD21 variants (most
+supported target boards are Adafruit products).
