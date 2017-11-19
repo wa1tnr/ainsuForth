@@ -1,11 +1,11 @@
+// Sun Nov 19 04:15:36 UTC 2017
+// 4735-b0c-07f-   the -07x- is new Nov 19, 2017.
+
+// modified: use D13 not D18 for the red LED when target is Gemma M0
+
+// previous timestamps:
 // Sun Nov 19 03:57:49 UTC 2017
 // Sun Nov 19 02:54:46 UTC 2017
-// 4735-b0c-07b-   the -07x- is new Nov 19, 2017.
-
-// old:
-// 4735-a0f
-
-// previous timestamp:
 // Fri Jun  9 02:32:35 UTC 2017
 
 HARDWARE.local.txt
@@ -128,13 +128,27 @@ may not (was not looked at for months, nor recently).
                  NeoPixel needs a library).
 
 
+Forth code to be typed into ainsuForth (19 Nov 2017):
+
 : testLED
- 1 18 pinMode ( p18 GPIO: OUTPUT )
- 1 18 pinWrite ( p18 HIGH: LED is ON )
+ 1 13 pinMode
+ 1 13 pinWrite
+ 5 1000 *
+ delay
+ 0 13 pinWrite
+;
+
+That's enough to demo the system (in a very basic way).
+
+
+: testLED-with-comments
+ 1 13 pinMode ( p18 GPIO: OUTPUT )
+ 1 13 pinWrite ( p18 HIGH: LED is ON )
  5 1000 * ( 5000: 5 seconds )
  delay
- 0 18 pinWrite ( p18 LOW: LED is OFF )
+ 0 13 pinWrite ( p18 LOW: LED is OFF )
 ;
+
 
 
 relevant code in this Forth (Dictionary.cpp):
