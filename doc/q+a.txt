@@ -1,0 +1,8 @@
+Sun Nov 19 04:27:26 UTC 2017
+
+questions and answers
+
+very short term - rapidly out of date.
+
+  Q: Why the SPI lib right now?
+  A: Probably for another target.  We are Gemma M0 right now -- no room for an SPI flash chip on this target.  APPEARS TO BE AN ERROR that can be ignored for the moment (19 November 2017).
