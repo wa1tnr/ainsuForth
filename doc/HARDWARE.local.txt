@@ -1,5 +1,5 @@
-// Sun Nov 19 04:15:36 UTC 2017
-// 4735-b0c-07f-   the -07x- is new Nov 19, 2017.
+// Sun Nov 19 04:34:38 UTC 2017
+// 4735-b0c-07g-   the -07x- is new Nov 19, 2017.
 
 // modified: use D13 not D18 for the red LED when target is Gemma M0
 
@@ -31,13 +31,8 @@ They use different libraries and are not equivalent, except
 perhaps to the end user, who sees 'a colored LED' on the
 Gemma M0.
 
-Behavior
 
-The Gemma M0 wearable target is somewhere near the size of
-a quarter-dollar coin (USA coinage).  It has the dotstar,
-which is lit (sequentially) through three colours (green,
-red, blue).  Prior to that, there's some colors that flash
-quickly on the dotstar (magenta, then green?) 
+
 Behavior
 
 The Gemma M0 wearable target is somewhere near the size of
@@ -52,6 +47,8 @@ things are going well inside the SAMD21E18A MCU.
 Once the three-color strobe has finished (it iterates just
 once) the fixed-color LED continues to flash, to (again)
 let the human know something is going on.
+
+ . . .
 
 The design calls for this: that something be flashing,
 continually, once the unit is powered on.  This is provided
