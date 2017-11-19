@@ -1,7 +1,9 @@
-// Sun Nov 19 02:36:45 UTC 2017
-// 4735-b0c-07-   the -07- is new Nov 19, 2017.
+// Sun Nov 19 03:57:49 UTC 2017
+// 4735-b0c-07e-   the -07x- is new Nov 19, 2017.
 
-// previous timestamp:
+// previous timestamps:
+// Sun Nov 19 02:54:46 UTC 2017
+// Sun Nov 19 02:36:45 UTC 2017
 // Wed Aug  2 18:04:12 UTC 2017
 // 
 // compiled without change in November 2017, presumably for the Gemma M0 from Adafruit:
@@ -45,3 +47,7 @@
 // + npx x10  + SPI flash 2MB
 // CRYSTALLESS ARDUINO_SAMD_ZERO __SAMD21G18A__ ADAFRUIT_CIRCUITPLAYGROUND_M0
 
+
+// Adafruit GEMMA M0 - Miniature wearable electronic platform
+// PRODUCT ID: 3501
+// $9.95  on  19 Nov 2017
