@@ -1,4 +1,4 @@
-Sun Nov 19 05:09:54 UTC 2017
+Sun Nov 19 05:17:34 UTC 2017
 
 questions and answers
 
@@ -26,4 +26,10 @@ very short term - rapidly out of date.
      whatever colour it was, when you intercepted!
 
   Q: Why the SPI lib right now?
-  A: Probably for another target.  We are Gemma M0 right now -- no room for an SPI flash chip on this target.  APPEARS TO BE AN ERROR that can be ignored for the moment (19 November 2017).
+  A: Probably for another target.  We are Gemma M0 right now --
+     no room for an SPI flash chip on this target.
+
+     APPEARS TO BE AN ERROR that can be ignored for the moment
+     (19 November 2017).
+
+END.
