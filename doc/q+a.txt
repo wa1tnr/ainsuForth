@@ -1,4 +1,4 @@
-Sun Nov 19 05:17:34 UTC 2017
+Sun Nov 19 06:03:05 UTC 2017
 
 questions and answers
 
@@ -24,6 +24,27 @@ very short term - rapidly out of date.
      (with parameters, as previously given).  If you do so early
      enough after a 'warm' you'll freeze-frame the dotstar in
      whatever colour it was, when you intercepted!
+
+     later..
+
+     void blink_m(void) {
+     #ifdef HAS_DOTSTAR_LIB
+         loop_dotstar();   // src/periph/dotstar.cpp
+     #endif
+
+
+     /** Initialization  **/
+     void setup(void) {
+         uint16_t mem;
+     #ifdef HAS_DOTSTAR_LIB
+         setup_dotstar();
+     #endif
+
+     Serial.begin(19200);  // Open serial communications:
+     while (!Serial) {     // until a connection is made
+       blink_m();          // this is what gets intercepted
+     }
+
 
   Q: Why the SPI lib right now?
   A: Probably for another target.  We are Gemma M0 right now --
