@@ -1,8 +1,29 @@
-Sun Nov 19 04:27:26 UTC 2017
+Sun Nov 19 05:09:54 UTC 2017
 
 questions and answers
 
 very short term - rapidly out of date.
+
+  Q: Hey, how come the dotstar is blue and not changing?
+  A: Error!  Connect to the stamp (via USB) a bit sooner than
+     expected, and the tri-color strobe does not complete (at
+     least, sometimes, it doesn't).  Mine's halted on blue.
+     No harm, no foul.  Continue.
+
+     You can cause this error on purpose by using the 'warm'
+     word, then quickly reconnecting to the target via USB
+     (at least on Linux and when using microcom, you can).
+
+     It depends on how you make the serial connection
+     (via USB) happen.  There seems to be more than one way
+     to do it.
+
+     With microcom, after a 'warm' you get an 'Invalid argument'
+     error (from microcom, perhaps?) and regain the system shell
+     (bash for most people).  From there, just 'microcom' again
+     (with parameters, as previously given).  If you do so early
+     enough after a 'warm' you'll freeze-frame the dotstar in
+     whatever colour it was, when you intercepted!
 
   Q: Why the SPI lib right now?
   A: Probably for another target.  We are Gemma M0 right now -- no room for an SPI flash chip on this target.  APPEARS TO BE AN ERROR that can be ignored for the moment (19 November 2017).
