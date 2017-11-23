@@ -1,8 +1,10 @@
-// Thu Nov 23 00:45:23 UTC 2017
-// 4735-b0c-07t-   the -07x- is new Nov 19, 2017.
+// Thu Nov 23 02:01:47 UTC 2017
+// 4735-b0c-07v-   the -07x- is new Nov 19, 2017.
 
+// Thu Nov 23 00:45:23 UTC 2017
 
 // previous timestamp:
+// Thu Nov 23 00:45:23 UTC 2017
 // Wed Nov 22 21:43:39 UTC 2017
 // Tue Jun 20 21:33:06 UTC 2017
 // 4735-a0p-02-
@@ -140,7 +142,7 @@ const char dot_paren_str[] = ".(";
 void _dot_paren(void) { 
   dStack_push(')');
   _word();
-  _count_par(); // has the fixes (below) appended
+  _count(); // has the fixes (below) appended
   // _swap();
   // uint8_t* addr = (uint8_t*)dStack_pop();
   // *addr++;  *addr++;  *addr++;

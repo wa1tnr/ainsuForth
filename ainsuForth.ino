@@ -1,7 +1,10 @@
-// Thu Nov 23 00:45:23 UTC 2017
-// 4735-b0c-07t-   the -07x- is new Nov 19, 2017.
+// Thu Nov 23 02:01:47 UTC 2017
+// 4735-b0c-07v-   the -07x- is new Nov 19, 2017.
+
+// Hitherto and FORMERLY: checked.  23 Nov 2017 at 01:22z
 
 // previous timestamps:
+// Thu Nov 23 00:45:23 UTC 2017
 // Wed Nov 22 21:43:39 UTC 2017
 // Sun Nov 19 06:40:33 UTC 2017
 // Sun Nov 19 06:03:05 UTC 2017

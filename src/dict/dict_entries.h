@@ -6,8 +6,8 @@
 
 // count word evaluate : ; c, here 
 
-extern const char count_par_str[]; // = "countpar";
-extern void _count_par(void);
+// extern const char count_par_str[]; // = "countpar";
+// extern void _count_par(void);
 
 extern const char count_str[]; // = "count";
 extern void _count(void);
