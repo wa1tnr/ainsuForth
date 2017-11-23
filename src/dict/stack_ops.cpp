@@ -1,3 +1,9 @@
+// Thu Nov 23 00:45:23 UTC 2017
+// 4735-b0c-07t-   the -07x- is new Nov 19, 2017.
+
+
+// previous timestamp:
+// Wed Nov 22 21:43:39 UTC 2017
 // Tue Jun 20 21:33:06 UTC 2017
 // 4735-a0p-02-
 
@@ -121,18 +127,27 @@ void _emit(void) {
   Serial.print((char) dStack_pop());
 }
 
+// repair (or kludge) of the dot_paren word on 22 Nov 2017.
+
+// In a four-byte field, the first character of a counted string
+// appears to be right-aligned in that field.  To compensate,
+// the address is now incremented by three, so that it now points
+// to the first character in the counted string.
 
 const char dot_paren_str[] = ".(";
 // ( "ccc<paren>" -- )
-// Parse and display ccc delimitied by ) (right parenthesis). ,( is an imedeate
-// word
+// Parse and display ccc delimitied by ) (right parenthesis). .( is an immediate word.
 void _dot_paren(void) { 
   dStack_push(')');
   _word();
-  _count();
+  _count_par(); // has the fixes (below) appended
+  // _swap();
+  // uint8_t* addr = (uint8_t*)dStack_pop();
+  // *addr++;  *addr++;  *addr++;
+  // dStack_push((size_t)addr);
+  // _swap();
   _type();
 }
-
 
 const char cr_str[] = "cr"; // ( -- ) Carriage Return
 void _cr(void) {

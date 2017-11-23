@@ -1,3 +1,7 @@
+// Thu Nov 23 00:45:23 UTC 2017
+// 4735-b0c-07t-   the -07x- is new Nov 19, 2017.
+
+// previous timestamp:
 // Sat Jul 29 18:14:02 UTC 2017
 // 4735-b0b-01-
 
@@ -149,6 +153,34 @@ void _count(void) {
   dStack_push((size_t)addr);
   dStack_push(value);
 }
+
+
+// const char count_par_str[] = "countpar";
+// ( c-addr1 -- c-addr2 u )
+// Return the character string specification for the counted string stored a
+// c-addr1. c-addr2 is the address of the first character after c-addr1. u is the 
+// contents of the charater at c-addr1, which is the length in characters of the
+// string at c-addr2.
+
+// 22 Nov 2017 note:
+//   _count_par() will go away when a repair to _count() makes it redundant.
+
+void _count_par(void) { // count - for use with _dot_paren()
+  uint8_t* addr = (uint8_t*)dStack_pop();
+  cell_t value = *addr++;
+  dStack_push((size_t)addr);
+  dStack_push(value);
+
+  // the old word's definition ended here.
+
+  // fix - 22 Nov 2017
+  _swap();
+  addr = (uint8_t*)dStack_pop();
+  *addr++;  *addr++;  *addr++;
+  dStack_push((size_t)addr);
+  _swap();
+}
+
 
 
 const char evaluate_str[] = "evaluate";

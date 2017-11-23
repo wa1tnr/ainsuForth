@@ -1,7 +1,13 @@
+// Thu Nov 23 00:45:23 UTC 2017
+// 4735-b0c-07t-   the -07x- is new Nov 19, 2017.
+
 // Sat Jul 29 18:14:02 UTC 2017
 // 4735-b0b-01-
 
 // count word evaluate : ; c, here 
+
+extern const char count_par_str[]; // = "countpar";
+extern void _count_par(void);
 
 extern const char count_str[]; // = "count";
 extern void _count(void);
