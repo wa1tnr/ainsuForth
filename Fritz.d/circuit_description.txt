@@ -61,6 +61,12 @@ substituted, since this is a mechanical drawing only
 (no attempt is made to work with the rest of Fritzing,
 to connect nodes logically to their purpose and so on).
 
+Pinouts are arbitrary and were assigned to the 74HCT125N
+counter-clockwise, starting at upper left when device is
+oriented vertically with the dimple up top.  This will
+be corrected from the datasheet (the circuit is already
+correct, as depicted in the Fritzing mech. drawing).
+
 A note on rendering
 
 Where right angles are shown, in general, if aligned to
