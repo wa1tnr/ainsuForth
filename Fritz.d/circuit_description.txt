@@ -1,0 +1,49 @@
+My attempt to describe what's going on here.
+
+The b.s. is mine -- out of my depth on this.
+
+30 November 2017.
+
+Driving 8 NeoPixel modules with a level-shifting
+buffer 74HCT125N or similar, from the Feather M0 Basic
+target board (from Adafruit)
+
+
+The Circuit connections
+
+D12 is a GPIO from the Feather M0 basic target
+board, and is routed to the junction of D1, D2 and R1
+(a clamp/protection circuit for port i/o D12).
+
+D1 and D2 are 1N4148 signal diodes, which are
+connected in series, reverse-polarity, across
+the 3.3 volt power supply of the target board.
+
+The diodes do not conduct unless the GPIO pin
+goes more negative that 0.0 volts, or more
+positive than 3.3 volts.  This is meant to
+prevent the port pin from (at least some)
+excursions outside its absolute maximum ratings.
+
+
+The output from (470 ohm) R1 drives one input
+(signal 1A) of a 74HCT125 quad buffer/level-
+translator (which accepts a 2 volt input as
+a logical HIGH, and drives 5 volts (to Vcc) in
+buffered output at Pin 3 (signal 1Y).
+
+Pin 1 (O0enble) is tied to ground (signal: enable
+buffer output).
+
+In this way, the GPIO pin D12 of the SAMD21 micro
+is directly clamped to Vdd (+3.3v) and to GND, and
+is resistively coupled to the level-translating
+buffer (IC1) which in turn drives the data input
+(D-in) of the RGB array, at Vcc level, through a
+second 470 ohm resistor.  The buffer chip (IC1) is
+referenced to Vcc (+5.0v).
+
+ref. NeoPixelx8_strip-aa.fzz
+
+30 Nov 2017
+
