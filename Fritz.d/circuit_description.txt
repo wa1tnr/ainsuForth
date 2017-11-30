@@ -47,3 +47,4 @@ ref. NeoPixelx8_strip-aa.fzz
 
 30 Nov 2017
 
+SN74AHCT125N
