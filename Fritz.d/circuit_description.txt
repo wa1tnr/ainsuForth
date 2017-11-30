@@ -43,6 +43,24 @@ buffer (IC1) which in turn drives the data input
 second 470 ohm resistor.  The buffer chip (IC1) is
 referenced to Vcc (+5.0v).
 
+C1 is a 0.1 uF bypass capacitor (ceramic) to reduce
+noise coming in through Vcc.
+
+errata
+
+Multiple -- first try at Fritzing.  The 470 ohm
+coupling resistors (R1, R2) are mismarked as 220 ohm
+in the Fritzing drawing.  D1 and D2 began life as
+1N4001 PSU rectifiers -- they are supposed to be 1N914B (or
+equivalent, locally specified as 1N4148 signal diodes).
+
+Fritzing module for the quad buffer 74HCT125N not found,
+and 14-pin packages were difficult to discover individually,
+so in this instance a random 14-pin DIP (picaxe?) was
+substituted, since this is a mechanical drawing only
+(no attempt is made to work with the rest of Fritzing,
+to connect nodes logically to their purpose and so on).
+
 ref. NeoPixelx8_strip-aa.fzz
 
 30 Nov 2017
