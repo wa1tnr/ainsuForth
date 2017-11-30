@@ -61,6 +61,26 @@ substituted, since this is a mechanical drawing only
 (no attempt is made to work with the rest of Fritzing,
 to connect nodes logically to their purpose and so on).
 
+A note on rendering
+
+Where right angles are shown, in general, if aligned to
+horizontal or vertical axes, assume a DC interconnect at
+any node.
+
+For angular runs (30-45 degrees often used) assume the
+intent was to depict no interconnects, even at 90 degree
+crossings (so long as both wires are well off the horizontal
+or vertical axes, and run at some angle to the rest of
+the drawing, even though mutually perpendicular: this is
+meant as 'not connected' where this happens).
+
+At the moment, there are no such connections depicted.
+The one remaining was rerouted around the 8-neopixel
+strip, at extreme right, to show the two grounds are
+connected together (at the protoboard GND bus; two
+separate full-length wires are run in parallel with
+Vcc and D-in lines).
+
 ref. NeoPixelx8_strip-aa.fzz
 
 30 Nov 2017
