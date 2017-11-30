@@ -1,0 +1,150 @@
+My attempt to describe what's going on here.
+
+The b.s. is mine -- out of my depth on this.
+
+30 November 2017.
+
+Driving 8 NeoPixel modules with a level-shifting
+buffer 74HCT125N or similar, from the Feather M0 Basic
+target board (from Adafruit)
+
+
+The Circuit connections
+
+D12 is a GPIO from the Feather M0 basic target
+board, and is routed to the junction of D1, D2 and R1
+(a clamp/protection circuit for port i/o D12).
+
+D1 and D2 are 1N4148 signal diodes, which are
+connected in series, reverse-polarity, across
+the 3.3 volt power supply of the target board.
+
+The diodes do not conduct unless the GPIO pin
+goes more negative that 0.0 volts, or more
+positive than 3.3 volts.  This is meant to
+prevent the port pin from (at least some)
+excursions outside its absolute maximum ratings.
+
+
+The output from (470 ohm) R1 drives one input
+(signal 1A) of a 74HCT125 quad buffer/level-
+translator (which accepts a 2 volt input as
+a logical HIGH, and drives 5 volts (to Vcc) in
+buffered output at Pin 3 (signal 1Y).
+
+Pin 1 (O0enble) is tied to ground (signal: enable
+buffer output).
+
+In this way, the GPIO pin D12 of the SAMD21 micro
+is directly clamped to Vdd (+3.3v) and to GND, and
+is resistively coupled to the level-translating
+buffer (IC1) which in turn drives the data input
+(D-in) of the RGB array, at Vcc level, through a
+second 470 ohm resistor.  The buffer chip (IC1) is
+referenced to Vcc (+5.0v).
+
+C1 is a 0.1 uF bypass capacitor (ceramic) to reduce
+noise coming in through Vcc.
+
+errata
+
+Multiple -- first try at Fritzing.  The 470 ohm
+coupling resistors (R1, R2) are mismarked as 220 ohm
+in the Fritzing drawing.  D1 and D2 began life as
+1N4001 PSU rectifiers -- they are supposed to be 1N914B (or
+equivalent, locally specified as 1N4148 signal diodes).
+
+Fritzing module for the quad buffer 74HCT125N not found,
+and 14-pin packages were difficult to discover individually,
+so in this instance a random 14-pin DIP (picaxe?) was
+substituted, since this is a mechanical drawing only
+(no attempt is made to work with the rest of Fritzing,
+to connect nodes logically to their purpose and so on).
+
+Pinout is 1-7 then 8-14 on SN74AHCT125N, starting at
+upper left (top view) and working counter-clockwise, with
+dimple oriented up top as well.
+
+ 1 - 1OE-not (GND this to enable)
+ 2 - 1A (2.0 VDC buffered input)
+ 3 - 1Y (5.0 VDC buffered output)
+ 4 - 2OE
+ 5 - 2A
+ 6 - 2Y
+ 7 - GND
+
+ 8 - 3Y
+ 9 - 3A
+10 - 3OE
+11 - 4Y
+12 - 4A
+13 - 4OE
+14 - Vcc +5.0 VDC
+
+Pins 6, 8 and 11 are outputs 2Y, 3Y and 4Y and are left floating.
+
+All enable signals (Pins 1, 4, 10 and 13) are tied to GND
+(they are LOW==enabled) for future expansion.
+
+Pins 5, 9 and 12 are inputs 2A, 3A and 4A and are tied to ground
+(See their NOTE 4 in the datasheet).
+
+"Each output is disabled when the associated output-enable (OE-not)
+ input is high.  When OE-not is low, the respective gate passes the
+ data from the A input to its Y output."
+
+If you need the output disabled during power up or power down, use
+a pullup to Vcc on the enable pin.
+
+Absolute Maximum Ratings
+
+Vcc   7.0 VDC.
+Input  Vi -0.5 V to 7 V
+Output Vo -0.5 V to Vcc + 0.5 V
+
+Recommended Operating Conditions
+
+Vcc  min 4.5  max 5.5 VDC (recommended supply voltage range)
+Vih  2.0 VDC (logic HIGH-level input voltage)
+Vil  0.8 VDC (logic LOW-level input voltage)
+Vi   min 0.0  max 5.5 VDC (input voltage range)
+Vo   min 0.0  max Vcc
+Ioh  -8 mA (logic HIGH-level output current)
+Iol   8 mA (logic LOW-level output current)
+delta-t/delta-v  20 ns/V (Input transition rise or fall rate)
+Ta   min -40  max 85 degrees Celsius
+
+NOTE 4 says "ALL UNUSED INPUTS of the device must be held
+at Vcc or GND to ensure proper device operation."  Then it
+refers to the Texas Instruments application report,
+"Implications of Slow or Floating CMOS inputs", literature
+number SCBA004.
+
+
+
+
+A note on rendering
+
+Where right angles are shown, in general, if aligned to
+horizontal or vertical axes, assume a DC interconnect at
+any node.
+
+For angular runs (30-45 degrees often used) assume the
+intent was to depict no interconnects, even at 90 degree
+crossings (so long as both wires are well off the horizontal
+or vertical axes, and run at some angle to the rest of
+the drawing, even though mutually perpendicular: this is
+meant as 'not connected' where this happens).
+
+At the moment, there are no such connections depicted.
+The one remaining was rerouted around the 8-neopixel
+strip, at extreme right, to show the two grounds are
+connected together (at the protoboard GND bus; two
+separate full-length wires are run in parallel with
+Vcc and D-in lines).
+
+ref. NeoPixelx8_strip-bb.fzz
+
+30 Nov 2017
+
+SN74AHCT125N
