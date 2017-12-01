@@ -6,7 +6,7 @@ the observation that "Hey, Circuit Playground Express has
 what I wanted in a microcontroller, and it has an array of
 ten RGB LED's on-board: I'm liking the LED array, and would
 enjoy having access to them on the other M0 boards they
-carry (trinket M0, gemma M0 in particular).
+carry (trinket M0, gemma M0 in particular)."
 
 'Enjoy' and 'access' (especially) later turned into 'would
 like to be able to use the same software written for the RGB
@@ -17,32 +17,35 @@ So, I didn't want to have a fundamental deficit in RGB array-ed-ness
 when jockeying back and forth between M0 target board variants
 (as is typical in ainsuForth development for 2017).
 
-LATER, while learning enough Fritzing to make mechanical drawings
-prior to construction w/soldering pencil and perma-protoboard,
-it became obvious that's a lot of soldering just to achieve a
-level-shifter between the micro and the RGB array (a 5 Volt module).
+LATER, while learning enough Fritzing to make mechanical
+drawings prior to construction w/soldering pencil and perma-
+protoboard, it became obvious that's a lot of soldering just
+to achieve a level-shifter between the micro and the RGB
+array (a 5 Volt module).
 
-However, it's still a one-wire bus (Din, 5V, GND are the connections
-to the RGB module).  It runs at 800 KHz (which means a significant
-challenge to keep a clean waveform on the bus wires).  And therefore,
-essentially, its own bus 'type' (as with i2c and SPI).  Legitimate
-learning experience (which is always a side-effect goal).
+However, it's still a one-wire bus (Din, 5V, GND are the
+connections to the RGB module).  It runs at 800 KHz (which
+means a significant challenge to keep a clean waveform on
+the bus wires).  And therefore, essentially, its own bus
+'type' (as with i2c and SPI).  Legitimate learning ex-
+perience (which is always a side-effect goal).
 
 The alternative is to cheat (electrically) with other level-
 shifting schemes, or to flee the project and look for an i2c
 or SPI bus solution to driving RGB LED arrays.
 
-That would immediately mean abandoning the code that drives the
-WS2811 directly, and that may run contrary to a goal to keep
-using the same software across M0 variants, where possible and/or
-desirable.
+That would immediately mean abandoning the code that drives
+the WS2811 RGB units directly, and that may run contrary to
+a goal to keep using the same software across the SAMD21 M0+
+variants, where possible and/or desirable.  ( SAMD21G18A SAMD21E18A )
 
-For example, a diode cheat exists to allow a 3.3v micro to control
-a 5.0V WS2811 array, with a low parts count.  It has the advantage
-of working with the exact same software as before -- what it does
-happens on an electrical interfacing level not addressed by the
-software (at all, except in timing, which is fixed to 800 KHz in
-this instance).
+
+For example, a diode cheat exists to allow a 3.3v micro to
+control a 5.0V WS2811 array, with a low parts count.  It has
+the advantage of working with the exact same software as
+before -- what it does happens on an electrical interfacing
+level not addressed by the software (at all, except in timing,
+which is fixed to 800 KHz in this instance).
 
 The diode cheat doesn't change the software requirements, so it
 isn't counted as an abandonment of an approach (the initial
